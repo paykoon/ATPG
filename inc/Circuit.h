@@ -345,19 +345,19 @@ namespace Circuit {
       int CNFGenerator() {
         if(theCircuit.size() == 0)  return 0;
         vector<vector<int>> CNFFormula;
-	CNFFormula.reserve(theCircuit.size() *3);
+	      CNFFormula.reserve(theCircuit.size() *3);
         vector<vector<int>> gateClause;
-	for (int i = 0; i < theCircuit.size(); i++) {
+        for (int i = 0; i < theCircuit.size(); i++) {
           gateClause.clear();
           gate *curGate = theCircuit[i];
-	  if (curGate->gateType == PI) continue;
-	  curGate->generateClause(gateClause);
+          if (curGate->gateType == PI) continue;
+	        curGate->generateClause(gateClause);
           CNFFormula.insert(CNFFormula.end(), gateClause.begin(), gateClause.end());
        	}
         // decide the output that want to be SAT*****
-	vector<int> output;
-	output.push_back(theCircuit.size() - 1);
-	CNFFormula.push_back(output);
+      	vector<int> output;
+      	output.push_back(theCircuit.size() - 1);
+      	CNFFormula.push_back(output);
 	//
 	/*
 	for (int i =0; i < CNFFormula.size(); i++) {
@@ -367,18 +367,18 @@ namespace Circuit {
 	  cout << endl;
 	}*/
 
-	glucose *SATSolver = new glucose();
-	vector<int> result;
-	double startTime = clock();
-	if (SATSolver->runGlucose(CNFFormula, result)) {
-	  cout << "SAT" << endl;
-	 // for (int i = 0; i < result.size(); i++) {
-	 // 	cout << result[i] << endl;
-	 // }
-	}
-	else {
-	  cout << "UNSAT" << endl;
-	}
+      	glucose *SATSolver = new glucose();
+      	vector<int> result;
+      	double startTime = clock();
+      	if (SATSolver->runGlucose(CNFFormula, result)) {
+      	  cout << "SAT" << endl;
+      	  for (int i = 0; i < result.size(); i++) {
+      	  	cout << result[i] << endl;
+      	  }
+      	}
+      	else {
+      	  cout << "UNSAT" << endl;
+      	}
         double endTime = clock();
         cout << "The SAT takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds" << endl;
         return 1;
@@ -386,6 +386,10 @@ namespace Circuit {
 
 
       int SATCircuit() {
+
+      }
+
+      int gitTest() {
 
       }
 

@@ -9,6 +9,8 @@
 using namespace std;
 
 
+
+
 enum Type {constant, bufInv, aig, PO, PI};
 
 namespace Gate {
@@ -128,42 +130,42 @@ namespace Gate {
       void generateClause(vector<vector<int>> &curGate) {
         curGate.clear();
         vector<int>clause;
-	// generally, the Id starts from 1
-	if (gateType == PO || gateType == bufInv) {
+      	// generally, the Id starts from 1
+      	if (gateType == PO || gateType == bufInv) {
           //(varIn1 + ~varOut)(~varIn1+varOut)
           int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
-	  int varOut = gateID+1;
-	  clause.push_back(varIn1);
-	  clause.push_back(varOut*(-1));
-	  curGate.push_back(clause);
-	  clause.clear();
-	  clause.push_back(varIn1*(-1));
-	  clause.push_back(varOut);
-	  curGate.push_back(clause);
-	} else if (gateType == constant) {
+      	  int varOut = gateID+1;
+      	  clause.push_back(varIn1);
+      	  clause.push_back(varOut*(-1));
+      	  curGate.push_back(clause);
+      	  clause.clear();
+      	  clause.push_back(varIn1*(-1));
+      	  clause.push_back(varOut);
+      	  curGate.push_back(clause);
+      	} else if (gateType == constant) {
           int varOut = (gateID+1)*(outValue);
-	  clause.push_back(varOut);
-	  curGate.push_back(clause);
+      	  clause.push_back(varOut);
+      	  curGate.push_back(clause);
         } else if (gateType == aig) { //AIG
           //(varIn1+~varOut)(varIn2+~varOut)(~varIn1+~varIn2+varOut)
           int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
           int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
           int varOut = gateID+1;
-	  // (varIn1+~varOut)
-	  clause.push_back(varIn1);
-	  clause.push_back(varOut*(-1));
-	  curGate.push_back(clause);
-	  clause.clear();
-          // (varIn2+~varOut)
-	  clause.push_back(varIn2);
-	  clause.push_back(varOut*(-1));
-	  curGate.push_back(clause);
-	  clause.clear();
+      	  // (varIn1+~varOut)
+      	  clause.push_back(varIn1);
+      	  clause.push_back(varOut*(-1));
+      	  curGate.push_back(clause);
+      	  clause.clear();
+                // (varIn2+~varOut)
+      	  clause.push_back(varIn2);
+      	  clause.push_back(varOut*(-1));
+      	  curGate.push_back(clause);
+      	  clause.clear();
           // (~varIn1+~varIn2+varOut)
           clause.push_back(varIn1*(-1));
-	  clause.push_back(varIn2*(-1));
-	  clause.push_back(varOut);
-	  curGate.push_back(clause);
+      	  clause.push_back(varIn2*(-1));
+      	  clause.push_back(varOut);
+      	  curGate.push_back(clause);
         }
       }
 
