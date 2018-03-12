@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 namespace Glucose {
   class glucose {
     public:
@@ -21,7 +22,7 @@ namespace Glucose {
         delete solver;
       }
 
-      int runGlucose(vector<vector<int>> &CNFFormula, vector<int> &result) {
+      int runGlucose(vector<vector<vector<int>>> &CNFFormula, vector<int> &result) {
         readClause(CNFFormula);
         runSAT();
         return SATResult(result);
@@ -67,19 +68,22 @@ namespace Glucose {
         solver->showModel = false;
       }
 
-      void readClause(vector<vector<int>> &CNFFormula) {
+
+      void readClause(vector<vector<vector<int>>> &CNFFormula) {
         int parsed_lit, var;
         vec<Lit> lits;
-        for (int i = 0; i < CNFFormula.size(); i++) {//clauses
-          for (int j = 0; j < CNFFormula[i].size(); j++) {//literals
-            // add literal
-            parsed_lit = CNFFormula[i][j];
-            var = abs(parsed_lit)-1;
-            while (var >= solver->nVars()) solver->newVar();
-            lits.push( (parsed_lit > 0) ? mkLit(var) : ~mkLit(var) );
+        for (int m = 0; m < CNFFormula.size(); m++) {  // gate
+          for (int i = 0; i < CNFFormula[m].size(); i++) {//clauses
+            for (int j = 0; j < CNFFormula[m][i].size(); j++) {//literals
+              // add literal
+              parsed_lit = CNFFormula[m][i][j];
+              var = abs(parsed_lit)-1;
+              while (var >= solver->nVars()) solver->newVar();
+              lits.push( (parsed_lit > 0) ? mkLit(var) : ~mkLit(var) );
+            }
+            solver->addClause_(lits);
+            lits.clear();
           }
-          solver->addClause_(lits);
-          lits.clear();
         }
       }
 

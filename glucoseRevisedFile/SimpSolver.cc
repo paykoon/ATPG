@@ -785,8 +785,8 @@ bool SimpSolver::eliminate(bool turn_off_elim)
     }
 
     if (verbosity >= 0 && elimclauses.size() > 0)
-  //      printf("c |  Eliminated clauses:     %10.2f Mb                                                                |\n",
-  //             double(elimclauses.size() * sizeof(uint32_t)) / (1024*1024));
+  //      printf("c |  Eliminated clauses:     %10.2f Mb                                                                |\n", 
+               double(elimclauses.size() * sizeof(uint32_t)) / (1024*1024));
 
 
     return ok;

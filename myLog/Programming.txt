@@ -1,0 +1,79 @@
+------2017.11.30-------
+Read the main.cc of glucose, need to understand the function in Dimacs.h
+readClause(in, S, lits); //********
+S.addClause_(lits); }    //********
+
+------2017.12.15-------
+
+need to know the way to use the library of glucose
+
+----2017.12.17-----
+template<class B, class Solver>
+static void readClause(B& in, Solver& S, vec<Lit>& lits) {
+    int     parsed_lit, var;
+    lits.clear();
+    for (;;){
+        parsed_lit = parseInt(in);
+        if (parsed_lit == 0) break;
+        var = abs(parsed_lit)-1;
+		//***********
+    //print var's value , make sure the understanding..
+        while (var >= S.nVars()) S.newVar();
+        lits.push( (parsed_lit > 0) ? mkLit(var) : ~mkLit(var) );
+    }
+}
+
+//----2017.12.18-------
+the way to input the CNF formula
+in readClause function
+static void readClause(B& in, Solver& S, vec<Lit>& lits) {
+    int     parsed_lit, var;
+    lits.clear();
+    for (;;){
+		//*****usage: send all literal to parsed_lit one by one, send "0" at last******
+        parsed_lit = parseInt(in);
+        if (parsed_lit == 0) break; // the end of line has "0". when meet it, break.
+        var = abs(parsed_lit)-1;
+		//*****
+        while (var >= S.nVars()) S.newVar();
+        lits.push( (parsed_lit > 0) ? mkLit(var) : ~mkLit(var) );
+    }
+}
+
+in main functions. we can write the answer
+//********************************************
+if (ret == l_True){
+  printf("***************SAT Solutin**************\n");
+  for (int i = 0; i < S.nVars(); i++) {
+    if (S.model[i] != l_Undef) {
+      int out = (S.model[i]==l_True)? 1 : 0;
+      printf("%d ",out);
+    }
+  }
+  printf("\n");
+}
+else if (ret == l_False){
+    printf("***************UNSAT***************\n");
+}
+//********************************************
+
+
+
+*****TODO******still undone
+//2018.1.27
+TO DO:
+verify the result of glucose in S27
+link to circuit by XOR, and put it into SAT-solver
+write the program for SIS
+
+// 2018.1.30
+TO DO:
+link the output with XOR(circuit.h --> function oriXORFaulty)
+
+// 2018.3.7
+temp: generate vector oriAndFauCircuit
+keeping: generate CNFFormula oriAndFauCNF
+insert and delete fault in oriAndFauCNF
+
+// 2018.3.8
+// check the CNF formula correct or not?

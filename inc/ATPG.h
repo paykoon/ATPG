@@ -5,6 +5,6 @@
 #include "Gate.h"
 using namespace std;
 
-void fault();
+
 
 #endif

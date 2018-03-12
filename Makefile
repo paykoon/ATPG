@@ -14,3 +14,7 @@ $(bin): $(obj)
 
 clean:
 	rm -rf $(bin)
+
+#to make the glucose Library
+# first step:  cd simp
+# second step: make libr
