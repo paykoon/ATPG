@@ -81,42 +81,6 @@ namespace Gate {
         this->gateID = gateID;
       }
 
-      Type getType(){
-        return gateType;
-      }
-
-      Type getFanin1Type(){
-        return fanin1->getType();
-      }
-
-      Type getFanin2Type(){
-        return fanin2->getType();
-      }
-
-      int getFanoutNum(){
-        return fanout.size();
-      }
-
-      int getFanin1OutNum(){
-        return fanin1->getFanoutNum();
-      }
-
-      int getFanin2OutNum(){
-        return fanin2->getFanoutNum();
-      }
-
-      string getIn1Name(){
-        return in1Name;
-      }
-
-      string getIn2Name(){
-        return in2Name;
-      }
-
-      string getOutName(){
-        return outName;
-      }
-
       void addFanout(gate* fanout){
         this->fanout.push_back(fanout);
       }

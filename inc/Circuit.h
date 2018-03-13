@@ -19,37 +19,69 @@ using namespace std;
 using namespace Gate;
 using namespace Glucose;
 
+// Cirucit class. The initialization process when a circuit is built is included.
 namespace Circuit {
   class circuit {
     public:
       circuit(char *blifFile){
-        double startTime = clock();
         PISize = 0;
         POSize = 0;
         gateSize = 0;
         copyCount = 1;
-        if ( !blifParser(blifFile) )  exit(1);
-        if ( !connectGates() )  return;
-        if ( !generateFaultList() ) return;
+        initialization(blifFile);
+      }
+      ~circuit(){
+        delete this;
+      }
 
+      void initialization(char *blifFile) {
+        double startTime, endTime, preTime, curTime;
+
+        startTime = clock();
+        preTime = clock();
+        cout << "----------Initialization of circuit----------" << endl;
+        if ( !blifParser(blifFile) )  exit(1);
+        curTime = clock();
+        cout << "1. Blif parsing is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+        cout << "   The number of gates in the circuit is " << theCircuit.size() << endl;
+
+        preTime = clock();
+        if ( !connectGates() )  return;
+        curTime = clock();
+        cout << "2. Gate connecting is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+
+        preTime = clock();
+        if ( !generateFaultList() ) return;
+        curTime = clock();
+        cout << "3. Fault list generating is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+        cout << "   Fault number is " << collapsedFaultList.size() << " (Collapsed: AIG's input wire connected to PI or fanout)" << endl;
+
+        preTime = clock();
         vector<gate*> oriAndFauCir;
         generateOriAndFau(oriAndFauCir);
-
-        printCircuit(theCircuit);
-        printCircuit(oriAndFauCir);
-
         generateCNF(oriAndFauCir);
+        curTime = clock();
+        cout << "4. Initial CNF generating is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
 
-        printCNF(CNFOriAndFauCir);
+        preTime = clock();
+        // TO DO.........
+        curTime = clock();
+        cout << "5. Test vectors of SSAF(collapsed) are prepared (****TO DO****). Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
 
+        preTime = clock();
+        findAllSSAFRedundant(allFaultList);
+        curTime = clock();
+        cout << "6. Find all redundant single stuck-at faults. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+        if (redundantSSAF.size() > 0) {
+          cout << "   " << redundantSSAF.size() << " redundant SSAF found"<< "" << endl;
+          printFaults(redundantSSAF);
+        } else {
+          cout << "The circuit has no redundant single stuck-at fault." << endl;
+        }
 
-        double endTime = clock();
-        cout << "The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds" << endl;
-
-        vector<int> fault;
-        fault.push_back(36);
-        injectFaultsInCNF(fault);
-        vector<int> result;
+        endTime = clock();
+        cout << "----------The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl;
+        /*
         if (SATCircuit(CNFOriAndFauCir, result)) {
           cout << "SAT" << endl;
           for (int i = 0; i < result.size(); i++) {
@@ -59,31 +91,18 @@ namespace Circuit {
         } else {
           cout << "UNSAT" << endl;
         }
+        */
       }
-
-      ~circuit(){}
 
       void addGate(gate *newGate){
         theCircuit.push_back(newGate);
-          if(newGate->getType() == PI){
+          if(newGate->gateType == PI){
             PISize++;
-          } else if(newGate->getType() == PO){
+          } else if(newGate->gateType == PO){
             POSize++;
           } else {
             gateSize++;
           }
-      }
-
-      unsigned int getInSize(){
-        return PISize;
-      }
-
-      unsigned int getOutSize(){
-        return POSize;
-      }
-
-      unsigned long getSize(){
-        return theCircuit.size();
       }
 
       int assignPIs(string &inValues){
@@ -99,7 +118,7 @@ namespace Circuit {
       }
 
       void propagatePI(){
-        for(unsigned long i=0;i<theCircuit.size();i++){
+        for(int i=0;i<theCircuit.size();i++){
           theCircuit[i]->setOut();
         }
       }
@@ -131,8 +150,8 @@ namespace Circuit {
           cout << "Cannot open the file" << endl;
           return 0;
         }
-        unsigned long lineNum = 0;
-        unsigned long gateIndex = 0;
+        int lineNum = 0;
+        int gateIndex = 0;
         string line;
         bool stillIn = false, stillOut = false;
         vector<string>POTemp;
@@ -152,7 +171,7 @@ namespace Circuit {
                 if(elems[i] == ".inputs" || elems[i] == "\\") continue;
               gate *newInput = new gate(PI, elems[i]);
               addGate(newInput);
-              MapNumWire.insert(pair<string, int>(newInput->getOutName(), gateIndex++));
+              MapNumWire.insert(pair<string, int>(newInput->outName, gateIndex++));
             }
           } else if(line.find(".outputs") !=string::npos || stillOut){
             if(line.find("\\") != string::npos){
@@ -172,15 +191,15 @@ namespace Circuit {
             if(elems.size() == 7){ //AIG
               gate *newAig = new gate(aig, elems[1], elems[2], elems[3], elems[4], elems[5], elems[6]);
               addGate(newAig);
-              MapNumWire.insert(pair<string, int>(newAig->getOutName(), gateIndex++));
+              MapNumWire.insert(pair<string, int>(newAig->outName, gateIndex++));
             }else if(elems.size() == 5){ // buffer or Inverter
               gate *newBufInv = new gate(elems[1], elems[2], elems[3], elems[4]);
               addGate(newBufInv);
-              MapNumWire.insert(pair<string, int>(newBufInv->getOutName(), gateIndex++));
+              MapNumWire.insert(pair<string, int>(newBufInv->outName, gateIndex++));
             }else if(elems.size() == 3){  // constant
               gate *newCons = new gate(elems[1], elems[2]);
               addGate(newCons);
-              MapNumWire.insert(pair<string, int>(newCons->getOutName(), gateIndex++));
+              MapNumWire.insert(pair<string, int>(newCons->outName, gateIndex++));
             }else{
                 cout << "\n***Line "; cout << lineNum; cout << " in blif file has errors***\n" << endl;
               return 0;
@@ -195,7 +214,7 @@ namespace Circuit {
               if(elems[m] == ".outputs" || elems[m] == "\\") continue;
             gate *newOutput = new gate(PO, elems[m]);
             addGate(newOutput);
-            MapNumWire.insert(pair<string, int>(newOutput->getOutName(), gateIndex++));
+            MapNumWire.insert(pair<string, int>(newOutput->outName, gateIndex++));
           }
         }
         file.close();
@@ -206,52 +225,51 @@ namespace Circuit {
       int connectGates(){
         if(theCircuit.size() == 0)  return 0;
         map<string, int>::iterator iter;
-        for(unsigned long cur = 0;cur < theCircuit.size();cur++){
+        for(int cur = 0;cur < theCircuit.size();cur++){
           theCircuit[cur]->setID(cur);
-          Type gateType = theCircuit[cur]->getType();
+          Type gateType = theCircuit[cur]->gateType;
           if(gateType == constant || gateType == PI) continue;
 
-          iter = MapNumWire.find(theCircuit[cur]->getIn1Name());
+          iter = MapNumWire.find(theCircuit[cur]->in1Name);
           if (iter == MapNumWire.end()) {
-            cout << "The gate is not connected: "; cout << theCircuit[cur]->getIn1Name() << endl;
+            cout << "The gate is not connected: "; cout << theCircuit[cur]->in1Name << endl;
             return 0;
           }
           theCircuit[iter->second]->addFanout(theCircuit[cur]);
           theCircuit[cur]->setFanin1(theCircuit[iter->second]);
           //If it's AIG, there will be two inputs.
           if(gateType != aig) continue;
-          iter = MapNumWire.find(theCircuit[cur]->getIn2Name());
+          iter = MapNumWire.find(theCircuit[cur]->in2Name);
           if (iter == MapNumWire.end()) {
-            cout << "The gate is not connected: "; cout << theCircuit[cur]->getIn2Name() << endl;
+            cout << "The gate is not connected: "; cout << theCircuit[cur]->in2Name << endl;
             return 0;
           }
           theCircuit[iter->second]->addFanout(theCircuit[cur]);
           theCircuit[cur]->setFanin2(theCircuit[iter->second]);
         }
-	      cout << "The number of gates in the circuit is " << theCircuit.size() << endl;
         return 1;
       }
 
       //return 0 if nothing is inside the circuit
-      //generate the faults that locate at aig input wire connecting to the PI or fanout.
+      //1. generate the faults that locate at aig input wire connecting to the PI or fanout.
+      //2. also generate all faults(without collapsing)
       //fault number's meaning:
       // bit index:     2        1       0
       //                gateID   input   stuckat
       //Assume it's n, n/4=gateID, (n%4)/2=gate input ID, (n%4)%2=stuck-at fault,
-      // also generate all faults(without collapsing)
       int generateFaultList(){
         if(theCircuit.size() == 0)  return 0;
-        unsigned long newFault;
-        for(unsigned long i = 0;i < theCircuit.size(); i++){
-          if(theCircuit[i]->getType() != aig) continue;
+        int newFault;
+        for(int i = 0;i < theCircuit.size(); i++){
+          if(theCircuit[i]->gateType != aig) continue;
           // the faults in the AIG input which are connected to PI or fanouts
-          if(theCircuit[i]->getFanin1Type() == PI || theCircuit[i]->getFanin1OutNum() > 1){
+          if(theCircuit[i]->fanin1->gateType == PI || theCircuit[i]->fanin1->fanout.size() > 1){
             newFault = 4 * i + 0;   //stuck-at 0 at input 0 of gate i
             collapsedFaultList.insert(newFault);
             newFault = 4 * i + 1;   //stuck-at 1 at input 0 of gate i
             collapsedFaultList.insert(newFault);
           }
-          if(theCircuit[i]->getFanin2Type() == PI || theCircuit[i]->getFanin2OutNum() > 1){
+          if(theCircuit[i]->fanin2->gateType == PI || theCircuit[i]->fanin2->fanout.size() > 1){
             newFault = 4 * i + 2;   //stuck-at 0 at input 1 of gate i
             collapsedFaultList.insert(newFault);
             newFault = 4 * i + 3;   //stuck-at 1 at input 1 of gate i
@@ -397,7 +415,7 @@ namespace Circuit {
         CNFOriAndFauCir.push_back(gateClause);
       }
 
-      // insert stuck-at faults into CNF formula oriAndFauCir. Can be used for any number of faults
+      // insert stuck-at faults into CNF formula "CNForiAndFauCir". Can be used for any number of faults
       // CNF formula:
       // original circuit | faulty circuit | new input | new XOR | new output | an "OR" gate for all outputs | constant wire(stuck at faults)
       // circuit size        circuit size    PI size      PO size   PO size           1
@@ -470,11 +488,26 @@ namespace Circuit {
         return 1;
       }
 
+      // find all redundant single stuck-at faults
+      void findAllSSAFRedundant(set<int> &allFaultList) {
+        vector<int> fault;
+        for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
+          fault.push_back(*iter);
+          injectFaultsInCNF(fault);
+          fault.clear();
+          vector<int> SATResult;
+          // The fault is redundant if no test vector is found.
+          if(SATCircuit(CNFOriAndFauCir, SATResult) == 0) {
+            redundantSSAF.insert(*iter);
+          }
+        }
+      }
+
       // send the entire CNFFormula to GLucose to do SAT.
       int SATCircuit(vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &result) {
         if (CNFOriAndFauCir.size() == 0) return 0;
+        //double startTime = clock();
         glucose *SATSolver = new glucose();
-        double startTime = clock();
         vector<int> allValue;
         if (SATSolver->runGlucose(CNFOriAndFauCir, allValue)) {
           //cout << "SAT" << endl;
@@ -486,17 +519,36 @@ namespace Circuit {
           for (int i = 0; i < PISize; i++) {
             result.push_back(allValue[i+start]);
           }
+          return 1;
         }
         else {
           //cout << "UNSAT" << endl;
+          return 0;
         }
-        double endTime = clock();
-        cout << "The SAT takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds" << endl;
-        return 1;
+        //double endTime = clock();
+        //cout << "The SAT takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds" << endl;
       }
 
+      void printFaults(set<int> &faults) {
+        for (set<int>::iterator iter = faults.begin(); iter != faults.end(); iter++) {
+          int faultID = *iter;
+          int gateID = faultID >> 2;
+          int input = (faultID >> 1) & 1;
+          int stuckat = faultID & 1;
+          string in1Name = theCircuit[gateID]->in1Name;
+          string in2Name = theCircuit[gateID]->in2Name;
+          string outName = theCircuit[gateID]->outName;
+          cout << "   gateID " << gateID << ":  " << in1Name << " " << in2Name << " " << outName << "; ";
+          if (input == 0) {
+            cout << in1Name << " input0 ";
+          } else {
+            cout << in2Name << " input1 ";
+          }
+          cout << "stuck at " << stuckat << endl;
+        }
+      }
 
-
+      // -----use the check the result---------
       int printFault(int ID) {
         int faultID = ID;                         cout << "faultID: " << faultID << endl;
         int oriGateID = (faultID >> 2);           cout << "oriGateID: " << oriGateID << endl;
@@ -552,14 +604,16 @@ namespace Circuit {
           cout << endl;
         }
       }
+      // --------------------------------------
 
       private:
         int copyCount;
         vector <gate*> theCircuit;
-        unsigned int PISize,POSize, gateSize;
-        set<unsigned long> collapsedFaultList;
-        set<unsigned long> allFaultList;
+        int PISize,POSize, gateSize;
         vector<vector<vector<int>>> CNFOriAndFauCir;
+        set<int> collapsedFaultList;
+        set<int> allFaultList;
+        set<int> redundantSSAF;
         vector<int> curFaults;
         // Key : wire name. Value : number in CNF formula
         map<string, int> MapNumWire;

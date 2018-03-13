@@ -77,3 +77,9 @@ insert and delete fault in oriAndFauCNF
 
 // 2018.3.8
 // check the CNF formula correct or not?
+
+// 2018.3.13
+// ****** Find all redundant SSAF. But it's different from what sis found ????******
+// check all AIG's input???? maybe incorrect??????
+// need to propagate the input values and see what will happen
+//

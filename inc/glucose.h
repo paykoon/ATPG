@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 namespace Glucose {
   class glucose {
     public:

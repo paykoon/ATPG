@@ -15,11 +15,6 @@ using namespace std;
 using namespace Circuit;
 using namespace Glucose;
 
-int testCircuit(char *blifFile) {
-  circuit *pCircuit = new circuit(blifFile);
-  delete pCircuit;
-}
-
 int main(int argc, char **argv){
   if(argc < 2){
     cout << "No input file" << endl;
@@ -27,7 +22,8 @@ int main(int argc, char **argv){
   }
 
   char *blifFile=argv[1];
-  testCircuit(blifFile);
+  // build the circuit
+  circuit *pCircuit = new circuit(blifFile);
 
   return 1;
 }

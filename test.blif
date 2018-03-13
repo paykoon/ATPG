@@ -2,9 +2,9 @@
 .model ../DATA/s27
 .inputs a b
 .outputs c
-.names m 
-0
-.names m b c
+.names a b m
+11 1
+.names m a c
 11 1
 .end
 
