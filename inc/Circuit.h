@@ -57,12 +57,18 @@ namespace Circuit {
         cout << "   Fault number is " << collapsedFaultList.size() << " (Collapsed: AIG's input wire connected to PI or fanout)" << endl;
 
         preTime = clock();
-        vector<gate*> oriAndFauCir;
         generateOriAndFau(oriAndFauCir);
         generateCNF(oriAndFauCir);
         curTime = clock();
         cout << "4. Initial CNF generating is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
 
+        printCircuit(theCircuit);
+        printCircuit(oriAndFauCir);
+        printCNF(CNFOriAndFauCir);
+        cout << endl;
+        testFaultInject();
+
+        /*
         preTime = clock();
         // TO DO.........
         curTime = clock();
@@ -78,6 +84,7 @@ namespace Circuit {
         } else {
           cout << "The circuit has no redundant single stuck-at fault." << endl;
         }
+        */
 
         endTime = clock();
         cout << "----------The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl;
@@ -250,13 +257,12 @@ namespace Circuit {
         return 1;
       }
 
-      //return 0 if nothing is inside the circuit
-      //1. generate the faults that locate at aig input wire connecting to the PI or fanout.
-      //2. also generate all faults(without collapsing)
-      //fault number's meaning:
-      // bit index:     2        1       0
-      //                gateID   input   stuckat
-      //Assume it's n, n/4=gateID, (n%4)/2=gate input ID, (n%4)%2=stuck-at fault,
+      // return 0 if nothing is inside the circuit
+      // 1. generate the faults that locate at aig input wire connecting to the PI or fanout.
+      // 2. also generate all faults(without collapsing)
+      // fault number's meaning:
+      // bit index:     [ ,3]        [2  1]    0
+      //                gateID       port     stuckat
       int generateFaultList(){
         if(theCircuit.size() == 0)  return 0;
         int newFault;
@@ -264,26 +270,35 @@ namespace Circuit {
           if(theCircuit[i]->gateType != aig) continue;
           // the faults in the AIG input which are connected to PI or fanouts
           if(theCircuit[i]->fanin1->gateType == PI || theCircuit[i]->fanin1->fanout.size() > 1){
-            newFault = 4 * i + 0;   //stuck-at 0 at input 0 of gate i
+            newFault = (i << 3) + (1 << 1) + 0;   //stuck-at 0 at input 1 of gate i
             collapsedFaultList.insert(newFault);
-            newFault = 4 * i + 1;   //stuck-at 1 at input 0 of gate i
+            newFault = (i << 3) + (1 << 1) + 1;   //stuck-at 1 at input 1 of gate i
             collapsedFaultList.insert(newFault);
           }
           if(theCircuit[i]->fanin2->gateType == PI || theCircuit[i]->fanin2->fanout.size() > 1){
-            newFault = 4 * i + 2;   //stuck-at 0 at input 1 of gate i
+            newFault = (i << 3) + (2 << 1) + 0;   //stuck-at 0 at input 2 of gate i
             collapsedFaultList.insert(newFault);
-            newFault = 4 * i + 3;   //stuck-at 1 at input 1 of gate i
+            newFault = (i << 3) + (2 << 1) + 1;   //stuck-at 1 at input 2 of gate i
             collapsedFaultList.insert(newFault);
           }
+        }
+        for (int i = 0; i < theCircuit.size(); i++) {
           // all faults(in input)
-          newFault = 4 * i + 0;
+          newFault = (i << 3) + (1 << 1) + 0;   //stuck-at 0 at input 1 of gate i
           allFaultList.insert(newFault);
-          newFault = 4 * i + 1;
+          newFault = (i << 3) + (1 << 1)+ 1;   //stuck-at 1 at input 1 of gate i
           allFaultList.insert(newFault);
-          newFault = 4 * i + 2;
+          newFault = (i << 3) + (3 << 1) + 0;   //stuck-at 0 at output of gate i
           allFaultList.insert(newFault);
-          newFault = 4 * i + 3;
+          newFault = (i << 3) + (3 << 1) + 1;   //stuck-at 1 at output of gate i
           allFaultList.insert(newFault);
+          Type gateType = theCircuit[i]->gateType;
+          if (gateType == XOR || gateType == OR || gateType == aig) {
+            newFault = (i << 3) + (2 << 1) + 0;   //stuck-at 0 at input 2 of gate i
+            allFaultList.insert(newFault);
+            newFault = (i << 3) + (2 << 1)+ 1;   //stuck-at 1 at input 2 of gate i
+            allFaultList.insert(newFault);
+          }
         }
         return 1;
       }
@@ -297,11 +312,11 @@ namespace Circuit {
         }
       }
 
+      // cannot use copy gate, since if we copy a circuit, all fanin and fanout will be changed.
       void copyCircuit(vector <gate*> &copy) {
         for (int i = 0; i < theCircuit.size(); i++) {
           // new a gate, then change its information
-          string name = "new";
-          gate *newGate = new gate(PI, name);
+          gate *newGate = new gate();
           newGate->gateType = theCircuit[i]->gateType;
           newGate->in1Name = theCircuit[i]->in1Name + "_" + to_string(copyCount);
           newGate->in2Name = theCircuit[i]->in2Name + "_" + to_string(copyCount);
@@ -413,82 +428,97 @@ namespace Circuit {
         gateClause.clear();
         gateClause.push_back(output);
         CNFOriAndFauCir.push_back(gateClause);
+        // push_back a blank gate to make the "CNFOriAndFauCir" and "oriAndFauCir" same.
+        oriAndFauCir.push_back(new gate());
       }
 
       // insert stuck-at faults into CNF formula "CNForiAndFauCir". Can be used for any number of faults
+      // previous faults will be reset if we call this function.
+      // the fault can be inserted to any gates output(output's fault can be collapsed and combined with input's faults).
+      // If there are two faults happening in the same place, only the front one will go into effect.
       // CNF formula:
       // original circuit | faulty circuit | new input | new XOR | new output | an "OR" gate for all outputs | constant wire(stuck at faults)
       // circuit size        circuit size    PI size      PO size   PO size           1
-      int injectFaultsInCNF(vector<int> &newFaults) {
+      // creat oriAndFauCir, which is used to generate the CNFFormula
+      // oriAndFauCir: original circuit | faulty circuit | new input | new XOR | new output | a blank gate
+      int injectFaults(vector<int> &newFaults) {
         int origialSize = theCircuit.size();
         if (origialSize == 0) return 0;
         int preSize = origialSize + origialSize + PISize + POSize + POSize + 1;
-        // reset previous faults.
-        for (int i = 0; i < curFaults.size(); i++) {
-          int faultID = curFaults[i];
-          int oriGateID = (faultID >> 2);
+        vector<vector<int>> gateClause;
+        // reset the circuit "oriAndFauCir"
+        for (map<int, gate*>::iterator iter = preGate.begin(); iter != preGate.end(); iter++) {
+          // bit index:     [ ,3]        [2  1]    0
+          //                gateID       port     stuckat
+          // port: 01 input1, 10 input2, 11 output
+          int faultID = iter->first;
+          int fauGateID = (faultID >> 3);
+          gate *preFauGate = iter->second;
+          preFauGate->copyGate(oriAndFauCir[fauGateID]);
+          preFauGate->generateClause(gateClause);
+          CNFOriAndFauCir[fauGateID].clear();
+          CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
+          CNFOriAndFauCir.pop_back();  // delete the constant wire which put in last
+          gateClause.clear();
+        }
+        preGate.clear();
+        // inject new faults
+        for (int i = 0; i < newFaults.size(); i++) {
+          int faultID = newFaults[i];
+          int oriGateID = (faultID >> 3);
           int fauGateID = oriGateID + origialSize;
-          for (int m = 0; m < CNFOriAndFauCir[fauGateID].size(); m++) {
-            for (int n = 0; n < CNFOriAndFauCir[fauGateID][m].size(); n++) {
-              int sign = (CNFOriAndFauCir[fauGateID][m][n] > 0) ? 1 : -1;
-              CNFOriAndFauCir[fauGateID][m][n] = sign * (abs(CNFOriAndFauCir[oriGateID][m][n]) + origialSize);
+          int port = (faultID >> 1) & 3;
+          int stuckat = faultID & 1;
+          int gateType = theCircuit[oriGateID]->gateType;
+          gate *faultGate = oriAndFauCir[fauGateID];
+          if ((faultGate->gateType != aig && faultGate->gateType != OR && faultGate->gateType != XOR) || port == 0){
+            if (port == 2 || port == 0) {
+              cout << "Skip this fault since it has problem." << endl;
+              printFault(faultID);
+              continue;
             }
           }
-          // clear stuck at constant wire locating at last
-          CNFOriAndFauCir[preSize+i].clear();
-        }
-        curFaults.clear();
-        curFaults.reserve(newFaults.size());
-        curFaults.assign(newFaults.begin(), newFaults.end());
-        vector<vector<int>> gateClause;
-        // insert new faults
-        for (int i = 0; i < newFaults.size(); i++) {
-          // bit index:     2        1       0
-          //                gateID   input   stuckat
-          int faultID = newFaults[i];
-          int oriGateID = (faultID >> 2);
-          int fauGateID = oriGateID + origialSize;
-          int input = (faultID >> 1) & 1;
-          int stuckat = faultID & 1;
+          gate *copy = new gate();
+          faultGate->copyGate(copy);
+          preGate.insert(pair<int, gate*>(fauGateID, copy));
           // contant wire connected to the stuckat inputs
           // name by stuckat+faultID
           string name = "stuckat_"+to_string(faultID);
           string stuckatStr = to_string(stuckat);
           gate *stuckatCons = new gate(name, stuckatStr);
           stuckatCons->gateID = preSize + i;
-          stuckatCons->generateClause(gateClause);
-          // in the previous operation, we just clear stuckat constant wire's vector but not delete them (to reduce time complexity)
-          // so here we can reuse these vector
-          if (preSize + i < CNFOriAndFauCir.size()) {
-            CNFOriAndFauCir[preSize + i].assign(gateClause.begin(), gateClause.end());
-          } else {
-            CNFOriAndFauCir.push_back(gateClause);
-          }
-          gateClause.clear();
-          // change the fanin value of stuck at gates(connect to constant wire)
-          // we dont care the origial fanin's output connection
-          // directly change the value in clause of faulty gates
-          gate *oriGate = theCircuit[oriGateID];
-          int faultyFaninID = 0;
-          if (oriGate->gateType == PI) {  // PI doesnt have fanin
-            faultyFaninID = oriGate->gateID + origialSize;
-          } else {
-            faultyFaninID = ((input == 0) ? oriGate->fanin1->gateID : oriGate->fanin2->gateID) + origialSize;
-          }
-          for (int m = 0; m < CNFOriAndFauCir[fauGateID].size(); m++) {
-            for (int n = 0; n < CNFOriAndFauCir[fauGateID][m].size(); n++) {
-              // find the faulty fanin wire in CNF formula
-              if (abs(CNFOriAndFauCir[fauGateID][m][n]) - 1 == faultyFaninID) {
-                // connect it with stuckat wire
-                CNFOriAndFauCir[fauGateID][m][n] = (CNFOriAndFauCir[fauGateID][m][n] > 0) ? (stuckatCons->gateID + 1) : (stuckatCons->gateID + 1)*(-1);
+          oriAndFauCir.push_back(stuckatCons);
+          if (port != 3) {  // input wire
+            if (gateType == constant) {
+              faultGate->outValue = stuckat;
+            } else {
+              if (port == 1) { // input1
+                faultGate->fanin1 = stuckatCons;
+              } else {         // input2
+                faultGate->fanin2 = stuckatCons;
               }
             }
+          } else {  // output wire. change the gate to bufinv, whose input connect to stuck at constant wire.
+            faultGate->gateType = bufInv;
+            faultGate->fanin1 = stuckatCons;
           }
+          // insert the constant stuckat wires to the end of the CNF formula
+          // in the previous operation, we just clear stuckat constant wire's vector but not delete them (to reduce time complexity)
+          // so here we can reuse these vectors
+          stuckatCons->generateClause(gateClause);
+          CNFOriAndFauCir.push_back(gateClause);
+          gateClause.clear();
+          faultGate->generateClause(gateClause);
+          CNFOriAndFauCir[fauGateID].clear();
+          CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
+          gateClause.clear();
         }
         return 1;
       }
 
+
       // find all redundant single stuck-at faults
+      /*
       void findAllSSAFRedundant(set<int> &allFaultList) {
         vector<int> fault;
         for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
@@ -502,6 +532,7 @@ namespace Circuit {
           }
         }
       }
+      */
 
       // send the entire CNFFormula to GLucose to do SAT.
       int SATCircuit(vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &result) {
@@ -532,58 +563,90 @@ namespace Circuit {
       void printFaults(set<int> &faults) {
         for (set<int>::iterator iter = faults.begin(); iter != faults.end(); iter++) {
           int faultID = *iter;
-          int gateID = faultID >> 2;
-          int input = (faultID >> 1) & 1;
+          int gateID = faultID >> 3;
+          int port = (faultID >> 1) & 3;
           int stuckat = faultID & 1;
           string in1Name = theCircuit[gateID]->in1Name;
           string in2Name = theCircuit[gateID]->in2Name;
           string outName = theCircuit[gateID]->outName;
           cout << "   gateID " << gateID << ":  " << in1Name << " " << in2Name << " " << outName << "; ";
-          if (input == 0) {
-            cout << in1Name << " input0 ";
-          } else {
-            cout << in2Name << " input1 ";
+          if (port == 1) {
+            cout << in1Name << " input1 ";
+          } else if (port == 2){
+            cout << in2Name << " input2 ";
+          } else if (port == 3){
+            cout << outName << " output ";
           }
           cout << "stuck at " << stuckat << endl;
         }
       }
 
-      // -----use the check the result---------
+      void printGateType(Type gateType) {
+        switch (gateType){
+          case constant:
+            cout << "constant";
+            break;
+          case bufInv:
+            cout << "bufInv";
+            break;
+          case aig:
+            cout << "aig";
+            break;
+          case PO:
+            cout << "PO";
+            break;
+          case PI:
+            cout << "PI";
+            break;
+          case OR:
+            cout << "OR";
+            break;
+          case XOR:
+            cout << "XOR";
+            break;
+        }
+      }
+
       int printFault(int ID) {
-        int faultID = ID;                         cout << "faultID: " << faultID << endl;
-        int oriGateID = (faultID >> 2);           cout << "oriGateID: " << oriGateID << endl;
-        int fauGateID = oriGateID + theCircuit.size();  cout << "fauGateID: " << fauGateID << endl;
-        int input = (faultID >> 1) & 1;           cout << "input: " << input << endl;
-        int stuckat = faultID & 1;                cout << "stuckat: " << stuckat << endl;
+        int faultID = ID;                         cout << "faultID: " << faultID;
+        int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;
+        int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << fauGateID;
+        int port = (faultID >> 1) & 3;           cout << ", port: ";
+        if (port < 3) {
+          cout << "input" << port;
+        }
+        else {
+          cout << "output";
+        }
+        int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
+        cout << ", gateType ";
+        printGateType(theCircuit[oriGateID]->gateType);
+        cout << endl;
+      }
+
+
+      // -----use the check the result---------
+      // inject single faults in all places
+      void testFaultInject() {
+        vector<int> newFaults;
+        for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
+          int fault = *iter;
+          if (fault != 3 && fault != 4) continue;
+          newFaults.clear();
+          printFault(fault);
+          newFaults.push_back(fault);
+          injectFaults(newFaults);
+          printCNF(CNFOriAndFauCir);
+          cout << endl;
+        }
       }
 
       void printCircuit(vector <gate*> &curCircuit) {
         for (int i = 0; i < curCircuit.size(); i++) {
           cout << i << " " << curCircuit[i]->outName << " ";
           // constant, bufInv, aig, PO, PI, OR, XOR
-          switch (curCircuit[i]->gateType){
-            case constant:
-              cout << "constant" << endl;
-              break;
-            case bufInv:
-              cout << "bufInv" << endl;
-              break;
-            case aig:
-              cout << "aig"<< endl;
-              break;
-            case PO:
-              cout << "PO" << endl;
-              break;
-            case PI:
-              cout << "PI"<< endl;
-              break;
-            case OR:
-              cout << "OR"<< endl;
-              break;
-            case XOR:
-              cout << "XOR"<< endl;
-              break;
-          }
+          printGateType(curCircuit[i]->gateType);
+          cout << endl;
         }
         cout << endl;
       }
@@ -611,10 +674,14 @@ namespace Circuit {
         vector <gate*> theCircuit;
         int PISize,POSize, gateSize;
         vector<vector<vector<int>>> CNFOriAndFauCir;
+        vector<gate*> oriAndFauCir;
+        vector<int> curFaults;
+        // the gate changed due to the fault.
+        // key : gateID in "oriAndFauCir", value is the gate in oriAndFauCir
+        map<int, gate*> preGate;
         set<int> collapsedFaultList;
         set<int> allFaultList;
         set<int> redundantSSAF;
-        vector<int> curFaults;
         // Key : wire name. Value : number in CNF formula
         map<string, int> MapNumWire;
   };

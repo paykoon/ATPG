@@ -82,4 +82,14 @@ insert and delete fault in oriAndFauCNF
 // ****** Find all redundant SSAF. But it's different from what sis found ????******
 // check all AIG's input???? maybe incorrect??????
 // need to propagate the input values and see what will happen
-//
+// ****start to do the verification******
+
+// 2018.3.14
+// ****first read the paper about the fault collapsing. First task in 2018.3.15
+// should I consider the output's stuck-at 1? Since it cannot be replace by input's stuck at values
+// meaning of fault ID should be changed->also include the gate outputs.!
+// we should change it to that faults can be inserted to any place-->still some problem 2018.3.15
+
+// another idea to verify the fault model:
+// use the fault model to generate the test patterns for these faults. 
+// and again, check whether these test vectors can cover all faults.(all faults without collapsing)

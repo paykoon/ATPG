@@ -8,15 +8,13 @@
 #include <fstream>
 using namespace std;
 
-
-
-
 enum Type {constant, bufInv, aig, PO, PI, OR, XOR};
 
 namespace Gate {
   class gate{
     public:
       // PI or PO (The name of In and out are same)
+      gate(){}
       gate(Type gateType, string &portName){
         this->gateType = gateType;
         this->faultyOut = false;
@@ -98,7 +96,7 @@ namespace Gate {
       void generateClause(vector<vector<int>> &gateClause) {
         gateClause.clear();
         vector<int>clause;
-      	// general CNF formula's ID starts from 1, but our circuits's gate ID start from 0
+      	// Generally CNF formula's ID starts from 1, but our circuits's gate ID start from 0
         // so we should do gateID + 1
         if (gateType == PI) {
           //(varOut + ~varOut). Means dont care.
@@ -120,6 +118,7 @@ namespace Gate {
       	  clause.push_back(varOut);
       	  gateClause.push_back(clause);
       	} else if (gateType == constant) {
+          // varOut * constant value
           int varOut = (gateID+1)*(outValue > 0 ? 1 : -1);
       	  clause.push_back(varOut);
       	  gateClause.push_back(clause);
@@ -193,6 +192,25 @@ namespace Gate {
           gateClause.push_back(clause);
           clause.clear();
         }
+      }
+
+      void copyGate(gate *copy) {
+        copy->gateType = this->gateType;
+        copy->in1Name = this->in1Name;
+        copy->in2Name = this->in2Name;
+        copy->outName = this->outName;
+        copy->invIn1 = this->invIn1;
+        copy->invIn2 = this->invIn2;
+        copy->invOut = this->invOut;
+        copy->faultyOut = this->faultyOut;
+        copy->gateID = this->gateID;
+        copy->outValue = this->outValue;
+        copy->fanout.clear();
+        copy->fanout.assign(this->fanout.begin(), this->fanout.end());
+        copy->fanin1 = nullptr;
+        copy->fanin2 = nullptr;
+        copy->fanin1 = this->fanin1;
+        copy->fanin2 = this->fanin2;
       }
 
       Type gateType;
