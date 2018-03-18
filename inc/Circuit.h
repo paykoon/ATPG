@@ -372,8 +372,10 @@ namespace Circuit {
           newInput->fanout.push_back(originalInput);
           faultyInput->fanin1 = newInput;
           faultyInput->gateType = bufInv;
+          faultyInput->in1Name = newInput->outName;
           originalInput->fanin1 = newInput;
           originalInput->gateType = bufInv;
+          originalInput->in1Name = newInput->outName;
         }
         // generate the XOR gates, change the gate type of original PO to buf;
         vector<gate*> finalOutput;
@@ -451,17 +453,18 @@ namespace Circuit {
           // bit index:     [ ,3]        [2  1]    0
           //                gateID       port     stuckat
           // port: 01 input1, 10 input2, 11 output
-          int faultID = iter->first;
-          int fauGateID = (faultID >> 3);
+          int fauGateID = iter->first;
           gate *preFauGate = iter->second;
           preFauGate->copyGate(oriAndFauCir[fauGateID]);
           preFauGate->generateClause(gateClause);
+          oriAndFauCir.pop_back();
           CNFOriAndFauCir[fauGateID].clear();
           CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
           CNFOriAndFauCir.pop_back();  // delete the constant wire which put in last
           gateClause.clear();
         }
         preGate.clear();
+
         // inject new faults
         for (int i = 0; i < newFaults.size(); i++) {
           int faultID = newFaults[i];
@@ -483,7 +486,7 @@ namespace Circuit {
           preGate.insert(pair<int, gate*>(fauGateID, copy));
           // contant wire connected to the stuckat inputs
           // name by stuckat+faultID
-          string name = "stuckat_"+to_string(faultID);
+          string name = "stuck-at"+to_string(stuckat);
           string stuckatStr = to_string(stuckat);
           gate *stuckatCons = new gate(name, stuckatStr);
           stuckatCons->gateID = preSize + i;
@@ -494,13 +497,16 @@ namespace Circuit {
             } else {
               if (port == 1) { // input1
                 faultGate->fanin1 = stuckatCons;
+                faultGate->in1Name = stuckatCons->outName;
               } else {         // input2
                 faultGate->fanin2 = stuckatCons;
+                faultGate->in2Name = stuckatCons->outName;
               }
             }
           } else {  // output wire. change the gate to bufinv, whose input connect to stuck at constant wire.
             faultGate->gateType = bufInv;
             faultGate->fanin1 = stuckatCons;
+            faultGate->in1Name = stuckatCons->outName;
           }
           // insert the constant stuckat wires to the end of the CNF formula
           // in the previous operation, we just clear stuckat constant wire's vector but not delete them (to reduce time complexity)
@@ -631,11 +637,11 @@ namespace Circuit {
         vector<int> newFaults;
         for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
           int fault = *iter;
-          if (fault != 3 && fault != 4) continue;
           newFaults.clear();
           printFault(fault);
           newFaults.push_back(fault);
           injectFaults(newFaults);
+          printCircuit(oriAndFauCir);
           printCNF(CNFOriAndFauCir);
           cout << endl;
         }
@@ -643,7 +649,11 @@ namespace Circuit {
 
       void printCircuit(vector <gate*> &curCircuit) {
         for (int i = 0; i < curCircuit.size(); i++) {
-          cout << i << " " << curCircuit[i]->outName << " ";
+          cout << i << " " << curCircuit[i]->in1Name << " ";
+          if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
+            cout << curCircuit[i]->in2Name << " ";
+          }
+          cout << curCircuit[i]->outName << " ";
           // constant, bufInv, aig, PO, PI, OR, XOR
           printGateType(curCircuit[i]->gateType);
           cout << endl;
