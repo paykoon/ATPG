@@ -14,6 +14,7 @@
 using namespace std;
 using namespace Circuit;
 using namespace Glucose;
+using namespace ATPG;
 
 int main(int argc, char **argv){
   if(argc < 2){
@@ -24,6 +25,7 @@ int main(int argc, char **argv){
   char *blifFile=argv[1];
   // build the circuit
   circuit *pCircuit = new circuit(blifFile);
+  atpg *Tester = new atpg(pCircuit);
 
   return 1;
 }

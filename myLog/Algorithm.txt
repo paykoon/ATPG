@@ -84,3 +84,16 @@ Until all fautls are covered.
 (If our proposed ATPG implementation are feasible, we can also use the proposed method to check the some given test set's coverage and reduce the processing time).
 
 ****************Attentions: Still need to fully understand the previous program and make sure some details*****************
+
+
+2017.3.19
+Generate test patterns for single faults
+1. while (collapsed faults list is still not empty && some collapsed faults in PI is still unchecked) {
+  1) select a fault in PI, generate its test pattern
+  2) analyzed it's propagation path, from the path we can also find which faults can be detected by this test patterns (****check the ratio***)
+  (needs a. revise the original circuit to fault, and reset the fault circuit to original one --->  Done**
+         b. the function to propagate input value to the entire circuit   --->  Done**
+         c. find the faults propagation path as well.
+  noticed: the way we pick fault is first PI, last PI, second PI, second last PI etc.
+}
+2. if still some faults remains, generate test patterns for them one by one(*****first need to check their number*******)

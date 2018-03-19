@@ -60,17 +60,17 @@ namespace Gate {
         delete this;
       }
 
-      void setPI(char inValues){
-        outValue = (inValues == '1');
+      void setPI(int inValues){
+        outValue = inValues;
       }
 
       void setOut(){
         // the outValue of PI and constant will be decided in other places
         if (gateType == PO) {
           outValue = fanin1->outValue;
-        } else if(gateType == bufInv){
+        } else if (gateType == bufInv){
           outValue = ( fanin1->outValue == invIn1 ) == invOut;
-        } else if(gateType == aig){
+        } else if (gateType == aig){
           outValue = ( (fanin1->outValue == invIn1) & (fanin2->outValue == invIn2) ) == invOut;
         }
       }
