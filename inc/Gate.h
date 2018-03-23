@@ -61,7 +61,9 @@ namespace Gate {
       }
 
       void setPI(int inValues){
-        outValue = inValues;
+        if (gateType == PI) {
+          outValue = inValues;
+        }
       }
 
       void setOut(){

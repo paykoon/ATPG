@@ -93,7 +93,7 @@ Generate test patterns for single faults
   2) analyzed it's propagation path, from the path we can also find which faults can be detected by this test patterns (****check the ratio***)
   (needs a. revise the original circuit to fault, and reset the fault circuit to original one --->  Done**
          b. the function to propagate input value to the entire circuit   --->  Done**
-         c. find the faults propagation path as well.
+         c. find the faults propagation path as well --> Done **
   noticed: the way we pick fault is first PI, last PI, second PI, second last PI etc.
 }
 2. if still some faults remains, generate test patterns for them one by one(*****first need to check their number*******)

@@ -22,35 +22,50 @@ using namespace Gate;
 namespace Circuit {
   class circuit {
     public:
+      int PISize, POSize, gateSize;
+      vector <gate*> theCircuit;
+      // Key : signal name. Value : corresponding ID
+      map<string, int> MapNumWire;
+
       circuit(char *blifFile){
         PISize = 0;
         POSize = 0;
         gateSize = 0;
-        init(blifFile);
+        CircuitInit(blifFile);
       }
       ~circuit(){
         delete this;
       }
 
-      void init(char *blifFile) {
+      void CircuitInit(char *blifFile) {
         double startTime, endTime, preTime, curTime;
         startTime = clock();
         preTime = clock();
         cout << endl << "----------Initialization of circuit----------" << endl;
+
+        cout << "1. Blif parsing is started. " << endl;
         if ( !blifParser(blifFile) )  exit(1);
         curTime = clock();
-        cout << "1. Blif parsing is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+        cout << "   Blif parsing is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         cout << "   The number of gates in the circuit is " << theCircuit.size() << endl;
-
+        
+        cout << "2. Gate connecting is started." << endl;
         preTime = clock();
         if ( !connectGates() )  return;
         curTime = clock();
-        cout << "2. Gate connecting is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+        cout << "   Gate connecting is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
 
         endTime = clock();
         cout << "----------The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
       }
 
+      void resetAllVisited() {
+        for (int i = 0; i < theCircuit.size(); i++) {
+          theCircuit[i]->visited = false;
+        }
+      }
+
+    private:
       void addGate(gate *newGate){
         theCircuit.push_back(newGate);
           if(newGate->gateType == PI){
@@ -60,24 +75,6 @@ namespace Circuit {
           } else {
             gateSize++;
           }
-      }
-
-      int assignPIs(vector<int> &inValues){
-        if (inValues.size() != PISize){
-          cout << "\n***Input vector does not match the size of PI***\n" << endl;
-          return 0;
-        }
-        for (int i = 0;i < inValues.size(); i++){
-            int oneBit = inValues[i];
-            theCircuit[i]->setPI(oneBit);
-        }
-        return 1;
-      }
-
-      void propagatePI(){
-        for(int i=0;i<theCircuit.size();i++){
-          theCircuit[i]->setOut();
-        }
       }
 
       //in blif file, all items are seperated by space
@@ -207,20 +204,7 @@ namespace Circuit {
         return 1;
       }
 
-      //void activateFault(int fault);
-      //void activateFault(int fault, int );
 
-      void resetAllVisited() {
-        for (int i = 0; i < theCircuit.size(); i++) {
-          theCircuit[i]->visited = false;
-        }
-      }
-
-
-      int PISize, POSize, gateSize;
-      vector <gate*> theCircuit;
-      // Key : signal name. Value : corresponding ID
-      map<string, int> MapNumWire;
   };
 }
 
