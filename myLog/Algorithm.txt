@@ -97,3 +97,16 @@ Generate test patterns for single faults
   noticed: the way we pick fault is first PI, last PI, second PI, second last PI etc.
 }
 2. if still some faults remains, generate test patterns for them one by one(*****first need to check their number*******)
+
+2017.3.26
+new bug
+1. the redundant faults is different from sis. check it
+2. the collapse and generation of SSAF will overlook some redundant fault. check it why.
+maybe it's better to directly check whether the test pattern can detect other faults. but not check the path????
+check its time.
+use a small circuit to check faulty-out's function is correct or not???..
+
+
+2017.3.29....
+give up generate SSAF by ourself..just to big.
+use other's initial patterns.

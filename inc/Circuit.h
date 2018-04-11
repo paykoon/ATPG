@@ -48,7 +48,7 @@ namespace Circuit {
         curTime = clock();
         cout << "   Blif parsing is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         cout << "   The number of gates in the circuit is " << theCircuit.size() << endl;
-        
+
         cout << "2. Gate connecting is started." << endl;
         preTime = clock();
         if ( !connectGates() )  return;
@@ -80,6 +80,16 @@ namespace Circuit {
       //in blif file, all items are seperated by space
       //get the items in one line and store it in elems.
       void splitName(string &line, vector<string> &elems){
+        int spaceLength = 0;
+        // skip the space in the head of line
+        for (auto ch : line) {
+            if(ch == ' ') {
+                spaceLength++;
+            } else {
+                break;
+            }
+        }
+        line.erase(0, spaceLength);
         stringstream lineStream(line);//transfer string to stream
         string item;
         while( getline(lineStream, item, ' ') ){

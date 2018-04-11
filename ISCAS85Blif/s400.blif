@@ -1,0 +1,310 @@
+# Benchmark "s400.bench" written by ABC on Fri Mar 30 21:19:41 2018
+.model s400.bench
+.inputs FM TEST CLR TESTL FML OLATCH_Y2L OLATCHVUC_6 OLATCHVUC_5 OLATCH_R1L \
+ OLATCH_G2L OLATCH_G1L OLATCH_FEL C3_Q3 C3_Q2 C3_Q1 C3_Q0 UC_16 UC_17 UC_18 \
+ UC_19 UC_8 UC_9 UC_10 UC_11
+.outputs GRN2 YLW2 RED2 GRN1 YLW1 RED1 n20 n25 n30 n35 n40 n45 n50 n55 n60 \
+ n65 n70 n75 n80 n85 n90 n95 n100 n105 n110 n115 n120
+.names TEST TESTL n52
+11 1
+.names TEST TESTL n53
+00 1
+.names n52 n53 n54
+00 1
+.names CLR n54 n20
+01 1
+.names FM FML n56
+11 1
+.names FM FML n57
+00 1
+.names n56 n57 n58
+00 1
+.names CLR n58 n25
+01 1
+.names CLR OLATCH_FEL n60_1
+00 1
+.names C3_Q2 C3_Q1 n61
+01 1
+.names n60_1 n61 n62
+11 1
+.names C3_Q0 n62 n30
+11 1
+.names CLR OLATCH_FEL n64
+01 1
+.names C3_Q1 C3_Q0 n65_1
+01 1
+.names FML n65_1 n66
+01 1
+.names C3_Q3 C3_Q2 n67
+01 1
+.names n66 n67 n68
+11 1
+.names n64 n68 n69
+10 1
+.names CLR FML n70_1
+01 1
+.names C3_Q2 n70_1 n71
+11 1
+.names C3_Q1 n71 n72
+01 1
+.names C3_Q0 n72 n73
+01 1
+.names n69 n73 n60
+00 0
+.names C3_Q3 C3_Q2 n75_1
+10 1
+.names CLR n75_1 n76
+01 1
+.names n67 n70_1 n77
+11 1
+.names n76 n77 n78
+00 1
+.names C3_Q1 n78 n79
+00 1
+.names C3_Q0 n79 n80_1
+01 1
+.names n69 n80_1 n81
+00 1
+.names n60 n81 n82
+00 1
+.names n60 n81 n83
+10 1
+.names UC_17 n83 n84
+01 1
+.names n82 n84 n35
+00 1
+.names CLR C3_Q2 n86
+01 1
+.names C3_Q1 C3_Q0 n87
+00 1
+.names CLR C3_Q3 n88
+01 1
+.names n87 n88 n89
+11 1
+.names n64 n86 n90_1
+00 1
+.names n89 n90_1 n91
+01 1
+.names n60 n91 n92
+00 1
+.names n60 n91 n93
+10 1
+.names UC_17 n93 n94
+01 1
+.names n92 n94 n40
+00 1
+.names C3_Q3 C3_Q2 n96
+00 1
+.names OLATCH_FEL n96 n97
+01 1
+.names OLATCH_FEL C3_Q2 n98
+00 1
+.names n65_1 n98 n99
+11 1
+.names CLR n97 n100_1
+00 1
+.names n99 n100_1 n45
+01 0
+.names C3_Q1 C3_Q0 n102
+11 1
+.names CLR n102 n103
+01 1
+.names C3_Q3 C3_Q0 n104
+10 1
+.names CLR n104 n105_1
+01 1
+.names n90_1 n103 n106
+10 1
+.names n105_1 n106 n50
+01 1
+.names FML C3_Q3 n108
+11 1
+.names FML n87 n109
+11 1
+.names n108 n109 n110_1
+00 1
+.names n86 n110_1 n111
+11 1
+.names FML C3_Q3 n112
+00 1
+.names n65_1 n112 n113
+11 1
+.names OLATCH_FEL n113 n114
+10 1
+.names n111 n114 n55
+10 1
+.names UC_17 UC_18 n116
+00 1
+.names UC_19 n116 n117
+01 1
+.names UC_9 UC_10 n118
+00 1
+.names UC_11 n118 n119
+01 1
+.names UC_8 n119 n120_1
+10 1
+.names TESTL n120_1 n121
+00 1
+.names n117 n121 n122
+00 1
+.names UC_16 n122 n123
+11 1
+.names C3_Q2 n123 n124
+11 1
+.names C3_Q1 n124 n125
+11 1
+.names C3_Q0 n125 n126
+11 1
+.names C3_Q3 n126 n127
+00 1
+.names C3_Q3 n126 n128
+11 1
+.names n127 n128 n129
+00 1
+.names C3_Q2 C3_Q1 n130
+00 1
+.names C3_Q0 n130 n131
+01 1
+.names n123 n131 n132
+10 1
+.names C3_Q3 n132 n133
+11 1
+.names CLR n129 n134
+01 1
+.names n133 n134 n65
+01 1
+.names C3_Q1 n123 n136
+11 1
+.names C3_Q0 n136 n137
+11 1
+.names C3_Q2 n137 n138
+00 1
+.names C3_Q2 n137 n139
+11 1
+.names n138 n139 n140
+00 1
+.names CLR n140 n141
+01 1
+.names n133 n141 n70
+01 1
+.names C3_Q0 n123 n143
+11 1
+.names C3_Q1 n143 n144
+00 1
+.names C3_Q1 n143 n145
+11 1
+.names n144 n145 n146
+00 1
+.names CLR n146 n147
+01 1
+.names n133 n147 n75
+01 1
+.names C3_Q0 n123 n149
+00 1
+.names n143 n149 n150
+00 1
+.names CLR n150 n151
+01 1
+.names n133 n151 n80
+01 1
+.names UC_17 n121 n153
+10 1
+.names UC_18 n153 n154
+11 1
+.names UC_19 n154 n155
+11 1
+.names UC_16 n155 n156
+00 1
+.names UC_16 n155 n157
+11 1
+.names n156 n157 n158
+00 1
+.names CLR n158 n159
+01 1
+.names n123 n159 n85
+01 1
+.names UC_18 n121 n161
+10 1
+.names UC_19 n161 n162
+11 1
+.names UC_17 n162 n163
+00 1
+.names UC_17 n162 n164
+11 1
+.names n163 n164 n165
+00 1
+.names CLR n165 n166
+01 1
+.names n123 n166 n90
+01 1
+.names UC_19 n121 n168
+10 1
+.names UC_18 n168 n169
+00 1
+.names UC_18 n168 n170
+11 1
+.names n169 n170 n171
+00 1
+.names CLR n171 n172
+01 1
+.names n123 n172 n95
+01 1
+.names UC_19 n121 n174
+01 1
+.names n168 n174 n175
+00 1
+.names CLR n175 n176
+01 1
+.names n123 n176 n100
+01 1
+.names UC_9 UC_10 n178
+11 1
+.names UC_11 n178 n179
+11 1
+.names UC_8 n179 n180
+00 1
+.names UC_8 n179 n181
+11 1
+.names n180 n181 n182
+00 1
+.names CLR n182 n183
+01 1
+.names n120_1 n183 n105
+01 1
+.names UC_10 UC_11 n185
+11 1
+.names UC_9 n185 n186
+00 1
+.names UC_9 n185 n187
+11 1
+.names n186 n187 n188
+00 1
+.names CLR n188 n189
+01 1
+.names n120_1 n189 n110
+01 1
+.names UC_10 UC_11 n191
+00 1
+.names n185 n191 n192
+00 1
+.names CLR n192 n193
+01 1
+.names n120_1 n193 n115
+01 1
+.names CLR UC_11 n195
+00 1
+.names n120_1 n195 n120
+01 1
+.names OLATCHVUC_5 RED2
+0 1
+.names OLATCHVUC_6 YLW1
+0 1
+.names OLATCH_G2L GRN2
+1 1
+.names OLATCH_Y2L YLW2
+1 1
+.names OLATCH_G1L GRN1
+1 1
+.names OLATCH_R1L RED1
+1 1
+.end

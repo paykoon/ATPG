@@ -1,62 +1,16 @@
+# Benchmark "s832" written by ABC on Fri Jul 22 14:51:03 2016
 .model s832
-.inputs G0 G1 G2 G3 G4 G5 G6 G7 G8 G9 G10 G11 G12 G13 G14 G15 G16 G18 G38 G39 \
-G40 G41 G42
+.inputs G0 G1 G2 G3 G4 G5 G6 G7 G8 G9 G10 G11 G12 G13 G14 G15 G16 G18 G38 \
+ G39 G40 G41 G42
 .outputs G327 G325 G300 G322 G45 G312 G53 G49 G47 G296 G290 G292 G298 G288 \
-G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
-.names G42 n50 G327
-11 1
-.names G42 n54 [1]
-11 1
-.names n59 n61 G300
-11 1
-.names n67 n69 G322
-01 1
-.names n79 n81_1 G45
-11 1
-.names n84 n85 G312
-11 1
-.names G42 n89 G53
-01 1
-.names n93 n100 G49
-1- 1
--0 1
-.names n60 n102 G47
-11 1
-.names G42 n106 G296
-01 1
-.names G42 n50 G290
-01 1
-.names n116 n117 G292
-11 1
-.names n120 n121 G298
-11 1
-.names G42 n54 G288
-01 1
-.names n125 n126 G315
-1- 1
--1 1
-.names n60 n128 G55
-11 1
-.names n80 n130 G43
-11 1
-.names n148 n150 G302
-1- 1
--0 1
-.names G18 n190 n76
-00 1
-.names G18 n235 n81
-00 1
-.names G18 n269 n86
-00 1
-.names G18 n341 n91
-00 1
-.names G18 n402 n96
-00 1
+ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 .names G40 G41 n48
 00 1
 .names G39 n48 n49
 11 1
 .names G15 n49 n50
+11 1
+.names G42 n50 G327
 11 1
 .names G40 G41 n52
 10 1
@@ -64,6 +18,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 11 1
 .names G38 n53 n54
 01 1
+.names G42 n54 G325
+11 1
 .names G38 G39 n56
 00 1
 .names G3 G16 n57
@@ -76,6 +32,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 00 1
 .names G40 n60 n61
 01 1
+.names n59 n61 G300
+11 1
 .names G39 G40 n63
 11 1
 .names G42 n63 n64
@@ -90,6 +48,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 00 1
 .names G1 n68 n69
 11 1
+.names n67 n69 G322
+01 1
 .names G11 G12 n71
 00 1
 .names G10 G12 n72
@@ -112,17 +72,23 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 10 1
 .names G40 n80 n81_1
 11 1
+.names n79 n81_1 G45
+11 1
 .names G38 n63 n83
 01 1
 .names G16 n83 n84
 11 1
 .names G41 G42 n85
 11 1
+.names n84 n85 G312
+11 1
 .names G40 G41 n87
 01 1
 .names G39 n87 n88
 01 1
 .names G38 n88 n89
+01 1
+.names G42 n89 G53
 01 1
 .names G38 G40 n91_1
 10 1
@@ -144,13 +110,21 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 00 1
 .names n98 n99 n100
 01 1
+.names n93 n100 G49
+01 0
 .names G5 n83 n102
 01 1
+.names n60 n102 G47
+11 1
 .names G40 G41 n104
 11 1
 .names G39 n104 n105
 11 1
 .names G38 n105 n106
+01 1
+.names G42 n106 G296
+01 1
+.names G42 n50 G290
 01 1
 .names G15 G38 n109
 11 1
@@ -170,11 +144,17 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names G42 n114 n117
 10 1
+.names n116 n117 G292
+11 1
 .names G15 n56 n119
 11 1
 .names G14 n119 n120
 11 1
 .names G40 n80 n121
+01 1
+.names n120 n121 G298
+11 1
+.names G42 n54 G288
 01 1
 .names G38 n65 n124
 01 1
@@ -182,9 +162,15 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 11 1
 .names n83 n85 n126
 11 1
+.names n125 n126 G315
+00 0
 .names G5 n83 n128
 11 1
+.names n60 n128 G55
+11 1
 .names G15 n124 n130
+11 1
+.names n80 n130 G43
 11 1
 .names G4 G16 n132
 01 1
@@ -224,6 +210,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 00 1
 .names n144 n149 n150
 01 1
+.names n148 n150 G302
+01 0
 .names G16 G38 n152
 10 1
 .names G15 n152 n153
@@ -278,7 +266,9 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 11 1
 .names G38 G41 n178
 10 1
-.names G1 G39 n180
+.names G1 G38 n179
+10 1
+.names G39 n179 n180
 11 1
 .names G41 n180 n181
 01 1
@@ -300,6 +290,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names n187 n189 n190
 01 1
+.names G18 n190 n76
+00 1
 .names G39 n104 n192
 01 1
 .names G16 n192 n193
@@ -356,7 +348,9 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names G41 G42 n219
 01 1
-.names G42 n182 n221
+.names G41 n182 n220
+11 1
+.names G42 n220 n221
 11 1
 .names G4 G38 n222
 01 1
@@ -386,6 +380,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names n232 n234 n235
 01 1
+.names G18 n235 n81
+00 1
 .names G40 n85 n237
 01 1
 .names G4 G39 n238
@@ -452,6 +448,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names n266 n268 n269
 01 1
+.names G18 n269 n86
+00 1
 .names G40 n85 n271
 11 1
 .names G15 G16 n272
@@ -466,24 +464,36 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names G8 G9 n277
 11 1
-.names G15 G38 n280
-11 1
+.names G38 G41 n278
+01 1
+.names G15 G41 n279
+01 1
+.names n278 n279 n280
+00 1
 .names G6 G7 n281
 11 1
 .names n277 n281 n282
 11 1
 .names n280 n282 n283
 11 1
+.names G42 n109 n284
+01 1
+.names G15 G41 n285
+00 1
 .names G38 G39 n286
 10 1
 .names G15 G39 n287
 10 1
-.names G41 n286 n289
-10 1
+.names n284 n285 n288
+00 1
+.names n286 n288 n289
+01 1
 .names n287 n289 n290
 01 1
-.names n283 n290 n292
-01 1
+.names n60 n283 n291
+00 1
+.names n290 n291 n292
+11 1
 .names G4 n137 n293
 01 1
 .names n292 n293 n294
@@ -566,7 +576,9 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names G15 G16 n333
 01 1
-.names n332 n333 n335
+.names G41 n333 n334
+01 1
+.names n332 n334 n335
 00 1
 .names n85 n335 n336
 01 1
@@ -580,10 +592,14 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names n338 n340 n341
 11 1
+.names G18 n341 n91
+00 1
+.names G38 G39 n343
+01 1
 .names G0 G39 n344
 11 1
-.names G38 n274 n345
-10 1
+.names n274 n343 n345
+00 1
 .names n344 n345 n346
 01 1
 .names n271 n346 n347
@@ -698,8 +714,8 @@ G315 G55 G43 G310 G302 n76 n81 n86 n91 n96
 01 1
 .names n148 n401 n402
 01 1
-.names [1] G325
-1 1
-.names [1] G310
+.names G18 n402 n96
+00 1
+.names G325 G310
 1 1
 .end

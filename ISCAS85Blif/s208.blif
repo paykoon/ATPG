@@ -1,0 +1,150 @@
+# Benchmark "s208.1.bench" written by ABC on Fri Mar 30 21:18:03 2018
+.model s208.1.bench
+.inputs P.0 C.8 C.7 C.6 C.5 C.4 C.3 C.2 C.1 C.0 X.4 X.3 X.2 X.1 X.8 X.7 X.6 \
+ X.5
+.outputs Z n24 n29 n34 n39 n44 n49 n54 n59
+.names P.0 X.1 n28
+10 1
+.names X.2 n28 n29_1
+01 1
+.names X.3 n29_1 n30
+11 1
+.names C.3 n30 n31
+11 1
+.names X.2 n28 n32
+11 1
+.names C.2 n32 n33
+11 1
+.names P.0 X.1 n34_1
+11 1
+.names C.1 n34_1 n35
+11 1
+.names P.0 C.0 n36
+11 1
+.names n35 n36 n37
+00 1
+.names n31 n33 n38
+00 1
+.names n37 n38 n39_1
+11 1
+.names X.4 X.2 n40
+00 1
+.names X.3 n40 n41
+01 1
+.names X.1 n41 n42
+01 1
+.names P.0 X.5 n43
+10 1
+.names X.6 n43 n44_1
+01 1
+.names X.7 n44_1 n45
+11 1
+.names n42 n45 n46
+11 1
+.names C.7 n46 n47
+11 1
+.names X.6 n43 n48
+11 1
+.names n42 n48 n49_1
+11 1
+.names C.6 n49_1 n50
+11 1
+.names P.0 X.5 n51
+11 1
+.names n42 n51 n52
+11 1
+.names C.5 n52 n53
+11 1
+.names X.3 n29_1 n54_1
+01 1
+.names X.4 n54_1 n55
+11 1
+.names C.4 n55 n56
+11 1
+.names n53 n56 n57
+00 1
+.names n47 n50 n58
+00 1
+.names n57 n58 n59_1
+11 1
+.names n39_1 n59_1 n60
+11 1
+.names X.7 n44_1 n61
+01 1
+.names X.8 n61 n62
+11 1
+.names n42 n62 n63
+11 1
+.names C.8 n63 n64
+11 1
+.names n60 n64 Z
+10 0
+.names X.2 X.1 n66
+11 1
+.names P.0 n66 n67
+11 1
+.names X.4 n67 n68
+01 1
+.names X.3 n68 n69
+11 1
+.names X.3 n66 n70
+11 1
+.names P.0 n70 n71
+11 1
+.names X.4 n71 n72
+10 1
+.names n69 n72 n24
+00 0
+.names X.3 n67 n74
+01 1
+.names X.3 n67 n75
+10 1
+.names n74 n75 n29
+00 0
+.names X.2 n34_1 n77
+00 1
+.names X.2 n34_1 n78
+11 1
+.names n77 n78 n34
+00 1
+.names P.0 X.1 n80
+01 1
+.names n28 n80 n39
+00 0
+.names X.4 n66 n82
+11 1
+.names X.3 n82 n83
+11 1
+.names P.0 n83 n84
+11 1
+.names X.5 n84 n85
+11 1
+.names X.6 n85 n86
+11 1
+.names X.8 n86 n87
+01 1
+.names X.7 n87 n88
+11 1
+.names X.7 n86 n89
+11 1
+.names X.8 n89 n90
+10 1
+.names n88 n90 n44
+00 0
+.names X.7 n86 n92
+01 1
+.names X.7 n86 n93
+10 1
+.names n92 n93 n49
+00 0
+.names X.6 n85 n95
+00 1
+.names n86 n95 n54
+00 1
+.names X.5 n84 n97
+10 1
+.names X.5 n84 n98
+01 1
+.names n97 n98 n59
+00 0
+.end

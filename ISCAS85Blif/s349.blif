@@ -1,0 +1,243 @@
+# Benchmark "s349.bench" written by ABC on Fri Mar 30 21:18:51 2018
+.model s349.bench
+.inputs START B0 B1 B2 B3 A0 A1 A2 A3 CT2 CT1 CT0 ACVQN3 ACVQN2 ACVQN1 \
+ ACVQN0 MRVQN3 MRVQN2 MRVQN1 MRVQN0 AX3 AX2 AX1 AX0
+.outputs CNTVCO2 CNTVCON2 READY P0 P1 P2 P3 P4 P5 P6 P7 n42 n47 n52 n57 n62 \
+ n67 n72 n77 n82 n87 n92 n97 n102 n107 n112
+.names CT1 CT0 n51
+11 1
+.names CT2 n51 CNTVCO2
+11 1
+.names CT1 CT0 n53
+01 1
+.names CT2 n53 READY
+11 1
+.names n51 READY n55
+10 1
+.names CT2 n55 n56
+00 1
+.names CT2 n55 n57_1
+11 1
+.names n56 n57_1 n58
+00 1
+.names START n58 n42
+01 1
+.names CT0 READY n60
+10 1
+.names CT1 n60 n61
+00 1
+.names CT1 n60 n62_1
+11 1
+.names n61 n62_1 n63
+00 1
+.names START n63 n47
+01 1
+.names CT0 READY n65
+01 1
+.names n60 n65 n66
+00 1
+.names START n66 n52
+01 1
+.names CT1 CT0 n68
+00 1
+.names CT2 n68 n69
+01 1
+.names READY n69 n70
+00 1
+.names MRVQN0 AX0 n71
+01 1
+.names ACVQN0 n71 n72_1
+01 1
+.names MRVQN0 AX1 n73
+01 1
+.names ACVQN1 n73 n74
+10 1
+.names n72_1 n74 n75
+10 1
+.names ACVQN1 n73 n76
+01 1
+.names n75 n76 n77_1
+00 1
+.names MRVQN0 AX2 n78
+01 1
+.names ACVQN2 n78 n79
+10 1
+.names n77_1 n79 n80
+00 1
+.names ACVQN2 n78 n81
+01 1
+.names n80 n81 n82_1
+00 1
+.names MRVQN0 AX3 n83
+01 1
+.names ACVQN3 n83 n84
+10 1
+.names n82_1 n84 n85
+00 1
+.names ACVQN3 n83 n86
+01 1
+.names n85 n86 n87_1
+00 1
+.names n70 n87_1 n88
+10 1
+.names ACVQN3 n70 n89
+00 1
+.names n88 n89 n90
+00 1
+.names START n90 n57
+00 0
+.names n82_1 n83 n92_1
+01 1
+.names ACVQN3 n92_1 n93
+01 1
+.names n82_1 n83 n94
+10 1
+.names ACVQN3 n94 n95
+11 1
+.names n87_1 n95 n96
+10 1
+.names n93 n96 n97_1
+00 1
+.names n70 n97_1 n98
+10 1
+.names ACVQN2 n70 n99
+00 1
+.names n98 n99 n100
+00 1
+.names START n100 n62
+00 0
+.names n77_1 n78 n102_1
+01 1
+.names ACVQN2 n102_1 n103
+01 1
+.names n77_1 n78 n104
+10 1
+.names ACVQN2 n104 n105
+11 1
+.names n82_1 n105 n106
+10 1
+.names n103 n106 n107_1
+00 1
+.names n70 n107_1 n108
+10 1
+.names ACVQN1 n70 n109
+00 1
+.names n108 n109 n110
+00 1
+.names START n110 n67
+00 0
+.names n72_1 n73 n112_1
+11 1
+.names ACVQN1 n112_1 n113
+01 1
+.names n72_1 n73 n114
+00 1
+.names ACVQN1 n114 n115
+11 1
+.names n77_1 n115 n116
+10 1
+.names n113 n116 n117
+00 1
+.names n70 n117 n118
+10 1
+.names ACVQN0 n70 n119
+00 1
+.names n118 n119 n120
+00 1
+.names START n120 n72
+00 0
+.names B3 READY n122
+10 1
+.names MRVQN3 READY n123
+01 1
+.names n122 n123 n124
+00 1
+.names n70 n124 n125
+00 1
+.names ACVQN0 n71 n126
+10 1
+.names n72_1 n126 n127
+00 1
+.names n70 n127 n128
+11 1
+.names n125 n128 n77
+00 1
+.names B2 READY n130
+10 1
+.names MRVQN2 READY n131
+01 1
+.names n130 n131 n132
+00 1
+.names n70 n132 n133
+00 1
+.names MRVQN3 n70 n134
+01 1
+.names n133 n134 n82
+00 1
+.names B1 READY n136
+10 1
+.names MRVQN1 READY n137
+01 1
+.names n136 n137 n138
+00 1
+.names n70 n138 n139
+00 1
+.names MRVQN2 n70 n140
+01 1
+.names n139 n140 n87
+00 1
+.names B0 READY n142
+10 1
+.names MRVQN0 READY n143
+01 1
+.names n142 n143 n144
+00 1
+.names n70 n144 n145
+00 1
+.names MRVQN1 n70 n146
+01 1
+.names n145 n146 n92
+00 1
+.names A3 n69 n148
+11 1
+.names AX3 n69 n149
+10 1
+.names n148 n149 n97
+00 0
+.names A2 n69 n151
+11 1
+.names AX2 n69 n152
+10 1
+.names n151 n152 n102
+00 0
+.names A1 n69 n154
+11 1
+.names AX1 n69 n155
+10 1
+.names n154 n155 n107
+00 0
+.names A0 n69 n157
+11 1
+.names AX0 n69 n158
+10 1
+.names n157 n158 n112
+00 0
+.names CNTVCO2 CNTVCON2
+0 1
+.names MRVQN0 P0
+0 1
+.names MRVQN1 P1
+0 1
+.names MRVQN2 P2
+0 1
+.names MRVQN3 P3
+0 1
+.names ACVQN0 P4
+0 1
+.names ACVQN1 P5
+0 1
+.names ACVQN2 P6
+0 1
+.names ACVQN3 P7
+0 1
+.end

@@ -1,0 +1,338 @@
+# Benchmark "s386.bench" written by ABC on Fri Mar 30 21:19:26 2018
+.model s386.bench
+.inputs v6 v5 v4 v3 v2 v1 v0 v12 v11 v10 v9 v8 v7
+.outputs v13_D_12 v13_D_11 v13_D_10 v13_D_9 v13_D_8 v13_D_7 v13_D_6 n30 n35 \
+ n40 n45 n50 n55
+.names v5 v0 n27
+10 1
+.names v7 n27 n28
+01 1
+.names v8 n28 n29
+01 1
+.names v10 v9 n30_1
+11 1
+.names v11 n30_1 n31
+01 1
+.names v12 n31 n32
+01 1
+.names n29 n32 v13_D_12
+11 1
+.names v11 v7 n34
+11 1
+.names v4 v3 n35_1
+00 1
+.names v11 n35_1 n36
+01 1
+.names n34 n36 n37
+00 1
+.names v8 n37 n38
+10 1
+.names v12 n38 n39
+01 1
+.names v8 v7 n40_1
+00 1
+.names v12 n40_1 n41
+10 1
+.names v1 n41 n42
+10 1
+.names n39 n42 n43
+00 1
+.names v10 n43 n44
+00 1
+.names v0 v7 n45_1
+10 1
+.names v8 n45_1 n46
+01 1
+.names v11 v10 n47
+01 1
+.names v12 n47 n48
+01 1
+.names n46 n48 n49
+11 1
+.names n44 n49 n50_1
+00 1
+.names v9 n50_1 n51
+00 1
+.names v12 v9 n52
+00 1
+.names n40_1 n52 n53
+00 1
+.names v0 v10 n54
+00 1
+.names n53 n54 n55_1
+01 1
+.names n51 n55_1 v13_D_11
+00 0
+.names v5 v0 n57
+11 1
+.names v10 n57 n58
+10 1
+.names v1 n58 n59
+10 1
+.names v7 n59 n60
+01 1
+.names v8 n60 n61
+01 1
+.names v11 v9 n62
+01 1
+.names v12 n62 n63
+01 1
+.names n61 n63 v13_D_10
+11 1
+.names v3 v8 n65
+01 1
+.names v4 v1 n66
+10 1
+.names v10 n66 n67
+01 1
+.names n65 n67 n68
+11 1
+.names v0 v8 n69
+10 1
+.names v10 n69 n70
+11 1
+.names n68 n70 n71
+00 1
+.names v7 n71 n72
+00 1
+.names v9 n72 n73
+01 1
+.names v12 v11 n74
+00 1
+.names n73 n74 v13_D_9
+11 1
+.names v6 v0 n76
+01 1
+.names v7 n76 n77
+01 1
+.names v8 n77 n78
+01 1
+.names v10 v9 n79
+10 1
+.names v11 n79 n80
+01 1
+.names v12 n80 n81
+01 1
+.names n78 n81 v13_D_8
+11 1
+.names v4 v11 n83
+00 1
+.names n65 n83 n84
+11 1
+.names v8 v7 n85
+01 1
+.names v11 n85 n86
+11 1
+.names n84 n86 n87
+00 1
+.names v0 n87 n88
+10 1
+.names v1 n88 n89
+01 1
+.names v10 v9 n90
+00 1
+.names v12 n90 n91
+01 1
+.names n89 n91 v13_D_7
+11 1
+.names v5 v7 n93
+10 1
+.names v8 n93 n94
+01 1
+.names v12 v11 n95
+11 1
+.names n94 n95 n96
+11 1
+.names v2 v7 n97
+00 1
+.names n65 n97 n98
+00 1
+.names v4 v7 n99
+11 1
+.names n98 n99 n100
+00 1
+.names v11 n100 n101
+00 1
+.names v12 n101 n102
+01 1
+.names n96 n102 n103
+00 1
+.names v0 n103 n104
+10 1
+.names v1 n104 n105
+01 1
+.names n90 n105 v13_D_6
+11 1
+.names v8 v7 n107
+11 1
+.names v12 v11 n108
+01 1
+.names n107 n108 n109
+11 1
+.names v11 v8 n110
+10 1
+.names v12 n110 n111
+11 1
+.names v3 v2 n112
+11 1
+.names v8 n112 n113
+11 1
+.names n74 n113 n114
+11 1
+.names n111 n114 n115
+00 1
+.names v7 n115 n116
+00 1
+.names n109 n116 n117
+00 1
+.names v0 n117 n118
+10 1
+.names v1 n118 n119
+01 1
+.names n90 n119 n30
+11 1
+.names v7 n84 n121
+00 1
+.names v12 n121 n122
+00 1
+.names v2 v11 n123
+10 1
+.names v12 n123 n124
+01 1
+.names v5 v7 n125
+00 1
+.names v11 n125 n126
+11 1
+.names v12 n126 n127
+11 1
+.names n124 n127 n128
+00 1
+.names v8 n128 n129
+00 1
+.names n122 n129 n130
+00 1
+.names v0 n130 n131
+10 1
+.names v1 n131 n132
+01 1
+.names n90 n132 n35
+11 1
+.names v8 n125 n134
+01 1
+.names n47 n134 n135
+11 1
+.names n90 n135 n136
+00 1
+.names v1 n136 n137
+10 1
+.names v0 v9 n138
+00 1
+.names v10 n138 n139
+01 1
+.names n137 n139 n140
+00 1
+.names v12 n140 n141
+00 1
+.names v10 n74 n142
+10 1
+.names v1 v9 n143
+10 1
+.names v0 n143 n144
+10 1
+.names n40_1 n142 n145
+10 1
+.names n144 n145 n146
+01 1
+.names n141 n146 n40
+00 0
+.names v0 v11 n148
+10 1
+.names v12 n148 n149
+01 1
+.names n90 n149 n150
+00 1
+.names v7 n150 n151
+00 1
+.names v8 n151 n152
+01 1
+.names n91 n152 n153
+00 1
+.names v1 n153 n154
+10 1
+.names v5 v9 n155
+01 1
+.names v11 n155 n156
+01 1
+.names v12 n156 n157
+01 1
+.names v10 n157 n158
+10 1
+.names v7 n158 n159
+00 1
+.names v8 n159 n160
+01 1
+.names n91 n160 n161
+00 1
+.names v0 n161 n162
+00 1
+.names n154 n162 n45
+00 0
+.names v5 v7 n164
+11 1
+.names v8 n164 n165
+01 1
+.names v11 n165 n166
+11 1
+.names v11 v7 n167
+01 1
+.names n97 n167 n168
+00 1
+.names v3 v8 n169
+11 1
+.names n168 n169 n170
+01 1
+.names v2 v8 n171
+10 1
+.names v7 n171 n172
+00 1
+.names v4 v11 n173
+10 1
+.names n172 n173 n174
+01 1
+.names n166 n170 n175
+00 1
+.names n174 n175 n176
+01 1
+.names v12 n176 n177
+00 1
+.names v11 v8 n178
+00 1
+.names v12 n178 n179
+11 1
+.names v11 v8 n180
+11 1
+.names v12 n180 n181
+01 1
+.names n179 n181 n182
+00 1
+.names v7 n182 n183
+00 1
+.names n177 n183 n184
+00 1
+.names v0 n184 n185
+10 1
+.names v1 n185 n186
+01 1
+.names n90 n186 n50
+11 1
+.names v11 n107 n188
+10 1
+.names n84 n188 n189
+00 1
+.names v0 n189 n190
+10 1
+.names v1 n190 n191
+01 1
+.names n91 n191 n55
+11 1
+.end

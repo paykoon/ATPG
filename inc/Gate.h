@@ -8,13 +8,15 @@
 #include <fstream>
 using namespace std;
 
-enum Type {constant, bufInv, aig, PO, PI, OR, XOR};
+enum Type {PI, constant, bufInv, aig, PO, OR, XOR, null};
 
 namespace Gate {
   class gate{
     public:
+      gate(){
+        this->gateType = null;
+      }
       // PI or PO (The name of In and out are same)
-      gate(){}
       gate(Type gateType, string &portName){
         this->gateType = gateType;
         this->faultyOut = false;
@@ -111,7 +113,7 @@ namespace Gate {
         } else if (gateType == PO || gateType == bufInv) {
           //(varIn1 + ~varOut)(~varIn1+varOut)
           int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
-      	  int varOut = gateID+1;
+      	  int varOut = invOut ? (gateID+1) : (gateID+1)*(-1);
       	  clause.push_back(varIn1);
       	  clause.push_back(varOut*(-1));
       	  gateClause.push_back(clause);
@@ -128,7 +130,7 @@ namespace Gate {
           //(varIn1+~varOut)(varIn2+~varOut)(~varIn1+~varIn2+varOut)
           int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
           int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
-          int varOut = gateID+1;
+          int varOut = invOut ? (gateID+1) : (gateID+1) * (-1);
       	  // (varIn1+~varOut)
       	  clause.push_back(varIn1);
       	  clause.push_back(varOut*(-1));
@@ -148,7 +150,7 @@ namespace Gate {
           //(~varIn1+varOut)(~varIn2+varOut)(varIn1+varIn2+~varOut)
           int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
           int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
-          int varOut = gateID+1;
+          int varOut = invOut ? (gateID+1) : (gateID+1) * (-1);
       	  // (~varIn1+varOut)
       	  clause.push_back(varIn1*(-1));
       	  clause.push_back(varOut);
@@ -168,7 +170,7 @@ namespace Gate {
           //(varIn1+varIn2+~varOut)(varIn1+~varIn2+varOut)(~varIn1+~varIn2+~varOut)(~varIn1+varIn2+varOut)
           int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
           int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
-          int varOut = gateID+1;
+          int varOut = invOut ? (gateID+1) : (gateID+1) * (-1);
           // (varIn1+varIn2+~varOut)
           clause.push_back(varIn1);
       	  clause.push_back(varIn2);

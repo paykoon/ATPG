@@ -91,5 +91,37 @@ insert and delete fault in oriAndFauCNF
 // we should change it to that faults can be inserted to any place-->still some problem 2018.3.15
 
 // another idea to verify the fault model:
-// use the fault model to generate the test patterns for these faults. 
+// use the fault model to generate the test patterns for these faults.
 // and again, check whether these test vectors can cover all faults.(all faults without collapsing)
+
+
+// ************2018.3.30*****************
+// 1. s444 fault 1101's test pattern can detect 1268, but the sat function said no.. The SAT function may have some problems(has checked in quartus)
+// need to check the generation of sat(maybe we can compare it to sis. use some other small circuit to try).
+// s382 has the same problem. fault 474 can be detected. however SAT-solver say not..
+// ************already use sis check. s382 has no redundant faults. so the SAT function has problem. please check s382's CNF manully(check s27 first, then switch to big circuit) first************
+// ************(SAT solver's part are quit important. we need to use it again and again later)************
+
+**********************
+case 1. my CNF generation has problems
+  1. check the original+faulty Circuit's generation.
+~~~~~~only check the corresponding gates~~~~~~about 20 gates....
+******Find the problem!!!--->dont consider invOut when generate the CNF formula!!!!!*****
+
+-------2018.4.11-------------
+check fault 1252, is unsat, but the samefault_helper take it as non-redundant fault. find the reason.
+
+
+  2. If 1 has no problem, check the CNF has problem or not? compare with abc's CNF
+case 2. glucose may has problem. can use s444 blif file to test. XXX. glucose has no problem. already proof it.
+if glucose has no problem. then can print out its CNF formula and compare with my formula?
+**********************
+
+
+*******change the gate implementation such that it can support any number of input and any kinds of gate*********
+***In and out's wire name of PI and PO are same, it should be changed****8
+
+
+
+// 2. s1238 has same problem. But different. it's problem is the collapse function ...(both propagate fault and sat said, no. but it still select by our function.)
+// our method is fast, but still need to check (findFaultsSameTest_helper??)
