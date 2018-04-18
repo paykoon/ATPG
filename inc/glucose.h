@@ -7,8 +7,10 @@
 #include <vector>
 #include <set>
 #include <map>
+#include "Gate.h"
 
 using namespace std;
+using namespace Gate;
 
 namespace Glucose {
   class glucose {
@@ -21,10 +23,26 @@ namespace Glucose {
         delete solver;
       }
 
-      int runGlucose(vector<vector<vector<int>>> &CNFFormula, vector<int> &result) {
-        readClause(CNFFormula);
-        runSAT();
-        return SATResult(result);
+      // send the entire CNFFormula to GLucose to do SAT.
+      int SATCircuit(vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &result, int theCircuitSize, int PISize) {
+        if (CNFOriAndFauCir.size() == 0) return 0;
+        vector<int> allValue;
+        if (runGlucose(CNFOriAndFauCir, allValue)) {
+          // cout << "SAT" << endl;
+          // only take the PI value in "allValue" as result
+          // original circuit | faulty circuit | new input | new XOR | new output | an "OR" gate for all outputs | constant wire(stuck at faults)
+          // circuit size        circuit size    PI size      PO size   PO size           1
+          int start = theCircuitSize * 2;
+          result.reserve(PISize);
+          for (int i = 0; i < PISize; i++) {
+            result.push_back(allValue[i+start]);
+          }
+          return 1;
+        }
+        else {
+          //cout << "UNSAT" << endl;
+          return 0;
+        }
       }
 
     private:
@@ -67,7 +85,6 @@ namespace Glucose {
         solver->showModel = false;
       }
 
-
       void readClause(vector<vector<vector<int>>> &CNFFormula) {
         int parsed_lit, var;
         vec<Lit> lits;
@@ -107,6 +124,13 @@ namespace Glucose {
           return 0;
         }
       }
+
+      int runGlucose(vector<vector<vector<int>>> &CNFFormula, vector<int> &result) {
+        readClause(CNFFormula);
+        runSAT();
+        return SATResult(result);
+      }
+
   };
 }
 

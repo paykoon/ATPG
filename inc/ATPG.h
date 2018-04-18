@@ -17,14 +17,36 @@
 #include <stdlib.h>
 #include "Circuit.h"
 #include "Gate.h"
+#include "CNFGeneration.h"
 using namespace std;
 using namespace Gate;
 using namespace Circuit;
 using namespace Glucose;
+using namespace CNFGeneration;
 
 namespace ATPG{
   class atpg{
     public:
+      int copyCount;
+      circuit *ClassCircuit;
+      vector <gate*> theCircuit;
+      int PISize, POSize, gateSize;
+      map<int, gate*>preGateInTheCircuit;
+      // ----Generate the CNF to do SAT------
+      vector<gate*> oriAndFauCir;
+      vector<vector<vector<int>>> CNFOriAndFauCir;
+      // the gate changed due to the fault.
+      // key : gateID in "oriAndFauCir", value is the gate in oriAndFauCir
+      map<int, gate*> preGateInOriAndFauCir;
+      //-------------------------------------
+      set<int> collapsedFaultList;
+      set<int> allFaultList;
+      set<int> notIncollapsedFaultList;
+      set<int> redundantSSAF;
+      vector<vector<int>> SSAFPatterns;
+      // key: faults, value: corresponding test vector
+      map<set<int>, vector<int>> faultToPatterns;
+
       atpg(circuit *pCircuit, char *patternFile) {
         copyCount = 1;
         this->PISize = pCircuit->PISize;
@@ -51,7 +73,7 @@ namespace ATPG{
         curTime = clock();
         cout << "   Fault list generating is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         cout << "   Fault number is " << collapsedFaultList.size() << " (Collapsed: AIG's input wire connected to PI or fanout)" << endl;
-        cout << "   Total faults number: " << allFaultList.size() << ", compressed ratio " << (double)(collapsedFaultList.size()) / (double)(allFaultList.size())<< endl;
+        cout << "   Total faults number: " << allFaultList.size() << ", " << (double)(collapsedFaultList.size()) / (double)(allFaultList.size()) << " fault are selected by the fault model" << endl;
 
         cout << "2. Initial CNF generating is started." << endl;
         preTime = clock();
@@ -67,38 +89,26 @@ namespace ATPG{
           cout << "   Pattern file has problem"<< endl;
           return 0;
         }
-        cout << "   Check the coverage of the initial SSAF test patterns." << endl;
-
-        vector<int> newFaults;
-        newFaults.push_back(1252);
-        injectFaultsInCNF(newFaults);
-        printCircuitCNFBlif(oriAndFauCir);
-
-        /*
+        cout << "   Build the connection between SSAF and the initial test set." << endl;
+        cout << "   (We just assume that the initial test patterns can already cover all SSAF)" << endl;
         CheckGivenPatterns(collapsedFaultList, SSAFPatterns);
-        printFaults(redundantSSAF);cout << endl << endl << endl;
+        cout << "   " <<  faultToPatterns.size() << "/"  << SSAFPatterns.size() << " test patterns are used."<< endl;
+        cout << "   Number of redundant faults(among our SSAF model): " << redundantSSAF.size() << endl;
 
-        TestSSAFPatterns(collapsedFaultList);
-        printFaults(redundantSSAF);cout << endl << endl << endl;
-
-        cout << "\n\nredundant" << endl;
-        redundantFaultTest(collapsedFaultList);
-        */
-/*
-        preTime = clock();
-        findAllSSAFRedundant(allFaultList);
-        curTime = clock();
-        cout << "4. Find all redundant single stuck-at faults. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
-        if (redundantSSAF.size() > 0) {
-          cout << "   " << redundantSSAF.size() << " redundant SSAF found"<< "" << endl;
-          printFaults(redundantSSAF);
-        } else {
-          cout << "The circuit has no redundant single stuck-at fault." << endl;
-        }
-        */
         endTime = clock();
         cout << "----------The initialization of the ATPG takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
         return 1;
+      }
+
+      int getFaultID(int gateID, int port, int stuckat) {
+        return (gateID << 3) + (port << 1) + stuckat;
+      }
+
+      void resetAllVisitedFaultyOut() {
+        for (int i = 0; i < theCircuit.size(); i++) {
+          theCircuit[i]->visited = false;
+          theCircuit[i]->faultyOut = false;
+        }
       }
 
       // return 0 if nothing is inside the circuit
@@ -146,7 +156,7 @@ namespace ATPG{
             allFaultList.insert(newFault);
           }
         }
-        // generate the faults that all not selected by the fault model
+        // get the faults that are not selected by the fault model
         for (set<int>::iterator allIter = allFaultList.begin(); allIter != allFaultList.end(); allIter++) {
           set<int>::iterator collIter = collapsedFaultList.find(*allIter);
           if (collIter == collapsedFaultList.end()) {
@@ -154,6 +164,29 @@ namespace ATPG{
           }
         }
         return 1;
+      }
+
+      int assignPIs(vector<int> &inValues){
+        if (inValues.size() != PISize){
+          cout << "\n***Input vector does not match the size of PI***\n" << endl;
+          return 0;
+        }
+        for (int i = 0;i < inValues.size(); i++){
+            theCircuit[i]->setPI(inValues[i]);
+        }
+        return 1;
+      }
+
+      // if PI is first propagate in faulty circuit then propagate in correct circuit
+      // if the new out value is different from the previous one, set it as the visited
+      // whether it's really faulty gates need to check later
+      void propagatePI(){
+        for(int i = 0; i < theCircuit.size(); i++){
+          int preValue = theCircuit[i]->outValue;
+          theCircuit[i]->setOut();
+          int curValue = theCircuit[i]->outValue;
+          theCircuit[i]->visited = (preValue != curValue);
+        }
       }
 
       // cannot use copy gate, since if we copy a circuit, all fanin and fanout will be changed.
@@ -194,7 +227,7 @@ namespace ATPG{
         copyCount++;
       }
 
-      //--------------------------------------
+      //----------------------SAT Process----------------------
       // creat oriAndFauCir, which is used to generate the CNFFormula
       // oriAndFauCir: original circuit | faulty circuit | new input | new XOR | new output
       // connect the new input with the original and faulty circuits. Do the same things for XOR output.
@@ -263,9 +296,10 @@ namespace ATPG{
         CNFOriAndFauCir.reserve(curCircuit.size()*3);
         vector<vector<int>> gateClause;
         vector<int> output;
+        cnfgeneration *clauseGene = new cnfgeneration();
         for (int i = 0; i < curCircuit.size(); i++) {
           gate *curGate = curCircuit[i];
-          curGate->generateClause(gateClause);
+          clauseGene->generateClause(gateClause, curGate);
           CNFOriAndFauCir.push_back(gateClause);
           if (curGate->gateType == PO) {
             output.push_back(i+1);
@@ -294,6 +328,7 @@ namespace ATPG{
         if (origialSize == 0) return 0;
         int preSize = origialSize + origialSize + PISize + POSize + POSize + 1;
         vector<vector<int>> gateClause;
+        cnfgeneration *clauseGene = new cnfgeneration();
         // reset the circuit "oriAndFauCir" and "CNFOriAndFauCir"
         for (map<int, gate*>::iterator iter = preGateInOriAndFauCir.begin(); iter != preGateInOriAndFauCir.end(); iter++) {
           // bit index:     [ ,3]        [2  1]    0
@@ -302,7 +337,8 @@ namespace ATPG{
           int fauGateID = iter->first;
           gate *preFauGate = iter->second;
           preFauGate->copyGate(oriAndFauCir[fauGateID]);
-          preFauGate->generateClause(gateClause);
+          clauseGene->generateClause(gateClause, preFauGate);
+          // preFauGate->generateClause(gateClause);
           oriAndFauCir.pop_back();
           CNFOriAndFauCir[fauGateID].clear();
           CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
@@ -357,73 +393,33 @@ namespace ATPG{
           // insert the constant stuckat wires to the end of the CNF formula
           // in the previous operation, we just clear stuckat constant wire's vector but not delete them (to reduce time complexity)
           // so here we can reuse these vectors
-          stuckatCons->generateClause(gateClause);
+          // stuckatCons->generateClause(gateClause);
+          clauseGene->generateClause(gateClause, stuckatCons);
           CNFOriAndFauCir.push_back(gateClause);
           gateClause.clear();
-          faultGate->generateClause(gateClause);
+          // faultGate->generateClause(gateClause);
+          clauseGene->generateClause(gateClause, faultGate);
           CNFOriAndFauCir[fauGateID].clear();
           CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
           gateClause.clear();
         }
         return 1;
       }
-      //--------------------------------------
-
-      //--------------------------------------
-      // find all redundant single stuck-at faults
-      /*
-      void findAllSSAFRedundant(set<int> &allFaultList) {
-        vector<int> fault;
-        for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
-          fault.push_back(*iter);
-          injectFaultsInCNF(fault);
-          fault.clear();
-          vector<int> SATResult;
-          // The fault is redundant if no test vector is found.
-          if(SATCircuit(CNFOriAndFauCir, SATResult) == 0) {
-            redundantSSAF.insert(*iter);
-          }
-        }
-      }
-      */
-
-      // send the entire CNFFormula to GLucose to do SAT.
-      int SATCircuit(vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &result) {
-        if (CNFOriAndFauCir.size() == 0) return 0;
-        //double startTime = clock();
-        glucose *SATSolver = new glucose();
-        vector<int> allValue;
-        if (SATSolver->runGlucose(CNFOriAndFauCir, allValue)) {
-          //cout << "SAT" << endl;
-          // only take the PI value in "allValue" as result
-          // original circuit | faulty circuit | new input | new XOR | new output | an "OR" gate for all outputs | constant wire(stuck at faults)
-          // circuit size        circuit size    PI size      PO size   PO size           1
-          int start = theCircuit.size() * 2;
-          result.reserve(PISize);
-          for (int i = 0; i < PISize; i++) {
-            result.push_back(allValue[i+start]);
-          }
-          return 1;
-        }
-        else {
-          //cout << "UNSAT" << endl;
-          return 0;
-        }
-        //double endTime = clock();
-        //cout << "The SAT takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds" << endl;
-      }
 
       // return 1 if SAT. else UNSAT, which means redundant
       int generateTestBySAT(vector<int> &newFaults, vector<int> &testVector) {
+        glucose *SATSolver = new glucose();
         injectFaultsInCNF(newFaults);
-        if (SATCircuit(CNFOriAndFauCir, testVector) == 1) {
+        if (SATSolver->SATCircuit(CNFOriAndFauCir, testVector, theCircuit.size(), PISize) == 1) {
           return 1;
         } else {
           return 0;
         }
       }
-      //--------------------------------------
+      //----------------------SAT Process---------------------------
 
+
+      //------------------Find the propagation path of the faults under the given test pattern------------------
       // inject faults in theCircuit
       int injectFaultsInCircuit(vector<int> &newFaults) {
         if (theCircuit.size() == 0) return 0;
@@ -487,30 +483,6 @@ namespace ATPG{
         return 1;
       }
 
-      int assignPIs(vector<int> &inValues){
-        if (inValues.size() != PISize){
-          cout << "\n***Input vector does not match the size of PI***\n" << endl;
-          return 0;
-        }
-        for (int i = 0;i < inValues.size(); i++){
-            theCircuit[i]->setPI(inValues[i]);
-        }
-        return 1;
-      }
-
-      //----------------------------------------
-      // if PI is first propagate in faulty circuit then propagate in correct circuit
-      // if the new out value is different from the previous one, set it as the visited
-      // whether it's really faulty gates need to check later
-      void propagatePI(){
-        for(int i = 0; i < theCircuit.size(); i++){
-          int preValue = theCircuit[i]->outValue;
-          theCircuit[i]->setOut();
-          int curValue = theCircuit[i]->outValue;
-          theCircuit[i]->visited = (preValue != curValue);
-        }
-      }
-
       // try to find all path of all faults
       void findSSAFPath(vector<int> &newFaults) {
         for (auto faultID : newFaults) {
@@ -551,18 +523,13 @@ namespace ATPG{
         injectFaultsInCircuit(newFaults);
         assignPIs(testVector);
         propagatePI();
-        //cout << "faulty propagation"<< endl;
-        //printCircuit(theCircuit); //*****
+
         resetAllVisitedFaultyOut();
         resetFaultsInCircuit();
         // progate the value in original circuit
         assignPIs(testVector);
         propagatePI();
-        //cout << "original propagation"<< endl;
-        //printCircuit(theCircuit); //*****
         findSSAFPath(newFaults);
-        //cout << "find path"<< endl;
-        //printCircuit(theCircuit); //*****
         for (int i = 0; i < POSize; i++) {
           gate *POGate = theCircuit[PISize + gateSize + i];
           // if the fautls can be detected in one of the PO, then it's detected.
@@ -572,19 +539,10 @@ namespace ATPG{
         }
         return 0;
       }
-      //----------------------------------------
+      //------------------Find the propagation path of the faults under the given test pattern------------------
 
-      int getFaultID(int gateID, int port, int stuckat) {
-        return (gateID << 3) + (port << 1) + stuckat;
-      }
 
-      void resetAllVisitedFaultyOut() {
-        for (int i = 0; i < theCircuit.size(); i++) {
-          theCircuit[i]->visited = false;
-          theCircuit[i]->faultyOut = false;
-        }
-      }
-
+      //------------------Process about the initial SSAF test pattern------------------
       // read the SSAF test pattern files
       int patternParser(char *patternFile) {
         ifstream file;
@@ -614,9 +572,8 @@ namespace ATPG{
         return 1;
       }
 
-
       // check whether the given test patterns can cover entire faultList or not.
-      //
+      // assume that the initial test pattern can already detect all SSAF
       // get: map<set<int>, vector<int>> faultToPatterns;   set<int> redundantSSAF;
       void CheckGivenPatterns(set<int> &faultList, vector<vector<int>> &SSAFPatterns) {
         set<int> visited;
@@ -630,215 +587,33 @@ namespace ATPG{
             if (propagateFault(newFaults, testVector) == 1) {
               faultsSameVector.insert(faultID);
               visited.insert(faultID);
-              int gateID = (faultID >> 3);
-              gate *faultGate = theCircuit[gateID];
-              findFaultsSameTest_helper(faultGate, faultsSameVector, faultList, faultID);
-              visited.insert(faultsSameVector.begin(), faultsSameVector.end());
             }
           }
           faultToPatterns.insert(pair<set<int>, vector<int>>(faultsSameVector, testVector));
         }
-
-        // check the remaining faults undetected by the give test pattern..
-        // actually they must by redundant
         for (auto faultID : faultList) {
           if (visited.find(faultID) == visited.end()) {
-            vector<int> newFaults;
-            newFaults.push_back(faultID);
-            set<int> faultsSameVector;
-            faultsSameVector.insert(faultID);
-            vector<int> testVector;
-            if (generateTestBySAT(newFaults, testVector)) {
-              faultToPatterns.insert(pair<set<int>, vector<int>>(faultsSameVector, testVector));
-            } else {
-              redundantSSAF.insert(faultID);
-              visited.insert(faultID);
-            }
-          }
-        }
-        if (visited.size() == faultList.size()) {
-          cout << "Test patterns are sufficient" << endl;
-          cout << faultToPatterns.size() << "/"  << SSAFPatterns.size() << " test patterns are used."<< endl;
-          cout << "redundantSSAF.size(): " << redundantSSAF.size() << endl;
-        } else {
-          cout << "Test patterns are insufficient" << endl;
-          cout << "visited.size(): " << visited.size() << endl;
-          cout << "redundantSSAF.size(): " << redundantSSAF.size() << endl;
-          cout << "collapsedFaultList.size(): " << collapsedFaultList.size() << endl;
-        }
-      }
-
-      // recursive function to find the faults that can be detected by the same vector
-      // can work for any fault model.
-      // Note: need to run "propgateFault" function first to mark the propagation path.
-      // the first "curGate" should be the faulty gate
-      // get: set<int> &faultsSameVector
-      void findFaultsSameTest_helper(gate *curGate, set<int> &faultsSameVector, set<int> &faultList, int iniFaultID) {
-        // 1. consider the input
-        if (curGate->gateType == PO || curGate->gateType == PI || curGate->gateType == constant || curGate->gateType == bufInv) {
-          // faults here will not be blocked.
-          // input1
-          int gateID = curGate->gateID;
-          int port = 1;
-          int activate = curGate->fanin1->outValue;
-          int stuckat = 1 - activate;
-          int faultID = getFaultID(gateID, port, stuckat);
-          if (faultList.find(faultID) != faultList.end()) {
-            faultsSameVector.insert(faultID);
-          }
-          port = 3;
-          faultID = getFaultID(gateID, port, stuckat);
-          if (faultList.find(faultID) != faultList.end()) {
-            faultsSameVector.insert(faultID);
-          }
-          // base case: the gate has no fanout-->PO
-          if (curGate->gateType == PO) {
-            return;
-          }
-        } else if (curGate->gateType == aig) {
-          // need to consider the fault blocking
-          // input1
-          int gateID = curGate->gateID;
-          int port = 1;
-          int activate = curGate->fanin1->outValue;
-          int stuckat = 1 - activate;
-          int faultID = getFaultID(gateID, port, stuckat);
-          // check the side value
-          if (curGate->fanin2->outValue == curGate->invIn2 && faultList.find(faultID) != faultList.end()) {
-            faultsSameVector.insert(faultID);
-            //****************
-          /*  if (faultID == 1252) {
-              cout << "\n\n\n\n\nwow here!!!!!!!!!!!!!! " << iniFaultID << "\n\n\n\n\n" << endl;
-            }*/
-            //**************
-          }
-          // input2
-          port = 2;
-          activate = curGate->fanin2->outValue;
-          stuckat = 1 - activate;
-          faultID = getFaultID(gateID, port, stuckat);
-          // check the side value
-          if (curGate->fanin1->outValue == curGate->invIn1 && faultList.find(faultID) != faultList.end()) {
-            faultsSameVector.insert(faultID);
-            //****************
-            /*if (faultID == 1252) { // 997
-              cout << "\n\n\n\n\nwow here!!!!!!!!!!!!!! " << iniFaultID << "\n\n\n\n\n" << endl;
-            }*/
-            //**************
-          }
-          // output
-          port = 3;
-          activate = curGate->outValue;
-          stuckat = 1 - activate;
-          faultID = getFaultID(gateID, port, stuckat);
-          if (faultList.find(faultID) != faultList.end()) {
-            faultsSameVector.insert(faultID);
-          }
-        }
-        // TO DO..add other types of gate
-
-        // go to the next level
-        for (auto fanout : curGate->fanout) {
-          // due to the side value, some gates may not propagate fault.
-          // only go the gate that propagate the fault
-          if (fanout->faultyOut == true) {
-            findFaultsSameTest_helper(fanout, faultsSameVector, faultList, iniFaultID);
+            redundantSSAF.insert(faultID);
           }
         }
       }
+      //------------------Process about the initial SSAF test pattern------------------
 
-      void TestSSAFPatterns(set<int> faultList) {
-        set<int> visited;
-        for (auto testVector : SSAFPatterns) {
-          set<int> sameVector;
-          for (auto faultID : faultList) {
-            vector<int> newFaults;
-            newFaults.push_back(faultID);
-            if (propagateFault(newFaults, testVector) == 1) {
-              sameVector.insert(faultID);
-              visited.insert(faultID);
-            }
-          }
-          faultToPatterns.insert(pair<set<int>, vector<int>>(sameVector, testVector));
+      int printFault(int ID) {
+        int faultID = ID;                         cout << "faultID: " << faultID;
+        int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;
+        int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << fauGateID;
+        int port = (faultID >> 1) & 3;           cout << ", port: ";
+        if (port < 3) {
+          cout << "input" << port;
         }
-
-        for (auto faultID : faultList) {
-          if (visited.find(faultID) == visited.end()) {
-            vector<int> newFaults;
-            newFaults.push_back(faultID);
-            set<int> sameVector;
-            sameVector.insert(faultID);
-            vector<int> testVector;
-            if (generateTestBySAT(newFaults, testVector)) {
-              faultToPatterns.insert(pair<set<int>, vector<int>>(sameVector, testVector));
-              cout << "\n\n\n\n11111111111111111\n\n\n\n"<< endl;
-            } else {
-              redundantSSAF.insert(faultID);
-              visited.insert(faultID);
-            }
-          }
+        else {
+          cout << "output";
         }
-        if (visited.size() == faultList.size()) {
-          cout << "Test patterns are sufficient" << endl;
-          cout << "redundantSSAF.size(): " << redundantSSAF.size() << endl;
-        } else {
-          cout << "Test patterns are insufficient" << endl;
-          cout << "visited.size(): " << visited.size() << endl;
-          cout << "redundantSSAF.size(): " << redundantSSAF.size() << endl;
-          cout << "collapsedFaultList.size(): " << collapsedFaultList.size() << endl;
-        }
-
-      }
-
-      // just put all faults into SAT-solver.
-      void redundantFaultTest(set<int> &faultList) {
-        set<int> redundant;
-        for (auto faultID : faultList) {
-          vector <int> testVector;
-          vector<int> newFaults;
-          newFaults.push_back(faultID);
-          if(generateTestBySAT(newFaults, testVector) == 0) {
-            redundant.insert(faultID);
-          }
-        }
-        cout << "Real redundantSSAF number: "<< redundant.size() << endl;
-        printFaults(redundant);
-      }
-
-      void propagationTest() {
-        for (auto faultID : collapsedFaultList) {
-          vector<int> newFaults;
-          newFaults.push_back(faultID);
-          vector <int> testVector;
-          set<int> fault;
-          fault.insert(faultID);
-          printFaults(fault);
-          generateTestBySAT(newFaults, testVector);
-          printTestVector(testVector);
-          propagateFault(newFaults, testVector);
-          cout << endl;
-        }
-      }
-
-      void printFaults(set<int> &faults) {
-        for (set<int>::iterator iter = faults.begin(); iter != faults.end(); iter++) {
-          int faultID = *iter;
-          int gateID = faultID >> 3;
-          int port = (faultID >> 1) & 3;
-          int stuckat = faultID & 1;
-          string in1Name = theCircuit[gateID]->in1Name;
-          string in2Name = theCircuit[gateID]->in2Name;
-          string outName = theCircuit[gateID]->outName;
-          cout << "faultID: " << faultID << "   gateID " << gateID << ":  " << in1Name << " " << in2Name << " " << outName << "; ";
-          if (port == 1) {
-            cout << in1Name << " input1 ";
-          } else if (port == 2){
-            cout << in2Name << " input2 ";
-          } else if (port == 3){
-            cout << outName << " output ";
-          }
-          cout << "stuck at " << stuckat << endl;
-        }
+        int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
+        cout << ", gateType ";
+        printGateType(theCircuit[oriGateID]->gateType);
+        cout << endl;
       }
 
       void printGateType(Type gateType) {
@@ -871,237 +646,6 @@ namespace ATPG{
         cout << " ";
       }
 
-      int printFault(int ID) {
-        int faultID = ID;                         cout << "faultID: " << faultID;
-        int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;
-        int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << fauGateID;
-        int port = (faultID >> 1) & 3;           cout << ", port: ";
-        if (port < 3) {
-          cout << "input" << port;
-        }
-        else {
-          cout << "output";
-        }
-        int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
-        cout << ", gateType ";
-        printGateType(theCircuit[oriGateID]->gateType);
-        cout << endl;
-      }
-
-      void printTestVector(vector<int> &testVector) {
-        cout << "test Vector: "<< endl;
-        for (auto i : testVector) {
-          cout << i << " ";
-        }
-        cout << endl;
-      }
-
-      // -----use the check the result---------
-      // inject single faults in all places
-      void testFaultInjectInCNF() {
-        vector<int> newFaults;
-        for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
-          int fault = *iter;
-          newFaults.clear();
-          printFault(fault);
-          newFaults.push_back(fault);
-          injectFaultsInCNF(newFaults);
-          cout << "origianl + faulty circuit" << endl; printCircuit(oriAndFauCir);
-          cout << "origianl + faulty cnf" << endl; printCNF(CNFOriAndFauCir);
-          cout << endl;
-        }
-      }
-
-      void testFaultInjectInCircuit() {
-        /*
-        vector<int> newFaults;
-        for (set<int>::iterator iter = allFaultList.begin(); iter != allFaultList.end(); iter++) {
-          int fault = *iter;
-          newFaults.clear();
-          printFault(fault);
-          newFaults.push_back(fault);
-          injectFaultsInCircuit(newFaults);
-          printCircuit(theCircuit);
-          resetFaultsInCircuit();
-          printCircuit(theCircuit);
-          cout << endl;
-        }
-        */
-      }
-
-      void printCircuit(vector <gate*> &curCircuit) {
-        for (int i = 0; i < curCircuit.size(); i++) {
-          cout << i << " ";
-          if (curCircuit[i]->gateType == null) {
-            cout << "Big OR gate";
-          } else if (curCircuit[i]->gateType == constant) {
-            cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") " <<  curCircuit[i]->outValue;
-          } else if (curCircuit[i]->gateType == PI) {
-            cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
-          } else {
-            cout << curCircuit[i]->fanin1->outName << "(" << curCircuit[i]->fanin1->gateID << ") ";
-            if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
-              cout << curCircuit[i]->fanin2->outName << "(" << curCircuit[i]->fanin2->gateID << ") ";
-            }
-            cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
-          }
-          // constant, bufInv, aig, PO, PI, OR, XOR
-          cout << " "; printGateType(curCircuit[i]->gateType);
-          /*
-          if (curCircuit[i]->faultyOut) {
-            cout << " faultyGate  ";
-          } else {
-            cout << " NormalGate  ";
-          }
-          if (curCircuit[i]->visited) {
-            cout << " visited";
-          } else {
-            cout << " unvisited";
-          }
-          cout << " outValue: " << curCircuit[i]->outValue;
-          */
-          cout << endl;
-        }
-        cout << endl;
-      }
-
-      void printOutput() {
-        for (auto curGate : theCircuit) {
-          cout << curGate->gateID << " "<< curGate->outName << " = " << curGate->outValue << endl;
-        }
-      }
-
-      void printForTestbench() {
-        for (int i = 0; i < PISize; i++) {
-          cout << theCircuit[i]->outName << " = " << theCircuit[i]->outValue << ";" << endl;
-        }
-        for (auto curGate : theCircuit) {
-          cout << "$fwrite(w_file,\"\\n" << curGate->gateID << " " << curGate->outName << "= \"," << curGate->outName <<");" << endl;
-        }
-      }
-
-      void printCNF(vector<vector<vector<int>>> &CNFFormula) {
-        for (int m = 0; m < CNFFormula.size(); m++) {  // gate
-          cout << m << ": ";
-          for (int i = 0; i < CNFFormula[m].size(); i++) {//clauses
-            for (int j = 0; j < CNFFormula[m][i].size(); j++) {//literals
-                if (CNFFormula[m][i][j] > 0) {
-                    cout << CNFFormula[m][i][j] /*- 1*/ << " ";
-                } else {
-                    cout << "-" << (-1)*CNFFormula[m][i][j] /*- 1*/ << " ";
-                }
-            }
-            cout << ", ";
-          }
-          cout << endl;
-        }
-      }
-
-      void printCNFFile(vector<vector<vector<int>>> &CNFFormula, vector<gate*> curCircuit) {
-        int cnt = 0;
-        for (int m = 0; m < CNFFormula.size(); m++) {  // gate
-          cout << m << ": " << endl;
-          for (int i = 0; i < CNFFormula[m].size(); i++) {//clauses
-            for (int j = 0; j < CNFFormula[m][i].size(); j++) {//literals
-                cnt++;
-                if (CNFFormula[m][i][j] > 0) {
-                    cout << CNFFormula[m][i][j] /*- 1*/ << " ";
-                } else {
-                    cout << "-" << (-1)*CNFFormula[m][i][j] /*- 1*/ << " ";
-                }
-            }
-            cout << " 0" << endl;;
-          }
-        }
-        cout << "p cnf " << curCircuit.size() << " " << cnt << endl;
-      }
-
-      void printCircuitCNFBlif(vector <gate*> &curCircuit) {
-        ofstream myfile;
-        myfile.open ("test.blif");
-
-
-
-        myfile << ".model test" << endl;
-        myfile << ".inputs ";
-        for (auto curGate : curCircuit) {
-          if (curGate->gateType == PI) {
-            myfile << curGate->outName << " ";
-          }
-        }
-        myfile << endl;
-
-        myfile << ".outputs finalOutput" << endl;
-        for (auto curGate : curCircuit) {
-          if (curGate->gateType == null)  continue;
-          if (curGate->in1Name.compare(curGate->outName) == 0)  continue;
-          myfile << ".names ";
-          if (curGate->gateType == constant) {
-            myfile << curGate->outName << endl;
-            myfile << curGate->outValue << endl;
-          } else {
-            if (curGate->gateType == PI) {
-              myfile << curGate->in1Name << " ";
-            } else {
-              myfile << curGate->fanin1->outName << " ";
-              if (curGate->gateType == aig || curGate->gateType == OR || curGate->gateType == XOR) {
-                myfile << curGate->fanin2->outName << " ";
-              }
-            }
-            myfile << curGate->outName << endl;
-
-            if (curGate->gateType != XOR) {
-              myfile << curGate->invIn1;
-              if (curGate->gateType == aig || curGate->gateType == OR || curGate->gateType == XOR) {
-                myfile << curGate->invIn2;
-              }
-              myfile << " " << curGate->invOut << endl;
-            } else {
-              myfile << "10 1\n01 1\n";
-            }
-          }
-        }
-
-        myfile << ".names ";
-        for (auto curGate : curCircuit) {
-          if (curGate->gateType == PO) {
-            myfile << curGate->outName << " ";
-          }
-        }
-        myfile << "finalOutput" << endl;
-        for (auto curGate : curCircuit) {
-          if (curGate->gateType == PO) {
-            myfile << "0";
-          }
-        }
-        myfile << " 0" << endl;
-        myfile << endl;
-        myfile << ".end" << endl;
-
-
-        myfile.close();
-      }
-      // --------------------------------------
-
-      int copyCount;
-      circuit *ClassCircuit;
-      vector <gate*> theCircuit;
-      int PISize, POSize, gateSize;
-      map<int, gate*>preGateInTheCircuit;
-      // ----Generate the CNF to do SAT------
-      vector<gate*> oriAndFauCir;
-      vector<vector<vector<int>>> CNFOriAndFauCir;
-      // the gate changed due to the fault.
-      // key : gateID in "oriAndFauCir", value is the gate in oriAndFauCir
-      map<int, gate*> preGateInOriAndFauCir;
-      //-------------------------------------
-      set<int> collapsedFaultList;
-      set<int> allFaultList;
-      set<int> notIncollapsedFaultList;
-      set<int> redundantSSAF;
-      vector<vector<int>> SSAFPatterns;
-      // key: faults, value: corresponding test vector
-      map<set<int>, vector<int>> faultToPatterns;
   };
 }
 

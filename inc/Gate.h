@@ -13,6 +13,19 @@ enum Type {PI, constant, bufInv, aig, PO, OR, XOR, null};
 namespace Gate {
   class gate{
     public:
+      Type gateType;
+      string in1Name,in2Name,outName;
+      bool invIn1,invIn2,invOut;
+      bool faultyOut;
+      int gateID;
+      vector <gate*> fanout;
+      gate *fanin1,*fanin2;
+      bool outValue;
+      //mark whether the fault is checked or not(both sa0 and sa1)
+      //only for aig.
+      bool in1Checked, in2Checked;
+      bool visited;
+
       gate(){
         this->gateType = null;
       }
@@ -95,109 +108,6 @@ namespace Gate {
         this->fanin2 = fanin2;
       }
 
-      // generate current clause in CNF format
-      // ID in cnf formula is gate ID + 1. And it will be -1 in glucose.h
-      void generateClause(vector<vector<int>> &gateClause) {
-        gateClause.clear();
-        vector<int>clause;
-      	// Generally CNF formula's ID starts from 1, but our circuits's gate ID start from 0
-        // so we should do gateID + 1
-        if (gateType == PI) {
-          //(varOut + ~varOut). Means dont care.
-          int varIn1 = (gateID+1)*(-1);
-          int varOut = gateID+1;
-          clause.push_back(varIn1);
-          clause.push_back(varOut);
-          gateClause.push_back(clause);
-          clause.clear();
-        } else if (gateType == PO || gateType == bufInv) {
-          //(varIn1 + ~varOut)(~varIn1+varOut)
-          int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
-      	  int varOut = invOut ? (gateID+1) : (gateID+1)*(-1);
-      	  clause.push_back(varIn1);
-      	  clause.push_back(varOut*(-1));
-      	  gateClause.push_back(clause);
-      	  clause.clear();
-      	  clause.push_back(varIn1*(-1));
-      	  clause.push_back(varOut);
-      	  gateClause.push_back(clause);
-      	} else if (gateType == constant) {
-          // varOut * constant value
-          int varOut = (gateID+1)*(outValue > 0 ? 1 : -1);
-      	  clause.push_back(varOut);
-      	  gateClause.push_back(clause);
-        } else if (gateType == aig) { //AIG
-          //(varIn1+~varOut)(varIn2+~varOut)(~varIn1+~varIn2+varOut)
-          int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
-          int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
-          int varOut = invOut ? (gateID+1) : (gateID+1) * (-1);
-      	  // (varIn1+~varOut)
-      	  clause.push_back(varIn1);
-      	  clause.push_back(varOut*(-1));
-      	  gateClause.push_back(clause);
-      	  clause.clear();
-          // (varIn2+~varOut)
-      	  clause.push_back(varIn2);
-      	  clause.push_back(varOut*(-1));
-      	  gateClause.push_back(clause);
-      	  clause.clear();
-          // (~varIn1+~varIn2+varOut)
-          clause.push_back(varIn1*(-1));
-      	  clause.push_back(varIn2*(-1));
-      	  clause.push_back(varOut);
-      	  gateClause.push_back(clause);
-        } else if (gateType == OR) {
-          //(~varIn1+varOut)(~varIn2+varOut)(varIn1+varIn2+~varOut)
-          int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
-          int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
-          int varOut = invOut ? (gateID+1) : (gateID+1) * (-1);
-      	  // (~varIn1+varOut)
-      	  clause.push_back(varIn1*(-1));
-      	  clause.push_back(varOut);
-      	  gateClause.push_back(clause);
-      	  clause.clear();
-          // (~varIn2+varOut)
-      	  clause.push_back(varIn2*(-1));
-      	  clause.push_back(varOut);
-      	  gateClause.push_back(clause);
-      	  clause.clear();
-          // (varIn1+varIn2+~varOut)
-          clause.push_back(varIn1);
-      	  clause.push_back(varIn2);
-      	  clause.push_back(varOut*(-1));
-      	  gateClause.push_back(clause);
-        } else if (gateType == XOR) {
-          //(varIn1+varIn2+~varOut)(varIn1+~varIn2+varOut)(~varIn1+~varIn2+~varOut)(~varIn1+varIn2+varOut)
-          int varIn1 = invIn1 ? (fanin1->gateID+1) : (fanin1->gateID+1)*(-1);
-          int varIn2 = invIn2 ? (fanin2->gateID+1) : (fanin2->gateID+1)*(-1);
-          int varOut = invOut ? (gateID+1) : (gateID+1) * (-1);
-          // (varIn1+varIn2+~varOut)
-          clause.push_back(varIn1);
-      	  clause.push_back(varIn2);
-      	  clause.push_back(varOut*(-1));
-      	  gateClause.push_back(clause);
-          clause.clear();
-          // (varIn1+~varIn2+varOut)
-          clause.push_back(varIn1);
-          clause.push_back(varIn2*(-1));
-          clause.push_back(varOut);
-          gateClause.push_back(clause);
-          clause.clear();
-          // (~varIn1+~varIn2+~varOut)
-          clause.push_back(varIn1*(-1));
-          clause.push_back(varIn2*(-1));
-          clause.push_back(varOut*(-1));
-          gateClause.push_back(clause);
-          clause.clear();
-          // (~varIn1+varIn2+varOut)
-          clause.push_back(varIn1*(-1));
-          clause.push_back(varIn2);
-          clause.push_back(varOut);
-          gateClause.push_back(clause);
-          clause.clear();
-        }
-      }
-
       void copyGate(gate *copy) {
         copy->gateType = this->gateType;
         copy->in1Name = this->in1Name;
@@ -216,19 +126,6 @@ namespace Gate {
         copy->fanin1 = this->fanin1;
         copy->fanin2 = this->fanin2;
       }
-
-      Type gateType;
-      string in1Name,in2Name,outName;
-      bool invIn1,invIn2,invOut;
-      bool faultyOut;
-      int gateID;
-      vector <gate*> fanout;
-      gate *fanin1,*fanin2;
-      bool outValue;
-      //mark whether the fault is checked or not(both sa0 and sa1)
-      //only for aig.
-      bool in1Checked, in2Checked;
-      bool visited;
   };
 }
 

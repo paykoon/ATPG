@@ -110,7 +110,7 @@ case 1. my CNF generation has problems
 
 -------2018.4.11-------------
 check fault 1252, is unsat, but the samefault_helper take it as non-redundant fault. find the reason.
-
+***方法有问题
 
   2. If 1 has no problem, check the CNF has problem or not? compare with abc's CNF
 case 2. glucose may has problem. can use s444 blif file to test. XXX. glucose has no problem. already proof it.
