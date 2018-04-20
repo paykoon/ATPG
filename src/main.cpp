@@ -1,6 +1,7 @@
 #include "Circuit.h"
 #include "Gate.h"
 #include "ATPG.h"
+#include "MSATest.h"
 #include "glucose.h"
 #include "time.h"
 #include <vector>
@@ -15,6 +16,7 @@ using namespace std;
 using namespace Circuit;
 using namespace Glucose;
 using namespace ATPG;
+using namespace MSATEST;
 
 int main(int argc, char **argv){
   if(argc < 3){
@@ -22,12 +24,10 @@ int main(int argc, char **argv){
     return 0;
   }
 
-
   char *blifFile = argv[1];
   char *patternFile = argv[2];
   // build the circuit
   circuit *pCircuit = new circuit(blifFile);
-  atpg *Tester = new atpg(pCircuit, patternFile);
-
+  atpg *ATPGInit = new atpg(pCircuit, patternFile);
   return 1;
 }

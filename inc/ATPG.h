@@ -11,10 +11,10 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <stdlib.h>
 #include "time.h"
 #include "Gate.h"
 #include "glucose.h"
-#include <stdlib.h>
 #include "Circuit.h"
 #include "Gate.h"
 #include "CNFGeneration.h"
@@ -28,9 +28,10 @@ namespace ATPG{
   class atpg{
     public:
       int copyCount;
-      circuit *ClassCircuit;
       vector <gate*> theCircuit;
       int PISize, POSize, gateSize;
+      // the circuit will be changed if faults are added to circuit.
+      // the original unchanged gate will be stored here.
       map<int, gate*>preGateInTheCircuit;
       // ----Generate the CNF to do SAT------
       vector<gate*> oriAndFauCir;
@@ -38,14 +39,17 @@ namespace ATPG{
       // the gate changed due to the fault.
       // key : gateID in "oriAndFauCir", value is the gate in oriAndFauCir
       map<int, gate*> preGateInOriAndFauCir;
-      //-------------------------------------
+      //-------test pattern----------------
       set<int> collapsedFaultList;
       set<int> allFaultList;
       set<int> notIncollapsedFaultList;
       set<int> redundantSSAF;
       vector<vector<int>> SSAFPatterns;
       // key: faults, value: corresponding test vector
-      map<set<int>, vector<int>> faultToPatterns;
+      vector<pair<set<int>, vector<int>>> faultToPatterns;
+      // ---------------------------------
+      map<int, set<int>> potentiallyUndetected;
+      map<int, int> undetectedDSA;
 
       atpg(circuit *pCircuit, char *patternFile) {
         copyCount = 1;
@@ -53,7 +57,6 @@ namespace ATPG{
         this->POSize = pCircuit->POSize;
         this->gateSize = pCircuit->gateSize;
         this->theCircuit = pCircuit->theCircuit;
-        ClassCircuit = pCircuit;
         ATPGInit(patternFile);
       }
 
@@ -73,7 +76,7 @@ namespace ATPG{
         curTime = clock();
         cout << "   Fault list generating is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         cout << "   Fault number is " << collapsedFaultList.size() << " (Collapsed: AIG's input wire connected to PI or fanout)" << endl;
-        cout << "   Total faults number: " << allFaultList.size() << ", " << (double)(collapsedFaultList.size()) / (double)(allFaultList.size()) << " fault are selected by the fault model" << endl;
+        cout << "   Total faults number: " << allFaultList.size() << ", " << 100*(double)(collapsedFaultList.size()) / (double)(allFaultList.size()) << "% fault are selected by the fault model" << endl;
 
         cout << "2. Initial CNF generating is started." << endl;
         preTime = clock();
@@ -95,6 +98,13 @@ namespace ATPG{
         cout << "   " <<  faultToPatterns.size() << "/"  << SSAFPatterns.size() << " test patterns are used."<< endl;
         cout << "   Number of redundant faults(among our SSAF model): " << redundantSSAF.size() << endl;
 
+        //printPotentiallyDSA(potentiallyUndetected);
+        findUndetectedDSA(potentiallyUndetected, undetectedDSA);
+        //printUndetectedDSA(undetectedDSA);
+
+        compressUndetectedDSA(undetectedDSA);
+        //printUndetectedDSA(undetectedDSA);
+
         endTime = clock();
         cout << "----------The initialization of the ATPG takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
         return 1;
@@ -107,6 +117,7 @@ namespace ATPG{
       void resetAllVisitedFaultyOut() {
         for (int i = 0; i < theCircuit.size(); i++) {
           theCircuit[i]->visited = false;
+          theCircuit[i]->different = false;
           theCircuit[i]->faultyOut = false;
         }
       }
@@ -185,7 +196,7 @@ namespace ATPG{
           int preValue = theCircuit[i]->outValue;
           theCircuit[i]->setOut();
           int curValue = theCircuit[i]->outValue;
-          theCircuit[i]->visited = (preValue != curValue);
+          theCircuit[i]->different = (preValue != curValue);
         }
       }
 
@@ -420,6 +431,7 @@ namespace ATPG{
 
 
       //------------------Find the propagation path of the faults under the given test pattern------------------
+      //------------------also try to find the block faults at the same time------------------------------------
       // inject faults in theCircuit
       int injectFaultsInCircuit(vector<int> &newFaults) {
         if (theCircuit.size() == 0) return 0;
@@ -483,19 +495,12 @@ namespace ATPG{
         return 1;
       }
 
-      // try to find all path of all faults
-      void findSSAFPath(vector<int> &newFaults) {
-        for (auto faultID : newFaults) {
-          int gateID = (faultID >> 3);
-          if (theCircuit[gateID]->visited == true) {
-            findSSAFPathDFS(theCircuit[gateID]);
-          }
-        }
-      }
+      // function: find the SSA faults' path; also try to find the faults that may block it.
       // base case : reach PO. return true(has check visited in previous level)
       // recursion rule: select the visited fanout and go into next level.
+      //                 check it's side value to find the block faults.
       // if none of fanout return true, we will return false.
-      bool findSSAFPathDFS(gate *curGate) {
+      bool findBlockSSADFS(gate *curGate, gate *preGate, set<int> &blockFaultsList, set<int> &faultList) {
         // base case
         if (curGate->gateType == PO) {
             curGate->faultyOut = true;
@@ -503,20 +508,32 @@ namespace ATPG{
         }
         bool result = false;
         for (auto fanout : curGate->fanout) {
-          // if one of its fanout can propagate the value, its faultyOut == true.
-          if (fanout->visited == true && findSSAFPathDFS(fanout) == true) {
+          // if one of its fanout can propagate the value, this gate is in the propagation path
+          if (fanout->different == true && findBlockSSADFS(fanout, curGate, blockFaultsList, faultList) == true) {
             curGate->faultyOut = true;
             result = true;
+            // try to find the SSAF that may block the fault********currently only for aig********
+            if (curGate->gateType == aig) {
+              // side value.
+              int sidePort = (curGate->fanin1 == preGate) ?  2 : 1;
+              gate *sideGate = (curGate->fanin1 == preGate) ? curGate->fanin2 : curGate->fanin1;
+              int sideGateID = sideGate->gateID;
+              int sideStuckat = 0;
+              int blockFaultID = getFaultID(sideGateID, sidePort, sideStuckat);
+              if (faultList.find(blockFaultID) != faultList.end()) {  // the fault in our fault model
+                blockFaultsList.insert(blockFaultID);
+              }
+            }
           }
         }
         return result;
       }
 
       // given the faultID and test vector, mark the gate in the propgation path as "faultyOut = true"
-      // first propagate PI in faulty circuit, then do the samt thing in original circuit.
+      // first propagate PI in faulty circuit, then do the same thing in original circuit.
       // so the outValue remains in the cirucit is the value to activate and propagte faults
       // return 1 if faults can be tested by the test pattern, else return 0;
-      int propagateFault(vector<int> &newFaults, vector<int> &testVector) {
+      int checkFaultAndTestVector(vector<int> &newFaults, vector<int> &testVector, set<int> &blockFaultsList, set<int> &faultList) {
         resetAllVisitedFaultyOut();
         resetFaultsInCircuit();
         // inject faults and propagate the value
@@ -529,18 +546,21 @@ namespace ATPG{
         // progate the value in original circuit
         assignPIs(testVector);
         propagatePI();
-        findSSAFPath(newFaults);
+
+        // ****only for DSA fault now*******
+        int gateID = newFaults[0] >> 3;
         for (int i = 0; i < POSize; i++) {
           gate *POGate = theCircuit[PISize + gateSize + i];
           // if the fautls can be detected in one of the PO, then it's detected.
-          if (POGate->faultyOut == true) {
+          if (POGate->different == true ) {
+            // find the SSA that may block it in its propagatioin path.
+            findBlockSSADFS(theCircuit[gateID], NULL, blockFaultsList, faultList);
             return 1;
           }
         }
         return 0;
       }
       //------------------Find the propagation path of the faults under the given test pattern------------------
-
 
       //------------------Process about the initial SSAF test pattern------------------
       // read the SSAF test pattern files
@@ -574,7 +594,7 @@ namespace ATPG{
 
       // check whether the given test patterns can cover entire faultList or not.
       // assume that the initial test pattern can already detect all SSAF
-      // get: map<set<int>, vector<int>> faultToPatterns;   set<int> redundantSSAF;
+      // get: vector<set<int>, vector<int>> faultToPatterns;   set<int> redundantSSAF;
       void CheckGivenPatterns(set<int> &faultList, vector<vector<int>> &SSAFPatterns) {
         set<int> visited;
         for (auto testVector : SSAFPatterns) {
@@ -584,12 +604,16 @@ namespace ATPG{
             if (visited.find(faultID) != visited.end()) continue;  // already checked
             vector<int> newFaults;
             newFaults.push_back(faultID);
-            if (propagateFault(newFaults, testVector) == 1) {
+            set<int> blockFaultsList;
+            if (checkFaultAndTestVector(newFaults, testVector, blockFaultsList, faultList) == 1) {
               faultsSameVector.insert(faultID);
               visited.insert(faultID);
+              if (blockFaultsList.size() > 0) {
+                potentiallyUndetected.insert(make_pair(faultID, blockFaultsList));
+              }
             }
           }
-          faultToPatterns.insert(pair<set<int>, vector<int>>(faultsSameVector, testVector));
+          faultToPatterns.push_back(pair<set<int>, vector<int>>(faultsSameVector, testVector));
         }
         for (auto faultID : faultList) {
           if (visited.find(faultID) == visited.end()) {
@@ -598,6 +622,44 @@ namespace ATPG{
         }
       }
       //------------------Process about the initial SSAF test pattern------------------
+
+      void findUndetectedDSA(map<int, set<int>> &potentiallyUndetected, map<int, int> &undetectedDSA) {
+        for (map<int, set<int>>::iterator iter = potentiallyUndetected.begin(); iter != potentiallyUndetected.end(); iter++) {
+          int first = iter->first;
+          set<int> firstSet = iter->second;
+          for (auto second : firstSet) {
+            if (potentiallyUndetected.find(second) != potentiallyUndetected.end()) {
+              set<int> secondSet = potentiallyUndetected[second];
+              if (secondSet.find(first) != secondSet.end()) {
+                undetectedDSA.insert(make_pair(first, second));
+              }
+            }
+          }
+        }
+        // delete the duplicate
+        for (map<int, int>::iterator iter = undetectedDSA.begin(); iter != undetectedDSA.end(); iter++) {
+          int second = iter->second;
+          if (undetectedDSA.find(second) != undetectedDSA.end()) {
+            undetectedDSA.erase(second);
+          }
+        }
+      }
+
+      void compressUndetectedDSA(map<int, int> &undetectedDSA) {
+        map<int, int> temp(undetectedDSA);
+        for (map<int, int>::iterator iter = temp.begin(); iter != temp.end(); iter++) {
+          vector<int> newFaults;
+          newFaults.push_back(iter->first);
+          newFaults.push_back(iter->second);
+          set<int> empty;
+          for (auto testVector: SSAFPatterns) {
+            if (checkFaultAndTestVector(newFaults, testVector, empty, empty) == 1) {
+              undetectedDSA.erase(iter->first);
+              break;
+            }
+          }
+        }
+      }
 
       int printFault(int ID) {
         int faultID = ID;                         cout << "faultID: " << faultID;
@@ -644,6 +706,26 @@ namespace ATPG{
             break;
         }
         cout << " ";
+      }
+
+      // ----------------
+      void printPotentiallyDSA(map<int, set<int>> &potentiallyUndetected) {
+        cout << "\npotentiallyUndetected:" << endl;
+        for (map<int, set<int>>::iterator iter = potentiallyUndetected.begin(); iter != potentiallyUndetected.end(); iter++) {
+          int faultID = iter->first;
+          set<int> blockFaultSet = iter->second;
+          cout << faultID << ":  ";
+          for (auto blockFault : blockFaultSet) {
+            cout << blockFault << " ";
+          }
+          cout << endl;
+        }
+      }
+      void printUndetectedDSA(map<int, int> &undetectedDSA) {
+        cout << "\nreallyUndetected:" << endl;
+        for (map<int, int>::iterator iter = undetectedDSA.begin(); iter != undetectedDSA.end(); iter++) {
+          cout << iter->first << ", " << iter->second << endl;
+        }
       }
 
   };

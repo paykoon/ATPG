@@ -25,6 +25,7 @@ namespace Gate {
       //only for aig.
       bool in1Checked, in2Checked;
       bool visited;
+      bool different;
 
       gate(){
         this->gateType = null;

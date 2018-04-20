@@ -558,3 +558,73 @@ if (visited.size() == faultList.size()) {
   cout << "redundantSSAF.size(): " << redundantSSAF.size() << endl;
   cout << "collapsedFaultList.size(): " << collapsedFaultList.size() << endl;
 }
+
+
+
+// ----------------------previous propagation fault----------------------------
+// try to find all path of all faults
+void findSSAFPath(vector<int> &newFaults) {
+  for (auto faultID : newFaults) {
+    int gateID = (faultID >> 3);
+    if (theCircuit[gateID]->different == true) {
+      findSSAFPathDFS(theCircuit[gateID]);
+    }
+  }
+}
+// function: find the SSA faults' path; also try to find the faults that may block it.
+// base case : reach PO. return true(has check visited in previous level)
+// recursion rule: select the visited fanout and go into next level.
+// if none of fanout return true, we will return false.
+bool findSSAFPathDFS(gate *curGate) {
+  // base case
+  if (curGate->gateType == PO) {
+      curGate->faultyOut = true;
+      return true;
+  }
+  bool result = false;
+  for (auto fanout : curGate->fanout) {
+    // if one of its fanout can propagate the value, its faultyOut == true.
+    if (fanout->different == true && findSSAFPathDFS(fanout) == true) {
+      curGate->faultyOut = true;
+      result = true;
+    }
+  }
+  return result;
+}
+
+// given the faultID and test vector, mark the gate in the propgation path as "faultyOut = true"
+// first propagate PI in faulty circuit, then do the same thing in original circuit.
+// so the outValue remains in the cirucit is the value to activate and propagte faults
+// return 1 if faults can be tested by the test pattern, else return 0;
+int propagateFault(vector<int> &newFaults, vector<int> &testVector) {
+  resetAllVisitedFaultyOut();
+  resetFaultsInCircuit();
+  // inject faults and propagate the value
+  injectFaultsInCircuit(newFaults);
+  assignPIs(testVector);
+  propagatePI();
+
+  resetAllVisitedFaultyOut();
+  resetFaultsInCircuit();
+  // progate the value in original circuit
+  assignPIs(testVector);
+  propagatePI();
+  /*
+  findSSAFPath(newFaults);
+  for (int i = 0; i < POSize; i++) {
+    gate *POGate = theCircuit[PISize + gateSize + i];
+    // if the fautls can be detected in one of the PO, then it's detected.
+    if (POGate->faultyOut == true) {
+      return 1;
+    }
+  }
+  */
+  for (int i = 0; i < POSize; i++) {
+    gate *POGate = theCircuit[PISize + gateSize + i];
+    // if the fautls can be detected in one of the PO, then it's detected.
+    if (POGate->different == true ) {
+      return 1;
+    }
+  }
+  return 0;
+}

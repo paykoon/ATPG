@@ -125,3 +125,29 @@ if glucose has no problem. then can print out its CNF formula and compare with m
 
 // 2. s1238 has same problem. But different. it's problem is the collapse function ...(both propagate fault and sat said, no. but it still select by our function.)
 // our method is fast, but still need to check (findFaultsSameTest_helper??)
+
+
+2018.4.19
+Double fault detect parts
+Map<testPattern, set<faults>>
+1. check path
+for each test pattern
+    for each faults
+        find its propagation path
+        find the faults may block its propagation.
+get the potentiallyUndetected set<faults, set of faults that will block it>
+2. check the potentiallyUndetected set, find the undetected DSA.
+3. check whether those DSAs can be detected by other patterns to compress
+4. generate the final pattern use SAT(only use SAT here)
+
+2018.4.20
+when we check the test patterns, we dont need to propagate the fault
+we can write another function to find the path.
+
+TO DO:
+check the function in S27.
+(findBlockSSADFS, checkFaultAndTestVector, findUndetectedDSA, compressUndetectedDSA)
+some faults do not need to be selected as block SSA....(previous slide)
+use other pattern to check the undetectedDSA, and further decrease the size.
+(*****may also need to check the checkFaultAndTestVector function for DSA faults*****)
+at last not any SSA remaining.... many problems....
