@@ -1,0 +1,23 @@
+# Benchmark "../DATA/s27" written by ABC on Thu Jul 14 15:54:20 2016
+.model ../DATA/s27
+.inputs G0 G1 G2 G3 G5 G6 G7
+.outputs G17 n12 n17 n22
+.names G0 G6 n12_1
+01 1
+.names G3 n12_1 n13
+00 1
+.names G1 G7 n14
+00 1
+.names n12_1 1 n15
+00 1
+.names n13 n15 n16
+00 1
+.names G5 n16 n17
+01 1
+.names G0 n17 n12
+10 1
+.names G2 n14 n22
+00 1
+.names n17 G17
+0 1
+.end

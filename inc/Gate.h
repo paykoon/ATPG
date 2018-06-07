@@ -76,6 +76,19 @@ namespace Gate {
         delete this;
       }
 
+      // given the input value, get the output value of current gate.
+      int getOutValue(int in1, int in2){
+        int outValue = 0;
+        if (gateType == PO) {
+          outValue = in1;
+        } else if (gateType == bufInv){
+          outValue = ( in1 == invIn1 ) == invOut;
+        } else if (gateType == aig){
+          outValue = ( (in1 == invIn1) & (in2== invIn2) ) == invOut;
+        }
+        return outValue;
+      }
+
       void setPI(int inValues){
         if (gateType == PI) {
           outValue = inValues;

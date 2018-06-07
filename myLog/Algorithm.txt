@@ -122,3 +122,5 @@ use other's initial patterns.
 2. 找出undetected DSA
 
 有些DSA可以不check,看之前的笔记。
+
+6.1

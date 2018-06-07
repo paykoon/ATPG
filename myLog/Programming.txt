@@ -126,7 +126,7 @@ if glucose has no problem. then can print out its CNF formula and compare with m
 // 2. s1238 has same problem. But different. it's problem is the collapse function ...(both propagate fault and sat said, no. but it still select by our function.)
 // our method is fast, but still need to check (findFaultsSameTest_helper??)
 
-
+--------------------------------------------------------------
 2018.4.19
 Double fault detect parts
 Map<testPattern, set<faults>>
@@ -134,7 +134,7 @@ Map<testPattern, set<faults>>
 for each test pattern
     for each faults
         find its propagation path
-        find the faults may block its propagation.
+        find the faults may block its propagation, redundant faults need to be considered
 get the potentiallyUndetected set<faults, set of faults that will block it>
 2. check the potentiallyUndetected set, find the undetected DSA.
 3. check whether those DSAs can be detected by other patterns to compress
@@ -151,3 +151,82 @@ some faults do not need to be selected as block SSA....(previous slide)
 use other pattern to check the undetectedDSA, and further decrease the size.
 (*****may also need to check the checkFaultAndTestVector function for DSA faults*****)
 at last not any SSA remaining.... many problems....
+
+!!Have a idea to further reduce the running time.
+When we propagate the input value, we dont need to traverse the entire circuit, we just find the gate connected with faulty gate,
+and only propagate value in these gates..then it will be much faster.
+
+A problem. only check the path from faulty gate to output.
+for each block fault in the path, also need to look back and find the same faults.
+
+2018.4.21
+----sameFaultCurToPIDFS------
+write a function to find the same fault(DFS recursive)
+only stuckat 0 side value needs to do that.
+1. if current gate is aig:
+   choose the stuckat value in both input port, stuckat1 = (1-invIn1), stuckat2 = (1-invIn2);.
+   if current gate is bufInv:
+   outStuckat = 1 - outValue;
+   stuckat = (outStuckat == invOut) == invIn1;
+   check whether the faults are inside our fault model or not.
+   put the fault into "blockFaultsList"
+2. go to the fanin gate.
+    go into fanin1,
+    if it's aig, go to fanin2
+base case
+1. for AIG: if current gate stuck-at outValue == invOut, then return.
+   (for bufInv just pass, cause it's stuckat value can definitely be propagated)
+2. current gate is PI or constant, just return.
+(after write this function, check in s27 again, check all faults' case).
+---test case---
+put bufinv, constant into circuit to see what will happen
+
+
+
+2018.4.25
+-----findConnectedGatesDFS, is ok, no problem----
+----first find the PO then backtrace to PI----
+find all gates that connected to the target gate
+1. the path from that gate to PO
+2. the side value in the path
+3. the gate from that gate to PI
+--1. in the main DFS function. 2,3 in another sub-DFS function.
+--DFS main function gate->PO
+input curGate, set.
+go to all fan-out.
+base case: PO, call the sub-function helper then return..
+--DFS sub-function PO to PI.
+input curGate, set
+1. put current gate's index into set
+2. go to all inputs(****bufInv only one input)
+base case: PI or bufInv
+
+2018.5.17
+many function's result are different.
+1. use CheckGivenPatterns to find potentially undetected
+2. use checkFaultAndTestVector to find whether can be propagated?
+3. use SAT to check
+three has different results...
+ok, first check 2. checkFaultAndTestVector.
+When I use it to check single fault, many are undetected?but previouly many are detected????
+what happens????
+
+is the multiple faults works well?
+Then we can check 1 and 3.
+
+
+2018.5.31.
+resetFaultsInCircuit has some problems
+every time we dont pop all stuckat constants out.
+because multiple faults may in same gate, we will add multiple constant in the cirucit,
+but the time we pop out constants is equal to the gates number that are changed...
+so I use other variable faultsInsertedCircuit to record the faults number for poping out operation.
+
+*******review the code to generate CNF and the faultyCircuit.
+**for S444. among the undetected faults by SSA test set, only four of them are detectable.
+  check our function to find the undetected DSA....
+
+bug1:没有把双Redundant的SSAF给考虑进去。
+bug2：用map<int, int>来存可能DSA错误。不行的，这样子key一样的值会被覆盖掉。。。
+bug3: 忽略了单边Redundant的 fault。。得找出原因。
+      -->一开始还不知道哪些是redundant。。。。所以就找不出来了。

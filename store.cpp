@@ -14,7 +14,6 @@ void findSSAFaultsSameTestVector(int faultID, vector<int> &testVector, set<int> 
   visited.insert(sameFaults.begin(), sameFaults.end());
 }
 
-
 // 1. propagate the PI
 // 2. find all the faults (in PI) that can be detected by the test pattern
 // 3. propgate those faults to PO to eliminate the same faults
@@ -72,9 +71,6 @@ void findSSAFaultsSameTestVector(int curFaultID, vector<int> &testVector, set<in
   }
 }
 
-
-
-
 void findSSAFaultsSameTestVector(int curFaultID, vector<int> &testVector, set<int> &sameFaults, set<int> &allFaults, set<int> &visited) {
   sameFaults.insert(curFaultID);
   visited.insert(curFaultID);
@@ -88,7 +84,6 @@ void findSSAFaultsSameTestVector(int curFaultID, vector<int> &testVector, set<in
     }
   }
 }
-
 
 // recursive function to find the faults that can be detected by the same vector
 // can work for any fault model.
@@ -627,4 +622,57 @@ int propagateFault(vector<int> &newFaults, vector<int> &testVector) {
     }
   }
   return 0;
+}
+
+
+//*******************************************
+if (oriFault == 331 && curGate->gateID == (348 >> 3)) {
+  cout << "***********blockFaultID " << blockFaultID << endl;
+  set<int> connectedGates;
+  findConnectedGatesDFS(theCircuit[348>>3], connectedGates);
+  vector<gate*> connectedGatesVec;
+  for (auto id : connectedGates) {
+    connectedGatesVec.push_back(theCircuit[id]);
+  }
+  printFault2(331);
+  printFault2(348);
+  printCircuit(connectedGatesVec);
+}
+//*******************************************
+
+
+
+
+void sameFaultCurToPIDFS(gate *curGate, set<int> &blockFaultsList, set<int> &faultList, set<int> &redundantSSAF) {
+  // base case
+  if (curGate->gateType == aig) {
+    int outStuckat = 1 - curGate->outValue;
+    if (outStuckat == curGate->invOut) return;
+  } else if (curGate->gateType == PI || curGate->gateType == constant) {
+    return;
+  }
+  // check current inputs
+  if (curGate->gateType == aig) {
+    int stuckat1 = (1 - curGate->invIn1);
+    // getFaultID(int gateID, int port, int stuckat)
+    int blockFaultID1 = getFaultID(curGate->gateID, 1, stuckat1);
+    if (faultList.find(blockFaultID1) != faultList.end() || redundantSSAF.find(blockFaultID1) != redundantSSAF.end()) {
+      blockFaultsList.insert((redundantSSAF.find(blockFaultID1) != redundantSSAF.end()) ? blockFaultID1 * (-1) : blockFaultID1);
+    }
+    int stuckat2 = (1 - curGate->invIn2);
+    int blockFaultID2 = getFaultID(curGate->gateID, 2, stuckat2);
+    if (faultList.find(blockFaultID2) != faultList.end() || redundantSSAF.find(blockFaultID2) != redundantSSAF.end()) {
+      blockFaultsList.insert((redundantSSAF.find(blockFaultID2) != redundantSSAF.end()) ? blockFaultID2 * (-1) : blockFaultID2);
+    }
+  } else if (curGate->gateType == bufInv) {
+    int outStuckat = 1 - curGate->outValue;
+    int stuckat = (outStuckat == curGate->invOut) == curGate->invIn1;
+    int blockFaultID = getFaultID(curGate->gateID, 1, stuckat);
+    if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+      blockFaultsList.insert((redundantSSAF.find(blockFaultID) != redundantSSAF.end()) ? blockFaultID * (-1) : blockFaultID);
+    }
+  }
+  // go to the fanin gate
+  sameFaultCurToPIDFS(curGate->fanin1, blockFaultsList, faultList, redundantSSAF);
+  if (curGate->gateType == aig) sameFaultCurToPIDFS(curGate->fanin2, blockFaultsList, faultList, redundantSSAF);
 }
