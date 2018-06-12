@@ -1,0 +1,237 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.013611 seconds.
+   The number of gates in the circuit is 635
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.012685 seconds.
+----------The initialization of the Circuit takes 0.026359 seconds----------
+
+
+----------Initialization of ATPG----------
+1. Fault list generating is started. 
+   SSA Fault list generating is completed. Time: 0.035656 seconds.
+   SSA Fault number is 1256 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 3464, 36.2587% fault are selected by the fault model
+2. Initial CNF generating is started.
+   Initial CNF generating is completed. Time: 0.016714 seconds.
+3. Read initial SSAF test patterns.
+   25 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can already cover all SSAF)
+   Number of redundant faults(among our SSAF model): 18
+faultID: 1036   gateID 129:  G42 n208 n209; n208 input2 stuck at 0
+faultID: 1877   gateID 234:  G15 n46 n314; n46 input2 stuck at 1
+faultID: 2738   gateID 342:  G53 n418 n422; G53 input1 stuck at 0
+faultID: 2740   gateID 342:  G53 n418 n422; n418 input2 stuck at 0
+faultID: 2834   gateID 354:  G56 n430 n434; G56 input1 stuck at 0
+faultID: 2836   gateID 354:  G56 n430 n434; n430 input2 stuck at 0
+faultID: 2906   gateID 363:  G58 n438 n443; G58 input1 stuck at 0
+faultID: 2908   gateID 363:  G58 n438 n443; n438 input2 stuck at 0
+faultID: 3002   gateID 375:  G61 n450 n455; G61 input1 stuck at 0
+faultID: 3004   gateID 375:  G61 n450 n455; n450 input2 stuck at 0
+faultID: 3202   gateID 400:  G91 n274 n480; G91 input1 stuck at 0
+faultID: 3868   gateID 483:  G83 n562 n563; n562 input2 stuck at 0
+faultID: 4050   gateID 506:  G10 G90 n586; G10 input1 stuck at 0
+faultID: 4067   gateID 508:  G13 G86 n588; G13 input1 stuck at 1
+faultID: 4274   gateID 534:  n220 n613 n614; n220 input1 stuck at 0
+faultID: 4275   gateID 534:  n220 n613 n614; n220 input1 stuck at 1
+faultID: 4277   gateID 534:  n220 n613 n614; n613 input2 stuck at 1
+faultID: 4283   gateID 535:  n613 n614 n615; n613 input1 stuck at 1
+Undetected DSA number(without compressing): 5954
+**********Compress**********
+Undetected DSA number: (after compressing)171
+
+
+
+Circuit Simulate
+
+
+
+
+
+
+the ignoredFaults by the given SSAF test(check by circuitSimulation)
+811 1036(RSSAF) 
+813 1036(RSSAF) 
+826 1036(RSSAF) 
+1036(RSSAF) 1043 
+1036(RSSAF) 1877(RSSAF) 
+1036(RSSAF) 2738(RSSAF) 
+1036(RSSAF) 2740(RSSAF) 
+1036(RSSAF) 2834(RSSAF) 
+1036(RSSAF) 2836(RSSAF) 
+1036(RSSAF) 2906(RSSAF) 
+1036(RSSAF) 2908(RSSAF) 
+1036(RSSAF) 3002(RSSAF) 
+1036(RSSAF) 3004(RSSAF) 
+1036(RSSAF) 3202(RSSAF) 
+1036(RSSAF) 3868(RSSAF) 
+1036(RSSAF) 4050(RSSAF) 
+1036(RSSAF) 4067(RSSAF) 
+1036(RSSAF) 4243 
+1036(RSSAF) 4274(RSSAF) 
+1036(RSSAF) 4275(RSSAF) 
+1036(RSSAF) 4277(RSSAF) 
+1036(RSSAF) 4283(RSSAF) 
+1876 1877(RSSAF)  ***R N F***
+1877(RSSAF) 2738(RSSAF)  ***R N F***
+1877(RSSAF) 2740(RSSAF)  ***R N F***
+1877(RSSAF) 2834(RSSAF)  ***R N F***
+1877(RSSAF) 2836(RSSAF)  ***R N F***
+1877(RSSAF) 2906(RSSAF)  ***R N F***
+1877(RSSAF) 2908(RSSAF)  ***R N F***
+1877(RSSAF) 3002(RSSAF)  ***R N F***
+1877(RSSAF) 3004(RSSAF)  ***R N F***
+1877(RSSAF) 3202(RSSAF)  ***R N F***
+1877(RSSAF) 3868(RSSAF)  ***R N F***
+1877(RSSAF) 4050(RSSAF)  ***R N F***
+1877(RSSAF) 4067(RSSAF)  ***R N F***
+1877(RSSAF) 4274(RSSAF)  ***R N F***
+1877(RSSAF) 4275(RSSAF)  ***R N F***
+1877(RSSAF) 4277(RSSAF)  ***R N F***
+1877(RSSAF) 4283(RSSAF)  ***R N F***
+2738(RSSAF) 2740(RSSAF)  ***R N F***
+2738(RSSAF) 2741  ***R N F***
+2738(RSSAF) 2834(RSSAF)  ***R N F***
+2738(RSSAF) 2836(RSSAF)  ***R N F***
+2738(RSSAF) 2906(RSSAF)  ***R N F***
+2738(RSSAF) 2908(RSSAF)  ***R N F***
+2738(RSSAF) 3002(RSSAF)  ***R N F***
+2738(RSSAF) 3004(RSSAF)  ***R N F***
+2738(RSSAF) 3202(RSSAF)  ***R N F***
+2738(RSSAF) 3868(RSSAF)  ***R N F***
+2738(RSSAF) 4050(RSSAF)  ***R N F***
+2738(RSSAF) 4067(RSSAF)  ***R N F***
+2738(RSSAF) 4274(RSSAF)  ***R N F***
+2738(RSSAF) 4275(RSSAF)  ***R N F***
+2738(RSSAF) 4277(RSSAF)  ***R N F***
+2738(RSSAF) 4283(RSSAF)  ***R N F***
+2739 2740(RSSAF)  ***R N F***
+2740(RSSAF) 2834(RSSAF)  ***R N F***
+2740(RSSAF) 2836(RSSAF)  ***R N F***
+2740(RSSAF) 2906(RSSAF)  ***R N F***
+2740(RSSAF) 2908(RSSAF)  ***R N F***
+2740(RSSAF) 3002(RSSAF)  ***R N F***
+2740(RSSAF) 3004(RSSAF)  ***R N F***
+2740(RSSAF) 3202(RSSAF)  ***R N F***
+2740(RSSAF) 3868(RSSAF)  ***R N F***
+2740(RSSAF) 4050(RSSAF)  ***R N F***
+2740(RSSAF) 4067(RSSAF)  ***R N F***
+2740(RSSAF) 4274(RSSAF)  ***R N F***
+2740(RSSAF) 4275(RSSAF)  ***R N F***
+2740(RSSAF) 4277(RSSAF)  ***R N F***
+2740(RSSAF) 4283(RSSAF)  ***R N F***
+2834(RSSAF) 2836(RSSAF)  ***R N F***
+2834(RSSAF) 2837  ***R N F***
+2834(RSSAF) 2906(RSSAF)  ***R N F***
+2834(RSSAF) 2908(RSSAF)  ***R N F***
+2834(RSSAF) 3002(RSSAF)  ***R N F***
+2834(RSSAF) 3004(RSSAF)  ***R N F***
+2834(RSSAF) 3202(RSSAF)  ***R N F***
+2834(RSSAF) 3868(RSSAF)  ***R N F***
+2834(RSSAF) 4050(RSSAF)  ***R N F***
+2834(RSSAF) 4067(RSSAF)  ***R N F***
+2834(RSSAF) 4274(RSSAF)  ***R N F***
+2834(RSSAF) 4275(RSSAF)  ***R N F***
+2834(RSSAF) 4277(RSSAF)  ***R N F***
+2834(RSSAF) 4283(RSSAF)  ***R N F***
+2835 2836(RSSAF)  ***R N F***
+2836(RSSAF) 2906(RSSAF)  ***R N F***
+2836(RSSAF) 2908(RSSAF)  ***R N F***
+2836(RSSAF) 3002(RSSAF)  ***R N F***
+2836(RSSAF) 3004(RSSAF)  ***R N F***
+2836(RSSAF) 3202(RSSAF)  ***R N F***
+2836(RSSAF) 3868(RSSAF)  ***R N F***
+2836(RSSAF) 4050(RSSAF)  ***R N F***
+2836(RSSAF) 4067(RSSAF)  ***R N F***
+2836(RSSAF) 4274(RSSAF)  ***R N F***
+2836(RSSAF) 4275(RSSAF)  ***R N F***
+2836(RSSAF) 4277(RSSAF)  ***R N F***
+2836(RSSAF) 4283(RSSAF)  ***R N F***
+2906(RSSAF) 2908(RSSAF)  ***R N F***
+2906(RSSAF) 2909  ***R N F***
+2906(RSSAF) 3002(RSSAF)  ***R N F***
+2906(RSSAF) 3004(RSSAF)  ***R N F***
+2906(RSSAF) 3202(RSSAF)  ***R N F***
+2906(RSSAF) 3868(RSSAF)  ***R N F***
+2906(RSSAF) 4050(RSSAF)  ***R N F***
+2906(RSSAF) 4067(RSSAF)  ***R N F***
+2906(RSSAF) 4274(RSSAF)  ***R N F***
+2906(RSSAF) 4275(RSSAF)  ***R N F***
+2906(RSSAF) 4277(RSSAF)  ***R N F***
+2906(RSSAF) 4283(RSSAF)  ***R N F***
+2907 2908(RSSAF)  ***R N F***
+2908(RSSAF) 3002(RSSAF)  ***R N F***
+2908(RSSAF) 3004(RSSAF)  ***R N F***
+2908(RSSAF) 3202(RSSAF)  ***R N F***
+2908(RSSAF) 3868(RSSAF)  ***R N F***
+2908(RSSAF) 4050(RSSAF)  ***R N F***
+2908(RSSAF) 4067(RSSAF)  ***R N F***
+2908(RSSAF) 4274(RSSAF)  ***R N F***
+2908(RSSAF) 4275(RSSAF)  ***R N F***
+2908(RSSAF) 4277(RSSAF)  ***R N F***
+2908(RSSAF) 4283(RSSAF)  ***R N F***
+3002(RSSAF) 3004(RSSAF)  ***R N F***
+3002(RSSAF) 3005  ***R N F***
+3002(RSSAF) 3202(RSSAF)  ***R N F***
+3002(RSSAF) 3868(RSSAF)  ***R N F***
+3002(RSSAF) 4050(RSSAF)  ***R N F***
+3002(RSSAF) 4067(RSSAF)  ***R N F***
+3002(RSSAF) 4274(RSSAF)  ***R N F***
+3002(RSSAF) 4275(RSSAF)  ***R N F***
+3002(RSSAF) 4277(RSSAF)  ***R N F***
+3002(RSSAF) 4283(RSSAF)  ***R N F***
+3003 3004(RSSAF)  ***R N F***
+3004(RSSAF) 3202(RSSAF)  ***R N F***
+3004(RSSAF) 3868(RSSAF)  ***R N F***
+3004(RSSAF) 4050(RSSAF)  ***R N F***
+3004(RSSAF) 4067(RSSAF)  ***R N F***
+3004(RSSAF) 4274(RSSAF)  ***R N F***
+3004(RSSAF) 4275(RSSAF)  ***R N F***
+3004(RSSAF) 4277(RSSAF)  ***R N F***
+3004(RSSAF) 4283(RSSAF)  ***R N F***
+3194 3202(RSSAF) 
+3197 3202(RSSAF) 
+3202(RSSAF) 3868(RSSAF)  ***R N F***
+3202(RSSAF) 4050(RSSAF)  ***R N F***
+3202(RSSAF) 4067(RSSAF)  ***R N F***
+3202(RSSAF) 4274(RSSAF)  ***R N F***
+3202(RSSAF) 4275(RSSAF)  ***R N F***
+3202(RSSAF) 4277(RSSAF)  ***R N F***
+3202(RSSAF) 4283(RSSAF)  ***R N F***
+3868(RSSAF) 4050(RSSAF)  ***R N F***
+3868(RSSAF) 4067(RSSAF)  ***R N F***
+3868(RSSAF) 4274(RSSAF)  ***R N F***
+3868(RSSAF) 4275(RSSAF)  ***R N F***
+3868(RSSAF) 4277(RSSAF)  ***R N F***
+3868(RSSAF) 4283(RSSAF)  ***R N F***
+4050(RSSAF) 4067(RSSAF)  ***R N F***
+4050(RSSAF) 4274(RSSAF)  ***R N F***
+4050(RSSAF) 4275(RSSAF)  ***R N F***
+4050(RSSAF) 4277(RSSAF)  ***R N F***
+4050(RSSAF) 4283(RSSAF)  ***R N F***
+4066 4067(RSSAF)  ***R N F***
+4067(RSSAF) 4274(RSSAF)  ***R N F***
+4067(RSSAF) 4275(RSSAF)  ***R N F***
+4067(RSSAF) 4277(RSSAF)  ***R N F***
+4067(RSSAF) 4283(RSSAF)  ***R N F***
+4274(RSSAF) 4275(RSSAF)  ***R N F***
+4274(RSSAF) 4277(RSSAF)  ***R N F***
+4274(RSSAF) 4283(RSSAF)  ***R N F***
+4275(RSSAF) 4276  ***R N F***
+4275(RSSAF) 4277(RSSAF)  ***R N F***
+4276 4277(RSSAF)  ***R N F***
+4282 4283(RSSAF)  ***R N F***
+Undetected DSA number(by circuitSimulation): 171
+
+
+
+Circuit Simulate
+
+
+
+
+******Analyzation(not picked by out method)********
+----------The initialization of the ATPG takes 173.163 seconds----------
+

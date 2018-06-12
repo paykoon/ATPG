@@ -1,4 +1,5 @@
 1. we can just extract the connecting part for a faults and do process, it will be faster
+1. all the combination of two sinlge redundant faults should be checked also.
 2. if f1 in the path of f2, f1 will not be influence by f2 so f1, f2 is detected by v1
    by if f1 is redundant fault, then it's undetectable.
    need to check this case

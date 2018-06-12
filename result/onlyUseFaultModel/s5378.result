@@ -1,0 +1,376 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.017073 seconds.
+   The number of gates in the circuit is 1912
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.007457 seconds.
+----------The initialization of the Circuit takes 0.024575 seconds----------
+
+
+----------Initialization of ATPG----------
+1. Fault list generating is started. 
+   SSA Fault list generating is completed. Time: 0.044693 seconds.
+   SSA Fault number is 3444 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 10426, 33.0328% fault are selected by the fault model
+2. Initial CNF generating is started.
+   Initial CNF generating is completed. Time: 0.024808 seconds.
+3. Read initial SSAF test patterns.
+   102 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can already cover all SSAF)
+   Number of redundant faults(among our SSAF model): 24
+faultID: 1829   gateID 228:  n3088gat n456 n458; n456 input2 stuck at 1
+faultID: 2228   gateID 278:  n2394gat n506 n508; n506 input2 stuck at 0
+faultID: 2291   gateID 286:  n2190gat n2262gat n516; n2190gat input1 stuck at 1
+faultID: 2292   gateID 286:  n2190gat n2262gat n516; n2262gat input2 stuck at 0
+faultID: 2293   gateID 286:  n2190gat n2262gat n516; n2262gat input2 stuck at 1
+faultID: 2722   gateID 340:  n559 n569 n570_1; n559 input1 stuck at 0
+faultID: 2764   gateID 345:  n562 n565_1 n575_1; n565_1 input2 stuck at 0
+faultID: 2813   gateID 351:  n3085gat n3095gat n581; n3095gat input2 stuck at 1
+faultID: 2821   gateID 352:  n3083gat n3095gat n582; n3095gat input2 stuck at 1
+faultID: 2829   gateID 353:  n3084gat n3095gat n583; n3095gat input2 stuck at 1
+faultID: 5658   gateID 707:  n559 n562 n937; n559 input1 stuck at 0
+faultID: 5740   gateID 717:  n562 n565_1 n947; n565_1 input2 stuck at 0
+faultID: 5925   gateID 740:  n3088gat n3093gat n970_1; n3093gat input2 stuck at 1
+faultID: 5933   gateID 741:  n3084gat n3093gat n971; n3093gat input2 stuck at 1
+faultID: 5941   gateID 742:  n3083gat n3093gat n972; n3093gat input2 stuck at 1
+faultID: 5954   gateID 744:  n557 n560_1 n974; n557 input1 stuck at 0
+faultID: 5956   gateID 744:  n557 n560_1 n974; n560_1 input2 stuck at 0
+faultID: 5962   gateID 745:  n563 n974 n975_1; n563 input1 stuck at 0
+faultID: 5970   gateID 746:  n970_1 n975_1 n976; n970_1 input1 stuck at 0
+faultID: 6861   gateID 857:  n1596gat n1086 n1087; n1086 input2 stuck at 1
+faultID: 6914   gateID 864:  n1775gat n1093 n1094; n1775gat input1 stuck at 0
+faultID: 9124   gateID 1140:  n2139gat n1368 n1370; n1368 input2 stuck at 0
+faultID: 11140   gateID 1392:  n3095gat n1604 n1622; n1604 input2 stuck at 0
+faultID: 11156   gateID 1394:  n3093gat n1604 n1624; n1604 input2 stuck at 0
+Undetected DSA number(without compressing): 14337
+**********Compress**********
+Undetected DSA number: (after compressing)304
+
+
+
+Circuit Simulate
+
+
+
+
+
+
+the ignoredFaults by the given SSAF test(check by circuitSimulation)
+1828 1829(RSSAF)  ***R N F***
+1829(RSSAF) 2228(RSSAF)  ***R N F***
+1829(RSSAF) 2291(RSSAF)  ***R N F***
+1829(RSSAF) 2292(RSSAF)  ***R N F***
+1829(RSSAF) 2293(RSSAF)  ***R N F***
+1829(RSSAF) 2722(RSSAF)  ***R N F***
+1829(RSSAF) 2764(RSSAF)  ***R N F***
+1829(RSSAF) 2813(RSSAF)  ***R N F***
+1829(RSSAF) 2821(RSSAF)  ***R N F***
+1829(RSSAF) 2829(RSSAF)  ***R N F***
+1829(RSSAF) 5658(RSSAF)  ***R N F***
+1829(RSSAF) 5740(RSSAF)  ***R N F***
+1829(RSSAF) 5925(RSSAF)  ***R N F***
+1829(RSSAF) 5933(RSSAF)  ***R N F***
+1829(RSSAF) 5941(RSSAF)  ***R N F***
+1829(RSSAF) 5954(RSSAF)  ***R N F***
+1829(RSSAF) 5956(RSSAF)  ***R N F***
+1829(RSSAF) 5962(RSSAF)  ***R N F***
+1829(RSSAF) 5970(RSSAF)  ***R N F***
+1829(RSSAF) 6861(RSSAF)  ***R N F***
+1829(RSSAF) 6914(RSSAF)  ***R N F***
+1829(RSSAF) 9124(RSSAF)  ***R N F***
+1829(RSSAF) 11140(RSSAF)  ***R N F***
+1829(RSSAF) 11156(RSSAF)  ***R N F***
+2228(RSSAF) 2291(RSSAF)  ***R N F***
+2228(RSSAF) 2292(RSSAF)  ***R N F***
+2228(RSSAF) 2293(RSSAF)  ***R N F***
+2228(RSSAF) 2722(RSSAF)  ***R N F***
+2228(RSSAF) 2764(RSSAF)  ***R N F***
+2228(RSSAF) 2813(RSSAF)  ***R N F***
+2228(RSSAF) 2821(RSSAF)  ***R N F***
+2228(RSSAF) 2829(RSSAF)  ***R N F***
+2228(RSSAF) 5658(RSSAF)  ***R N F***
+2228(RSSAF) 5740(RSSAF)  ***R N F***
+2228(RSSAF) 5925(RSSAF)  ***R N F***
+2228(RSSAF) 5933(RSSAF)  ***R N F***
+2228(RSSAF) 5941(RSSAF)  ***R N F***
+2228(RSSAF) 5954(RSSAF)  ***R N F***
+2228(RSSAF) 5956(RSSAF)  ***R N F***
+2228(RSSAF) 5962(RSSAF)  ***R N F***
+2228(RSSAF) 5970(RSSAF)  ***R N F***
+2228(RSSAF) 6861(RSSAF)  ***R N F***
+2228(RSSAF) 6914(RSSAF)  ***R N F***
+2228(RSSAF) 9124(RSSAF)  ***R N F***
+2228(RSSAF) 11140(RSSAF)  ***R N F***
+2228(RSSAF) 11156(RSSAF)  ***R N F***
+2290 2291(RSSAF)  ***R N F***
+2290 2292(RSSAF)  ***R N F***
+2291(RSSAF) 2292(RSSAF)  ***R N F***
+2291(RSSAF) 2293(RSSAF)  ***R N F***
+2291(RSSAF) 2722(RSSAF)  ***R N F***
+2291(RSSAF) 2764(RSSAF)  ***R N F***
+2291(RSSAF) 2813(RSSAF)  ***R N F***
+2291(RSSAF) 2821(RSSAF)  ***R N F***
+2291(RSSAF) 2829(RSSAF)  ***R N F***
+2291(RSSAF) 5658(RSSAF)  ***R N F***
+2291(RSSAF) 5740(RSSAF)  ***R N F***
+2291(RSSAF) 5925(RSSAF)  ***R N F***
+2291(RSSAF) 5933(RSSAF)  ***R N F***
+2291(RSSAF) 5941(RSSAF)  ***R N F***
+2291(RSSAF) 5954(RSSAF)  ***R N F***
+2291(RSSAF) 5956(RSSAF)  ***R N F***
+2291(RSSAF) 5962(RSSAF)  ***R N F***
+2291(RSSAF) 5970(RSSAF)  ***R N F***
+2291(RSSAF) 6861(RSSAF)  ***R N F***
+2291(RSSAF) 6914(RSSAF)  ***R N F***
+2291(RSSAF) 9124(RSSAF)  ***R N F***
+2291(RSSAF) 11140(RSSAF)  ***R N F***
+2291(RSSAF) 11156(RSSAF)  ***R N F***
+2292(RSSAF) 2293(RSSAF)  ***R N F***
+2292(RSSAF) 2722(RSSAF)  ***R N F***
+2292(RSSAF) 2764(RSSAF)  ***R N F***
+2292(RSSAF) 2813(RSSAF)  ***R N F***
+2292(RSSAF) 2821(RSSAF)  ***R N F***
+2292(RSSAF) 2829(RSSAF)  ***R N F***
+2292(RSSAF) 5658(RSSAF)  ***R N F***
+2292(RSSAF) 5740(RSSAF)  ***R N F***
+2292(RSSAF) 5925(RSSAF)  ***R N F***
+2292(RSSAF) 5933(RSSAF)  ***R N F***
+2292(RSSAF) 5941(RSSAF)  ***R N F***
+2292(RSSAF) 5954(RSSAF)  ***R N F***
+2292(RSSAF) 5956(RSSAF)  ***R N F***
+2292(RSSAF) 5962(RSSAF)  ***R N F***
+2292(RSSAF) 5970(RSSAF)  ***R N F***
+2292(RSSAF) 6861(RSSAF)  ***R N F***
+2292(RSSAF) 6914(RSSAF)  ***R N F***
+2292(RSSAF) 9124(RSSAF)  ***R N F***
+2292(RSSAF) 11140(RSSAF)  ***R N F***
+2292(RSSAF) 11156(RSSAF)  ***R N F***
+2293(RSSAF) 2307  ***R N F***
+2293(RSSAF) 2722(RSSAF)  ***R N F***
+2293(RSSAF) 2764(RSSAF)  ***R N F***
+2293(RSSAF) 2813(RSSAF)  ***R N F***
+2293(RSSAF) 2821(RSSAF)  ***R N F***
+2293(RSSAF) 2829(RSSAF)  ***R N F***
+2293(RSSAF) 5658(RSSAF)  ***R N F***
+2293(RSSAF) 5740(RSSAF)  ***R N F***
+2293(RSSAF) 5925(RSSAF)  ***R N F***
+2293(RSSAF) 5933(RSSAF)  ***R N F***
+2293(RSSAF) 5941(RSSAF)  ***R N F***
+2293(RSSAF) 5954(RSSAF)  ***R N F***
+2293(RSSAF) 5956(RSSAF)  ***R N F***
+2293(RSSAF) 5962(RSSAF)  ***R N F***
+2293(RSSAF) 5970(RSSAF)  ***R N F***
+2293(RSSAF) 6861(RSSAF)  ***R N F***
+2293(RSSAF) 6914(RSSAF)  ***R N F***
+2293(RSSAF) 9124(RSSAF)  ***R N F***
+2293(RSSAF) 11140(RSSAF)  ***R N F***
+2293(RSSAF) 11156(RSSAF)  ***R N F***
+2722(RSSAF) 2764(RSSAF)  ***R N F***
+2722(RSSAF) 2813(RSSAF)  ***R N F***
+2722(RSSAF) 2821(RSSAF)  ***R N F***
+2722(RSSAF) 2829(RSSAF)  ***R N F***
+2722(RSSAF) 5658(RSSAF)  ***R N F***
+2722(RSSAF) 5740(RSSAF)  ***R N F***
+2722(RSSAF) 5925(RSSAF)  ***R N F***
+2722(RSSAF) 5933(RSSAF)  ***R N F***
+2722(RSSAF) 5941(RSSAF)  ***R N F***
+2722(RSSAF) 5954(RSSAF)  ***R N F***
+2722(RSSAF) 5956(RSSAF)  ***R N F***
+2722(RSSAF) 5962(RSSAF)  ***R N F***
+2722(RSSAF) 5970(RSSAF)  ***R N F***
+2722(RSSAF) 6861(RSSAF)  ***R N F***
+2722(RSSAF) 6914(RSSAF)  ***R N F***
+2722(RSSAF) 9124(RSSAF)  ***R N F***
+2722(RSSAF) 11140(RSSAF)  ***R N F***
+2722(RSSAF) 11156(RSSAF)  ***R N F***
+2764(RSSAF) 2813(RSSAF)  ***R N F***
+2764(RSSAF) 2821(RSSAF)  ***R N F***
+2764(RSSAF) 2829(RSSAF)  ***R N F***
+2764(RSSAF) 5658(RSSAF)  ***R N F***
+2764(RSSAF) 5740(RSSAF)  ***R N F***
+2764(RSSAF) 5925(RSSAF)  ***R N F***
+2764(RSSAF) 5933(RSSAF)  ***R N F***
+2764(RSSAF) 5941(RSSAF)  ***R N F***
+2764(RSSAF) 5954(RSSAF)  ***R N F***
+2764(RSSAF) 5956(RSSAF)  ***R N F***
+2764(RSSAF) 5962(RSSAF)  ***R N F***
+2764(RSSAF) 5970(RSSAF)  ***R N F***
+2764(RSSAF) 6861(RSSAF)  ***R N F***
+2764(RSSAF) 6914(RSSAF)  ***R N F***
+2764(RSSAF) 9124(RSSAF)  ***R N F***
+2764(RSSAF) 11140(RSSAF)  ***R N F***
+2764(RSSAF) 11156(RSSAF)  ***R N F***
+2812 2813(RSSAF)  ***R N F***
+2813(RSSAF) 2821(RSSAF)  ***R N F***
+2813(RSSAF) 2829(RSSAF)  ***R N F***
+2813(RSSAF) 5658(RSSAF)  ***R N F***
+2813(RSSAF) 5740(RSSAF)  ***R N F***
+2813(RSSAF) 5925(RSSAF)  ***R N F***
+2813(RSSAF) 5933(RSSAF)  ***R N F***
+2813(RSSAF) 5941(RSSAF)  ***R N F***
+2813(RSSAF) 5954(RSSAF)  ***R N F***
+2813(RSSAF) 5956(RSSAF)  ***R N F***
+2813(RSSAF) 5962(RSSAF)  ***R N F***
+2813(RSSAF) 5970(RSSAF)  ***R N F***
+2813(RSSAF) 6861(RSSAF)  ***R N F***
+2813(RSSAF) 6914(RSSAF)  ***R N F***
+2813(RSSAF) 9124(RSSAF)  ***R N F***
+2813(RSSAF) 11140(RSSAF)  ***R N F***
+2813(RSSAF) 11156(RSSAF)  ***R N F***
+2820 2821(RSSAF)  ***R N F***
+2821(RSSAF) 2829(RSSAF)  ***R N F***
+2821(RSSAF) 5658(RSSAF)  ***R N F***
+2821(RSSAF) 5740(RSSAF)  ***R N F***
+2821(RSSAF) 5925(RSSAF)  ***R N F***
+2821(RSSAF) 5933(RSSAF)  ***R N F***
+2821(RSSAF) 5941(RSSAF)  ***R N F***
+2821(RSSAF) 5954(RSSAF)  ***R N F***
+2821(RSSAF) 5956(RSSAF)  ***R N F***
+2821(RSSAF) 5962(RSSAF)  ***R N F***
+2821(RSSAF) 5970(RSSAF)  ***R N F***
+2821(RSSAF) 6861(RSSAF)  ***R N F***
+2821(RSSAF) 6914(RSSAF)  ***R N F***
+2821(RSSAF) 9124(RSSAF)  ***R N F***
+2821(RSSAF) 11140(RSSAF)  ***R N F***
+2821(RSSAF) 11156(RSSAF)  ***R N F***
+2828 2829(RSSAF)  ***R N F***
+2829(RSSAF) 5658(RSSAF)  ***R N F***
+2829(RSSAF) 5740(RSSAF)  ***R N F***
+2829(RSSAF) 5925(RSSAF)  ***R N F***
+2829(RSSAF) 5933(RSSAF)  ***R N F***
+2829(RSSAF) 5941(RSSAF)  ***R N F***
+2829(RSSAF) 5954(RSSAF)  ***R N F***
+2829(RSSAF) 5956(RSSAF)  ***R N F***
+2829(RSSAF) 5962(RSSAF)  ***R N F***
+2829(RSSAF) 5970(RSSAF)  ***R N F***
+2829(RSSAF) 6861(RSSAF)  ***R N F***
+2829(RSSAF) 6914(RSSAF)  ***R N F***
+2829(RSSAF) 9124(RSSAF)  ***R N F***
+2829(RSSAF) 11140(RSSAF)  ***R N F***
+2829(RSSAF) 11156(RSSAF)  ***R N F***
+5658(RSSAF) 5740(RSSAF)  ***R N F***
+5658(RSSAF) 5925(RSSAF)  ***R N F***
+5658(RSSAF) 5933(RSSAF)  ***R N F***
+5658(RSSAF) 5941(RSSAF)  ***R N F***
+5658(RSSAF) 5954(RSSAF)  ***R N F***
+5658(RSSAF) 5956(RSSAF)  ***R N F***
+5658(RSSAF) 5962(RSSAF)  ***R N F***
+5658(RSSAF) 5970(RSSAF)  ***R N F***
+5658(RSSAF) 6861(RSSAF)  ***R N F***
+5658(RSSAF) 6914(RSSAF)  ***R N F***
+5658(RSSAF) 9124(RSSAF)  ***R N F***
+5658(RSSAF) 11140(RSSAF)  ***R N F***
+5658(RSSAF) 11156(RSSAF)  ***R N F***
+5740(RSSAF) 5925(RSSAF)  ***R N F***
+5740(RSSAF) 5933(RSSAF)  ***R N F***
+5740(RSSAF) 5941(RSSAF)  ***R N F***
+5740(RSSAF) 5954(RSSAF)  ***R N F***
+5740(RSSAF) 5956(RSSAF)  ***R N F***
+5740(RSSAF) 5962(RSSAF)  ***R N F***
+5740(RSSAF) 5970(RSSAF)  ***R N F***
+5740(RSSAF) 6861(RSSAF)  ***R N F***
+5740(RSSAF) 6914(RSSAF)  ***R N F***
+5740(RSSAF) 9124(RSSAF)  ***R N F***
+5740(RSSAF) 11140(RSSAF)  ***R N F***
+5740(RSSAF) 11156(RSSAF)  ***R N F***
+5924 5925(RSSAF)  ***R N F***
+5925(RSSAF) 5933(RSSAF)  ***R N F***
+5925(RSSAF) 5941(RSSAF)  ***R N F***
+5925(RSSAF) 5954(RSSAF)  ***R N F***
+5925(RSSAF) 5956(RSSAF)  ***R N F***
+5925(RSSAF) 5962(RSSAF)  ***R N F***
+5925(RSSAF) 5970(RSSAF)  ***R N F***
+5925(RSSAF) 6861(RSSAF)  ***R N F***
+5925(RSSAF) 6914(RSSAF)  ***R N F***
+5925(RSSAF) 9124(RSSAF)  ***R N F***
+5925(RSSAF) 11140(RSSAF)  ***R N F***
+5925(RSSAF) 11156(RSSAF)  ***R N F***
+5932 5933(RSSAF)  ***R N F***
+5933(RSSAF) 5941(RSSAF)  ***R N F***
+5933(RSSAF) 5954(RSSAF)  ***R N F***
+5933(RSSAF) 5956(RSSAF)  ***R N F***
+5933(RSSAF) 5962(RSSAF)  ***R N F***
+5933(RSSAF) 5970(RSSAF)  ***R N F***
+5933(RSSAF) 6861(RSSAF)  ***R N F***
+5933(RSSAF) 6914(RSSAF)  ***R N F***
+5933(RSSAF) 9124(RSSAF)  ***R N F***
+5933(RSSAF) 11140(RSSAF)  ***R N F***
+5933(RSSAF) 11156(RSSAF)  ***R N F***
+5940 5941(RSSAF)  ***R N F***
+5941(RSSAF) 5954(RSSAF)  ***R N F***
+5941(RSSAF) 5956(RSSAF)  ***R N F***
+5941(RSSAF) 5962(RSSAF)  ***R N F***
+5941(RSSAF) 5970(RSSAF)  ***R N F***
+5941(RSSAF) 6861(RSSAF)  ***R N F***
+5941(RSSAF) 6914(RSSAF)  ***R N F***
+5941(RSSAF) 9124(RSSAF)  ***R N F***
+5941(RSSAF) 11140(RSSAF)  ***R N F***
+5941(RSSAF) 11156(RSSAF)  ***R N F***
+5954(RSSAF) 5956(RSSAF)  ***R N F***
+5954(RSSAF) 5957  ***R N F***
+5954(RSSAF) 5962(RSSAF)  ***R N F***
+5954(RSSAF) 5963  ***R N F***
+5954(RSSAF) 5970(RSSAF)  ***R N F***
+5954(RSSAF) 5971  ***R N F***
+5954(RSSAF) 6861(RSSAF)  ***R N F***
+5954(RSSAF) 6914(RSSAF)  ***R N F***
+5954(RSSAF) 9124(RSSAF)  ***R N F***
+5954(RSSAF) 11140(RSSAF)  ***R N F***
+5954(RSSAF) 11156(RSSAF)  ***R N F***
+5955 5956(RSSAF)  ***R N F***
+5955 5962(RSSAF)  ***R N F***
+5955 5970(RSSAF)  ***R N F***
+5956(RSSAF) 5962(RSSAF)  ***R N F***
+5956(RSSAF) 5963  ***R N F***
+5956(RSSAF) 5970(RSSAF)  ***R N F***
+5956(RSSAF) 5971  ***R N F***
+5956(RSSAF) 6861(RSSAF)  ***R N F***
+5956(RSSAF) 6914(RSSAF)  ***R N F***
+5956(RSSAF) 9124(RSSAF)  ***R N F***
+5956(RSSAF) 11140(RSSAF)  ***R N F***
+5956(RSSAF) 11156(RSSAF)  ***R N F***
+5957 5962(RSSAF)  ***R N F***
+5957 5970(RSSAF)  ***R N F***
+5962(RSSAF) 5970(RSSAF)  ***R N F***
+5962(RSSAF) 5971  ***R N F***
+5962(RSSAF) 6861(RSSAF)  ***R N F***
+5962(RSSAF) 6914(RSSAF)  ***R N F***
+5962(RSSAF) 9124(RSSAF)  ***R N F***
+5962(RSSAF) 11140(RSSAF)  ***R N F***
+5962(RSSAF) 11156(RSSAF)  ***R N F***
+5963 5970(RSSAF)  ***R N F***
+5970(RSSAF) 6861(RSSAF)  ***R N F***
+5970(RSSAF) 6914(RSSAF)  ***R N F***
+5970(RSSAF) 9124(RSSAF)  ***R N F***
+5970(RSSAF) 11140(RSSAF)  ***R N F***
+5970(RSSAF) 11156(RSSAF)  ***R N F***
+6860 6861(RSSAF)  ***R N F***
+6861(RSSAF) 6914(RSSAF)  ***R N F***
+6861(RSSAF) 7091 
+6861(RSSAF) 7092 
+6861(RSSAF) 9124(RSSAF)  ***R N F***
+6861(RSSAF) 11140(RSSAF)  ***R N F***
+6861(RSSAF) 11156(RSSAF)  ***R N F***
+6914(RSSAF) 9124(RSSAF)  ***R N F***
+6914(RSSAF) 11140(RSSAF)  ***R N F***
+6914(RSSAF) 11156(RSSAF)  ***R N F***
+9124(RSSAF) 11140(RSSAF)  ***R N F***
+9124(RSSAF) 11156(RSSAF)  ***R N F***
+11140(RSSAF) 11156(RSSAF)  ***R N F***
+11995 12003 
+11995 12011 
+12003 12011 
+Undetected DSA number(by circuitSimulation): 304
+
+
+
+Circuit Simulate
+
+
+
+
+******Analyzation(not picked by out method)********
+----------The initialization of the ATPG takes 9838.57 seconds----------
+

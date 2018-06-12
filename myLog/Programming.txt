@@ -230,3 +230,8 @@ bug1:没有把双Redundant的SSAF给考虑进去。
 bug2：用map<int, int>来存可能DSA错误。不行的，这样子key一样的值会被覆盖掉。。。
 bug3: 忽略了单边Redundant的 fault。。得找出原因。
       -->一开始还不知道哪些是redundant。。。。所以就找不出来了。
+
+2018.6.7
+ok.we solve the previous problem. for s444, I can find all undetected DSA (based on the fault model)
+But the selected DSA number becomes large...
+try to reduce them

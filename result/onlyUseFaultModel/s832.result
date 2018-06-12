@@ -1,0 +1,113 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.003034 seconds.
+   The number of gates in the circuit is 404
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.00063 seconds.
+----------The initialization of the Circuit takes 0.0037 seconds----------
+
+
+----------Initialization of ATPG----------
+1. Fault list generating is started. 
+   SSA Fault list generating is completed. Time: 0.009735 seconds.
+   SSA Fault number is 838 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 2328, 35.9966% fault are selected by the fault model
+2. Initial CNF generating is started.
+   Initial CNF generating is completed. Time: 0.009042 seconds.
+3. Read initial SSAF test patterns.
+   101 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can already cover all SSAF)
+   Number of redundant faults(among our SSAF model): 10
+faultID: 1236   gateID 154:  G1 G38 n179; G38 input2 stuck at 0
+faultID: 1563   gateID 195:  G41 n182 n220; G41 input1 stuck at 1
+faultID: 2029   gateID 253:  G38 G41 n278; G41 input2 stuck at 1
+faultID: 2037   gateID 254:  G15 G41 n279; G41 input2 stuck at 1
+faultID: 2075   gateID 259:  G42 n109 n284; G42 input1 stuck at 1
+faultID: 2076   gateID 259:  G42 n109 n284; n109 input2 stuck at 0
+faultID: 2077   gateID 259:  G42 n109 n284; n109 input2 stuck at 1
+faultID: 2082   gateID 260:  G15 G41 n285; G15 input1 stuck at 0
+faultID: 2474   gateID 309:  G41 n333 n334; G41 input1 stuck at 0
+faultID: 2549   gateID 318:  G38 G39 n343; G39 input2 stuck at 1
+Undetected DSA number(without compressing): 2593
+**********Compress**********
+Undetected DSA number: (after compressing)55
+
+
+
+Circuit Simulate
+
+
+
+
+
+
+the ignoredFaults by the given SSAF test(check by circuitSimulation)
+1236(RSSAF) 1563(RSSAF)  ***R N F***
+1236(RSSAF) 2029(RSSAF)  ***R N F***
+1236(RSSAF) 2037(RSSAF)  ***R N F***
+1236(RSSAF) 2075(RSSAF)  ***R N F***
+1236(RSSAF) 2076(RSSAF)  ***R N F***
+1236(RSSAF) 2077(RSSAF)  ***R N F***
+1236(RSSAF) 2082(RSSAF)  ***R N F***
+1236(RSSAF) 2474(RSSAF)  ***R N F***
+1236(RSSAF) 2549(RSSAF)  ***R N F***
+1562 1563(RSSAF)  ***R N F***
+1563(RSSAF) 2029(RSSAF)  ***R N F***
+1563(RSSAF) 2037(RSSAF)  ***R N F***
+1563(RSSAF) 2075(RSSAF)  ***R N F***
+1563(RSSAF) 2076(RSSAF)  ***R N F***
+1563(RSSAF) 2077(RSSAF)  ***R N F***
+1563(RSSAF) 2082(RSSAF)  ***R N F***
+1563(RSSAF) 2474(RSSAF)  ***R N F***
+1563(RSSAF) 2549(RSSAF)  ***R N F***
+2028 2029(RSSAF)  ***R N F***
+2029(RSSAF) 2037(RSSAF)  ***R N F***
+2029(RSSAF) 2075(RSSAF)  ***R N F***
+2029(RSSAF) 2076(RSSAF)  ***R N F***
+2029(RSSAF) 2077(RSSAF)  ***R N F***
+2029(RSSAF) 2082(RSSAF)  ***R N F***
+2029(RSSAF) 2474(RSSAF)  ***R N F***
+2029(RSSAF) 2549(RSSAF)  ***R N F***
+2036 2037(RSSAF)  ***R N F***
+2037(RSSAF) 2075(RSSAF)  ***R N F***
+2037(RSSAF) 2076(RSSAF)  ***R N F***
+2037(RSSAF) 2077(RSSAF)  ***R N F***
+2037(RSSAF) 2082(RSSAF)  ***R N F***
+2037(RSSAF) 2474(RSSAF)  ***R N F***
+2037(RSSAF) 2549(RSSAF)  ***R N F***
+2074 2075(RSSAF)  ***R N F***
+2074 2076(RSSAF)  ***R N F***
+2075(RSSAF) 2076(RSSAF)  ***R N F***
+2075(RSSAF) 2077(RSSAF)  ***R N F***
+2075(RSSAF) 2082(RSSAF)  ***R N F***
+2075(RSSAF) 2474(RSSAF)  ***R N F***
+2075(RSSAF) 2549(RSSAF)  ***R N F***
+2076(RSSAF) 2077(RSSAF)  ***R N F***
+2076(RSSAF) 2082(RSSAF)  ***R N F***
+2076(RSSAF) 2474(RSSAF)  ***R N F***
+2076(RSSAF) 2549(RSSAF)  ***R N F***
+2077(RSSAF) 2082(RSSAF)  ***R N F***
+2077(RSSAF) 2090 
+2077(RSSAF) 2093 
+2077(RSSAF) 2130  ***R N F***
+2077(RSSAF) 2549(RSSAF)  ***R N F***
+2082(RSSAF) 2130  ***R N F***
+2082(RSSAF) 2146 
+2082(RSSAF) 2474(RSSAF)  ***R N F***
+2082(RSSAF) 2549(RSSAF)  ***R N F***
+2474(RSSAF) 2549(RSSAF)  ***R N F***
+2548 2549(RSSAF)  ***R N F***
+Undetected DSA number(by circuitSimulation): 55
+
+
+
+Circuit Simulate
+
+
+
+
+******Analyzation(not picked by out method)********
+----------The initialization of the ATPG takes 201.479 seconds----------
+
