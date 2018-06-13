@@ -676,3 +676,35 @@ void sameFaultCurToPIDFS(gate *curGate, set<int> &blockFaultsList, set<int> &fau
   sameFaultCurToPIDFS(curGate->fanin1, blockFaultsList, faultList, redundantSSAF);
   if (curGate->gateType == aig) sameFaultCurToPIDFS(curGate->fanin2, blockFaultsList, faultList, redundantSSAF);
 }
+
+// check whether the given test patterns can cover entire faultList or not.
+// also find the potentiallyUndetected.
+// assume that the initial test pattern can already detect all SSAF.
+// the faults that has no matching test patterns are redundant.
+// get: vector<set<int>, vector<int>> faultToPatterns;   set<int> redundantSSAF;
+void CheckGivenPatterns(set<int> &faultList, set<int> &redundantSSAF, vector<vector<int>> &SSAFPatterns) {
+  set<int> visited;
+  for (auto testVector : SSAFPatterns) {
+    if (visited.size() == faultList.size()) break; // all faults are checked
+    for (auto faultID : faultList) {
+      if (visited.find(faultID) != visited.end()) continue;  // already checked
+      vector<int> newFaults;
+      newFaults.push_back(faultID);
+      set<int> blockFaultsList;
+      if (checkFaultAndTestVector(newFaults, testVector, blockFaultsList, faultList, redundantSSAF, 1) == 1) {
+        // faultsSameVector.insert(faultID);
+        faultToPatterns.insert(make_pair(faultID, testVector));
+        visited.insert(faultID);
+        if (blockFaultsList.size() > 0) {
+          potentiallyUndetected.insert(make_pair(faultID, blockFaultsList));
+        }
+      }
+    }
+  }
+  // the redundant fault among our fault model
+  for (auto faultID : faultList) {
+    if (visited.find(faultID) == visited.end()) {
+      redundantSSAF.insert(faultID);
+    }
+  }
+}

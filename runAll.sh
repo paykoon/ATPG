@@ -12,7 +12,7 @@ do
   #Only considers the faults among our fault model
   #cmd=$"./ATPG_faultModel ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/onlyUseFaultModel/${resultFile}"
   #test all faults.
-  cmd=$"./ATPGAllFaults ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/allFault/${resultFile}"
+  cmd=$"time ./ATPG ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/allFault/${resultFile}"
 
   screen -x -S $screen_name -p 0 -X stuff "$cmd"
   screen -x -S $screen_name -p 0 -X stuff $'\n'

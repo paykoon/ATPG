@@ -1,0 +1,819 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.159034 seconds.
+   The number of gates in the circuit is 16009
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.049234 seconds.
+----------The initialization of the Circuit takes 0.208314 seconds----------
+
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 30748 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 88824, 34.6168% fault are selected by the fault model
+   Time: 1.4e-05 seconds.
+2. Initial CNF generation is started.
+   Time: 0.170679 seconds.
+3. Read initial SSAF test patterns.
+No 2 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 3 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 4 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 5 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 6 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 7 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 8 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 9 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 10 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 11 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 12 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 13 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 14 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 15 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 16 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 17 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 18 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 19 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 20 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 21 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 22 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 23 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 24 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 25 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 26 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 27 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 28 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 29 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 30 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 31 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 32 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 33 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 34 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 35 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 36 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 37 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 38 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 39 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 40 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 41 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 42 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 43 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 44 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 45 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 46 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 47 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 48 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 49 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 50 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 51 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 52 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 53 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 54 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 55 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 56 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 57 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 58 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 59 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 60 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 61 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 62 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 63 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 64 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 65 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 66 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 67 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 68 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 69 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 70 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 71 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 72 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 73 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 74 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 75 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 76 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 77 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 78 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 79 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 80 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 81 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 82 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 83 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 84 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 85 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 86 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 87 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 88 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 89 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 90 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 91 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 92 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 93 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 94 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 95 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 96 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 97 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 98 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 99 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 100 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 101 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 102 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 103 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 104 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 105 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 106 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 107 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 108 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 109 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 110 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 111 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 112 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 113 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 114 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 115 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 116 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 117 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 118 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 119 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 120 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 121 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+   0 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 88824
+   Time: 0.115292 seconds.
+----------The initialization of the ATPG takes 0.55569 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0 seconds.
+2. Compress undetected DSA Faults.
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.120375 seconds.
+   The number of gates in the circuit is 16009
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.036666 seconds.
+----------The initialization of the Circuit takes 0.15709 seconds----------
+
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 30748 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 88824, 34.6168% fault are selected by the fault model
+   Time: 2.9e-05 seconds.
+2. Initial CNF generation is started.
+   Time: 0.163144 seconds.
+3. Read initial SSAF test patterns.
+No 2 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 3 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 4 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 5 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 6 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 7 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 8 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 9 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 10 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 11 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 12 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 13 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 14 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 15 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 16 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 17 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 18 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 19 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 20 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 21 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 22 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 23 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 24 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 25 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 26 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 27 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 28 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 29 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 30 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 31 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 32 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 33 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 34 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 35 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 36 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 37 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 38 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 39 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 40 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 41 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 42 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 43 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 44 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 45 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 46 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 47 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 48 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 49 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 50 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 51 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 52 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 53 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 54 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 55 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 56 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 57 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 58 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 59 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 60 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 61 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 62 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 63 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 64 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 65 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 66 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 67 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 68 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 69 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 70 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 71 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 72 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 73 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 74 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 75 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 76 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 77 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 78 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 79 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 80 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 81 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 82 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 83 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 84 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 85 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 86 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 87 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 88 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 89 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 90 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 91 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 92 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 93 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 94 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 95 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 96 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 97 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 98 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 99 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 100 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 101 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 102 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 103 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 104 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 105 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 106 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 107 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 108 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 109 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 110 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 111 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 112 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 113 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 114 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 115 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 116 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 117 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 118 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 119 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 120 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 121 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+   0 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 88824
+   Time: 0.114302 seconds.
+----------The initialization of the ATPG takes 0.545043 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 1e-06 seconds.
+2. Compress undetected DSA Faults.
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.13498 seconds.
+   The number of gates in the circuit is 16009
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.037689 seconds.
+----------The initialization of the Circuit takes 0.172711 seconds----------
+
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 30748 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 88824, 34.6168% fault are selected by the fault model
+   Time: 1.8e-05 seconds.
+2. Initial CNF generation is started.
+   Time: 0.175789 seconds.
+3. Read initial SSAF test patterns.
+No 2 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 3 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 4 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 5 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 6 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 7 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 8 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 9 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 10 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 11 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 12 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 13 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 14 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 15 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 16 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 17 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 18 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 19 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 20 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 21 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 22 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 23 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 24 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 25 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 26 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 27 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 28 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 29 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 30 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 31 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 32 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 33 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 34 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 35 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 36 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 37 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 38 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 39 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 40 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 41 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 42 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 43 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 44 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 45 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 46 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 47 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 48 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 49 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 50 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 51 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 52 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 53 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 54 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 55 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 56 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 57 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 58 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 59 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 60 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 61 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 62 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 63 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 64 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 65 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 66 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 67 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 68 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 69 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 70 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 71 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 72 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 73 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 74 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 75 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 76 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 77 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 78 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 79 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 80 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 81 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 82 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 83 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 84 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 85 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 86 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 87 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 88 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 89 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 90 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 91 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 92 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 93 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 94 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 95 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 96 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 97 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 98 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 99 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 100 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 101 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 102 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 103 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 104 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 105 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 106 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 107 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 108 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 109 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 110 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 111 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 112 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 113 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 114 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 115 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 116 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 117 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 118 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 119 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 120 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+No 121 pattern's size doesn't match PI size: 
+Input pattern size: 1664, PI size: 1464
+   0 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 88824
+   Time: 0.11496 seconds.
+----------The initialization of the ATPG takes 0.567631 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 1e-06 seconds.
+2. Compress undetected DSA Faults.

@@ -235,3 +235,17 @@ bug3: 忽略了单边Redundant的 fault。。得找出原因。
 ok.we solve the previous problem. for s444, I can find all undetected DSA (based on the fault model)
 But the selected DSA number becomes large...
 try to reduce them
+
+2018.6.12
+bug:
+1. s444考虑所有fault的时候，会检测出一些我们的fault model检测不出来的错误。
+   sol: 先单独看，不在我们的fault model里面的，有哪些redundant fault。
+        之后检测blocking fault的时候，就可以把在fault model之外的redundant fault一起给考虑了。
+   这样子我们可以得出所有的DSA fault。可以用于之后的TSA fault检测。
+2. s9234及以上的大电路运行的时候segmentation fault....
+
+
+2018.6.13
+TODO
+1. 将所有的recursion换成iterative方式
+2. 其中一个还有一种情况没有往前考虑。写一个函数来检测。

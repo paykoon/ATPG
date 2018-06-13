@@ -16,7 +16,7 @@ namespace Gate {
       Type gateType;
       string in1Name,in2Name,outName;
       bool invIn1,invIn2,invOut;
-      bool faultyOut;
+      bool isPath;
       int gateID;
       vector <gate*> fanout;
       gate *fanin1,*fanin2;
@@ -33,7 +33,7 @@ namespace Gate {
       // PI or PO (The name of In and out are same)
       gate(Type gateType, string &portName){
         this->gateType = gateType;
-        this->faultyOut = false;
+        this->isPath = false;
         this->in1Name = portName;
         this->outName = portName;
         this->invIn1 = 1;
@@ -42,7 +42,7 @@ namespace Gate {
       // constant (The name of In and out are same)
       gate(string &wireName, string &value){
         this->gateType = constant;
-        this->faultyOut = false;
+        this->isPath = false;
         this->in1Name = wireName;
         this->outName = wireName;
         this->invIn1 = 1;
@@ -56,7 +56,7 @@ namespace Gate {
           this->outName = outName;
           this->invIn1 = (invIn1 == "1");
           this->invOut = (invOut == "1");
-          this->faultyOut = false;
+          this->isPath = false;
       }
       // AIG or OR gate or XOR gate (XOR and OR gate are just for CNF generation and SAT calculation)
       gate(Type gateType, string &in1Name, string &in2Name, string &outName, string &invIn1, string &invIn2, string &invOut){
@@ -67,7 +67,7 @@ namespace Gate {
           this->invIn1 = (invIn1 == "1");
           this->invIn2 = (invIn2 == "1");
           this->invOut = (invOut == "1");
-          this->faultyOut = false;
+          this->isPath = false;
           in1Checked = false;
           in2Checked = false;
       }
@@ -130,7 +130,7 @@ namespace Gate {
         copy->invIn1 = this->invIn1;
         copy->invIn2 = this->invIn2;
         copy->invOut = this->invOut;
-        copy->faultyOut = this->faultyOut;
+        copy->isPath = this->isPath;
         copy->gateID = this->gateID;
         copy->outValue = this->outValue;
         copy->fanout.clear();

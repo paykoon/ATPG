@@ -1,0 +1,66 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.014378 seconds.
+   The number of gates in the circuit is 2534
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.004604 seconds.
+----------The initialization of the Circuit takes 0.019021 seconds----------
+
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 5032 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 14052, 35.8098% fault are selected by the fault model
+   Time: 1.5e-05 seconds.
+2. Initial CNF generation is started.
+   Time: 0.026901 seconds.
+3. Read initial SSAF test patterns.
+   134 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.015163 seconds.
+   The number of gates in the circuit is 2534
+2. Gate connecting is started.
+   Gate connecting is completed. Time: 0.004577 seconds.
+----------The initialization of the Circuit takes 0.019777 seconds----------
+
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 5032 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 14052, 35.8098% fault are selected by the fault model
+   Time: 2.3e-05 seconds.
+2. Initial CNF generation is started.
+   Time: 0.028146 seconds.
+3. Read initial SSAF test patterns.
+   134 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 332
+   Time: 87.4181 seconds.
+----------The initialization of the ATPG takes 87.4862 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 4.75991 seconds.
+2. Compress undetected DSA Faults.
+   Potential Undetected DSA number (without compressing): 77969
+   Undetected DSA number (after compressing): 56577
+   Time: 2578.19 seconds.
+----------DSA Faults checking takes 2582.95 seconds----------
+
+
+
+
+
+Circuit Simulate
+
