@@ -140,6 +140,12 @@ namespace Gate {
         copy->fanin1 = this->fanin1;
         copy->fanin2 = this->fanin2;
       }
+
+      void changeToBuf(){
+          this->gateType = bufInv;
+          this->invIn1 = 1;
+          this->invOut = 1;
+      }
   };
 }
 

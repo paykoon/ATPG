@@ -53,7 +53,7 @@ namespace Circuit {
         preTime = clock();
         if ( !connectGates() )  return;
         curTime = clock();
-        cout << "   Gate connecting is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+        cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
 
         endTime = clock();
         cout << "----------The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;

@@ -708,3 +708,250 @@ void CheckGivenPatterns(set<int> &faultList, set<int> &redundantSSAF, vector<vec
     }
   }
 }
+
+
+
+
+
+//------------------Find the propagation path of the faults under the given test pattern and the potential undetected faults -------------------
+// function: recursively find the same fault in the path of current fault's gate to PI.
+// run in the non-faulty circuit with correct values
+// for AIG, only when outValue != invOut, can find the same fault.
+void sameFaultCurToPIDFS(gate *curGate, set<int> &blockFaultsList, set<int> &faultList, set<int> &redundantSSAF, int oriFault) {
+  // base case
+  if (curGate->gateType == PI || curGate->gateType == constant) {
+    return;
+  }
+  int outInverse = 1 - curGate->outValue;
+  // if the change of one of gates' value will results in outStuckat value, then that value is the stuckat fault we want to find
+  if (curGate->gateType == aig) {
+    int in1Value = curGate->fanin1->outValue;
+    int in1Inverse = 1 - in1Value;
+    int in2Value = curGate->fanin2->outValue;
+    int in2Inverse = 1 - in2Value;
+    // *******check why 868 is overlooked...******
+    /*
+    if (oriFault == 2090)  {
+      cout << "207value********here****22222*** " << curGate->gateID << endl;
+      //cout << curGate->fanin1->outName << " in1Diff " << curGate->fanin1->different << endl;
+      //cout << curGate->fanin2->outName << " in2Diff " << curGate->fanin2->different << endl;
+      //cout << curGate->outName << " outDiff " << curGate->different << endl;
+    }*/
+    // ***************
+    // case1. if the inversing value will also make the output inversing, that inversing value is the stuck at fault we want to find
+    // TODO only the value that changes the output will be choosed.
+    if (curGate->getOutValue(in1Inverse, in2Value) == outInverse) {
+      int blockFaultID = getFaultID(curGate->gateID, 1, in1Inverse);
+      if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+        blockFaultsList.insert(blockFaultID);
+      }
+      // the current position may not be in our model, but the front position(near to PO) may be, we need to keeping track  to front place...
+      sameFaultCurToPIDFS(curGate->fanin1, blockFaultsList, faultList, redundantSSAF, oriFault);
+    }
+    if (curGate->getOutValue(in1Value, in2Inverse) == outInverse) {
+      int blockFaultID = getFaultID(curGate->gateID, 2, in2Inverse);
+      if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+        blockFaultsList.insert(blockFaultID);
+      }
+      sameFaultCurToPIDFS(curGate->fanin2, blockFaultsList, faultList, redundantSSAF, oriFault);
+    }
+    // case2. the D or ~D is required to be blocked in this gate(they mutually counteract and disappear in output),
+    // otherwire it may block the fault propagation in other path.
+    // if there is a stuckat fault make D or ~D propagate again, two propagataion path may conoverge somewhere then block.
+    // TODO. in this case, also we need to check the previous value. need to write a new function.
+    if (curGate->fanin1->different == 1 && curGate->fanin2->different == 1) {
+      if ((curGate->fanin1->outValue == curGate->invIn1) != (curGate->fanin2->outValue == curGate->invIn2)) {
+        // this fault allow D(~D) in another input to be propagated
+        int blockFaultID = getFaultID(curGate->gateID, 1, curGate->invIn1);
+        if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+          blockFaultsList.insert(blockFaultID);
+        }
+        blockFaultID = getFaultID(curGate->gateID, 2, curGate->invIn2);
+        if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+          blockFaultsList.insert(blockFaultID);
+        }
+      }
+    }
+    // if it's inv, just put it into potential list
+  } else if (curGate->gateType == bufInv) {
+    int outStuckat = 1 - curGate->outValue;
+    int stuckat = (outStuckat == curGate->invOut) == curGate->invIn1;
+    int blockFaultID = getFaultID(curGate->gateID, 1, stuckat);
+    if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+      blockFaultsList.insert(blockFaultID);
+    }
+    sameFaultCurToPIDFS(curGate->fanin1, blockFaultsList, faultList, redundantSSAF, oriFault);
+  }
+}
+
+// function: recursively find the SSA faults' path; also try to find the faults that may block it.
+// run in the non-faulty circuit with correct values
+// base case : reach PO. return true(has check visited in previous level)
+// recursion rule: select the visited fanout and go into next level.
+//                 check it's side value to find the block faults.
+// if none of fanout return true, we will return false.
+bool findBlockSSADFS(gate *curGate, gate *preGate, set<int> &blockFaultsList, set<int> &faultList, set<int> &redundantSSAF, int oriFault) {
+  // base case
+  if (curGate->gateType == PO) {
+      curGate->isPath = true;
+      return true;
+  }
+  bool isPath = false;
+  // check all the propagation paths to find the possible block fault.
+  for (auto fanout : curGate->fanout) {
+    // if one of its fanout can propagate the value, this gate is in the propagation path
+    if (fanout->different == true && findBlockSSADFS(fanout, curGate, blockFaultsList, faultList, redundantSSAF, oriFault) == true) {
+      curGate->isPath = true;
+      isPath = true;
+      // try to find the SSAF that may block the fault
+      if (curGate->gateType == aig) {
+        // check side value.
+        // TODO only the value that changes the output will be choosed.
+        int sidePort = (curGate->fanin1 == preGate) ?  2 : 1;
+        int sideStuckat = (curGate->fanin1 == preGate) ? (1 - curGate->invIn2) : (1 - curGate->invIn1);
+        int blockFaultID = getFaultID(curGate->gateID, sidePort, sideStuckat);
+        if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
+          blockFaultsList.insert(blockFaultID);
+        }
+        //*********
+        /*
+        if (oriFault == 334 && curGate->gateID == 41)  {
+          cout << "334value********here****111111*** " << curGate->gateID << endl;
+          //cout << "preGate " << preGate->outName << endl;
+          //cout << "curGate->fanin1 " << curGate->fanin1->outName << " curGate->fanin2 " << curGate->fanin2->outName << endl;
+          //cout << "next gate " << (curGate->fanin1 == preGate ? curGate->fanin2->outName : curGate->fanin1->outName) << endl;
+        }*/
+        //*********
+        //*******************************************
+        /*
+        if (oriFault == 3282 && curGate->gateID == (3278 >> 3)) {
+          //cout << "***********blockFaultID " << sideBlockFaultID << endl;
+          set<int> connectedGates;
+          findConnectedGatesDFS(theCircuit[3278 >> 3], connectedGates);
+          vector<gate*> connectedGatesVec;
+          for (auto id : connectedGates) {
+            connectedGatesVec.push_back(theCircuit[id]);
+          }
+          printCircuit(connectedGatesVec);
+
+          // printCircuitBlif(connectedGatesVec);
+
+          // printForTestbench(connectedGatesVec, 14);
+        }
+        */
+        //*******************************************
+        // search from side value to PI or constant.
+        sameFaultCurToPIDFS((curGate->fanin1 == preGate ? curGate->fanin2 : curGate->fanin1), blockFaultsList, faultList, redundantSSAF, oriFault);
+      }
+      // check the fault in the same path. If the fault in same path is the redundant fault, it will block cur fault.
+      // check gate input
+      int samePathPort = (curGate->fanin1 == preGate) ?  1 : 2;
+      int samePathBlockFaultID0 = getFaultID(curGate->gateID, samePathPort, 0);
+      int samePathBlockFaultID1 = getFaultID(curGate->gateID, samePathPort, 1);
+      if (redundantSSAF.find(samePathBlockFaultID0) != redundantSSAF.end()) {
+        blockFaultsList.insert(samePathBlockFaultID0);
+      }
+      if (redundantSSAF.find(samePathBlockFaultID1) != redundantSSAF.end()) {
+        blockFaultsList.insert(samePathBlockFaultID1);
+      }
+      // check gate output
+      samePathPort = 3;
+      samePathBlockFaultID0 = getFaultID(curGate->gateID, samePathPort, 0);
+      samePathBlockFaultID1 = getFaultID(curGate->gateID, samePathPort, 1);
+      if (redundantSSAF.find(samePathBlockFaultID0) != redundantSSAF.end()) {
+        blockFaultsList.insert(samePathBlockFaultID0);
+      }
+      if (redundantSSAF.find(samePathBlockFaultID1) != redundantSSAF.end()) {
+        blockFaultsList.insert(samePathBlockFaultID1);
+      }
+    }
+  }
+  return isPath;
+}
+
+
+
+
+bool findBlockSSADFS(gate *curGate, gate *preGate, set<int> &blockFaultsList, unordered_set<int> &faultList, unordered_set<int> &redundantSSAFList, int oriFault) {
+  // base case
+  if (curGate->gateType == PO) {
+      curGate->isPath = true;
+      return true;
+  }
+  bool isPath = false;
+  // check all the propagation paths to find the possible block fault.
+  for (auto fanout : curGate->fanout) {
+    // if one of its fanout can propagate the value, this gate is in the propagation path
+    if (fanout->different == true && findBlockSSADFS(fanout, curGate, blockFaultsList, faultList, redundantSSAFList, oriFault) == true) {
+      curGate->isPath = true;
+      isPath = true;
+      // try to find the SSAF that may block the fault
+      if (curGate->gateType == aig) {
+        // check side value.
+        // TODO only the value that changes the output will be choosed.
+        int curInv = (curGate->fanin1 == preGate) ? curGate->invIn1 : curGate->invIn2;
+        int curStuckat = (curGate->fanin1 == preGate) ? (1 - curGate->fanin1->outValue) : (1 - curGate->fanin2->outValue);
+        int sideInv = (curGate->fanin1 == preGate) ? curGate->invIn2 : curGate->invIn1;
+        int sideStuckat = (curGate->fanin1 == preGate) ? (1 - curGate->fanin2->outValue) : (1 - curGate->fanin1->outValue);
+        int sidePort = (curGate->fanin1 == preGate) ? 2 : 1;
+        if ( (curInv == curStuckat) && (sideInv != sideStuckat) ) {
+          int blockFaultID = getFaultID(curGate->gateID, sidePort, sideStuckat);
+          if (faultList.find(blockFaultID) != faultList.end() || redundantSSAFList.find(blockFaultID) != redundantSSAFList.end()) {
+            blockFaultsList.insert(blockFaultID);
+          }
+          sameFaultCurToPIDFS((curGate->fanin1 == preGate ? curGate->fanin2 : curGate->fanin1), blockFaultsList, faultList, redundantSSAFList, oriFault);
+        }
+        //*********
+        /*
+        if (oriFault == 334 && curGate->gateID == 41)  {
+          cout << "334value********here****111111*** " << curGate->gateID << endl;
+          //cout << "preGate " << preGate->outName << endl;
+          //cout << "curGate->fanin1 " << curGate->fanin1->outName << " curGate->fanin2 " << curGate->fanin2->outName << endl;
+          //cout << "next gate " << (curGate->fanin1 == preGate ? curGate->fanin2->outName : curGate->fanin1->outName) << endl;
+        }*/
+        //*********
+        //*******************************************
+        /*
+        if (oriFault == 3282 && curGate->gateID == (3278 >> 3)) {
+          //cout << "***********blockFaultID " << sideBlockFaultID << endl;
+          set<int> connectedGates;
+          findConnectedGatesDFS(theCircuit[3278 >> 3], connectedGates);
+          vector<gate*> connectedGatesVec;
+          for (auto id : connectedGates) {
+            connectedGatesVec.push_back(theCircuit[id]);
+          }
+          printCircuit(connectedGatesVec);
+
+          // printCircuitBlif(connectedGatesVec);
+
+          // printForTestbench(connectedGatesVec, 14);
+        }
+        */
+        //*******************************************
+        // search from side value to PI or constant.
+      }
+      // check the fault in the same path. If the fault in same path is the redundant fault, it will block cur fault.
+      // check gate input
+      int samePathPort = (curGate->fanin1 == preGate) ?  1 : 2;
+      int samePathBlockFaultID0 = getFaultID(curGate->gateID, samePathPort, 0);
+      int samePathBlockFaultID1 = getFaultID(curGate->gateID, samePathPort, 1);
+      if (redundantSSAFList.find(samePathBlockFaultID0) != redundantSSAFList.end()) {
+        blockFaultsList.insert(samePathBlockFaultID0);
+      }
+      if (redundantSSAFList.find(samePathBlockFaultID1) != redundantSSAFList.end()) {
+        blockFaultsList.insert(samePathBlockFaultID1);
+      }
+      // check gate output
+      samePathPort = 3;
+      samePathBlockFaultID0 = getFaultID(curGate->gateID, samePathPort, 0);
+      samePathBlockFaultID1 = getFaultID(curGate->gateID, samePathPort, 1);
+      if (redundantSSAFList.find(samePathBlockFaultID0) != redundantSSAFList.end()) {
+        blockFaultsList.insert(samePathBlockFaultID0);
+      }
+      if (redundantSSAFList.find(samePathBlockFaultID1) != redundantSSAFList.end()) {
+        blockFaultsList.insert(samePathBlockFaultID1);
+      }
+    }
+  }
+  return isPath;
+}

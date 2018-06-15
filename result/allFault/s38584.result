@@ -64,3 +64,15 @@
    174 SSAF patterns are read
    Build the connection between SSAF and the initial test set.
    (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 2037
+   Time: 3338.96 seconds.
+----------The initialization of the ATPG takes 3339.42 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 151.768 seconds.
+2. Compress undetected DSA Faults.
+   Potential Undetected DSA number (without compressing): 2180808
