@@ -73,7 +73,7 @@ namespace Gate {
       }
 
       ~gate(){
-        delete this;
+        // delete this;
       }
 
       // given the input value, get the output value of current gate.
