@@ -3,6 +3,7 @@
 #include "ATPG.h"
 #include "MSATest.h"
 #include "glucose.h"
+#include "Testgenebysat.h"
 #include "time.h"
 #include <vector>
 #include <set>
@@ -24,10 +25,15 @@ int main(int argc, char **argv){
     return 0;
   }
 
+  double startTime, endTime;
+  startTime = clock();
   char *blifFile = argv[1];
   char *patternFile = argv[2];
   // build the circuit
   circuit *pCircuit = new circuit(blifFile);
-  atpg *ATPGInit = new atpg(pCircuit, patternFile);
+  testgenebysat *testBySAT = new testgenebysat(pCircuit);
+  atpg *ATPGInit = new atpg(pCircuit, patternFile, testBySAT);
+  endTime = clock();
+  cout << "Total execution time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds.\n\n" << endl;
   return 1;
 }

@@ -26,6 +26,7 @@ namespace Circuit {
       vector <gate*> theCircuit;
       // Key : signal name. Value : corresponding ID
       map<string, int> MapNumWire;
+      map<int, set<int>> gateToRelatedGates;
 
       circuit(char *blifFile){
         PISize = 0;
@@ -52,6 +53,12 @@ namespace Circuit {
         cout << "2. Gate connecting is started." << endl;
         preTime = clock();
         if ( !connectGates() )  return;
+        curTime = clock();
+        cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
+
+        cout << "3. Pair each gate with it's related gates." << endl;
+        preTime = clock();
+        pairGateWithRelatedGates();
         curTime = clock();
         cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
 
@@ -214,7 +221,34 @@ namespace Circuit {
         return 1;
       }
 
+      void pairGateWithRelatedGates() {
+        set<int> relatedGates;
+        for (auto curGate : theCircuit) {
+          relatedGates.clear();
+          findrelatedGatesDFS(curGate, relatedGates);
+          relatedGates.insert(curGate->gateID);  // the circuit itself is also the related gate
+          gateToRelatedGates.insert(make_pair(curGate->gateID, relatedGates));
+        }
+      }
 
+      void findrelatedGatesDFS(gate *curGate, set<int> &relatedGates) {
+        if (curGate->gateType == PO) {
+          findrelatedGates_helperDFS(curGate, relatedGates);
+          return;
+        }
+        for (auto nextGate: curGate->fanout) {
+          findrelatedGatesDFS(nextGate, relatedGates);
+        }
+      }
+
+      void findrelatedGates_helperDFS(gate *curGate, set<int> &relatedGates) {
+        relatedGates.insert(curGate->gateID);
+        if (curGate->gateType == PI || curGate->gateType == constant) {
+          return;
+        }
+        findrelatedGates_helperDFS(curGate->fanin1, relatedGates);
+        if (curGate->gateType == aig) findrelatedGates_helperDFS(curGate->fanin2, relatedGates);
+      }
   };
 }
 

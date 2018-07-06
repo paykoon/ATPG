@@ -255,3 +255,43 @@ TODO
 
 正确性
 其中一个还有一种情况没有往前考虑。写一个函数来检测。
+
+
+at first check each gate and the gates may effect it's PO values.
+use the function findConnectedGatesDFS()
+data structure:
+map<int, set<int>> gateToRelatedGates
+
+TODO
+the new method which can avoid large DSA only generate small number of new patterns.
+need to verify.(comparing with previous method)!!!
+
+6.28 Problem:
+1.
+2722 12826
+in generateDSATest(), just go into SAT many times, and generate many different test patterns????
+
+2. find the DSA faults that are ignored by current method. (only choose two SSA that are related == only one is related to another)
+-.....
+
+
+6.29!!:
+The fault simulation part cannot well process the constant wire that has stuck at fault.....
+Revised this bug!!!! many undetected faults are because this..
+So sat-solver may also has problem??...
+if insert the stuck-at fault that is same as the constant wire, sat cannot detect that! it's a redundant fault!
+add the constant in s27 to see what will happen??
+
+7.6.
+the set is very time-consuming to be maintained. So we want to use the bit operation to maintain the processed gates.
+initial the class
+set bit.
+unset the bit.
+iterator to return the "1" bit one by one????
+But is it really necessary???
+
+bit operation may work for:
+1. gate -> related gate
+2. several gate's corresponding gates, then propagate the gates.
+   after the combination, need to know the "1"'s position one by one?..still need to traverse entire circuit size.
+3. propagate values.

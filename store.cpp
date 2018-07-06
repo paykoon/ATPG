@@ -955,3 +955,15 @@ bool findBlockSSADFS(gate *curGate, gate *preGate, set<int> &blockFaultsList, un
   }
   return isPath;
 }
+
+
+
+
+void propagatePI(){
+  for(int i = 0; i < theCircuit.size(); i++){
+    int preValue = theCircuit[i]->outValue;
+    theCircuit[i]->setOut();
+    int curValue = theCircuit[i]->outValue;
+    theCircuit[i]->different = (preValue != curValue);
+  }
+}

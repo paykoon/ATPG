@@ -1,0 +1,61 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.002194 seconds.
+   The number of gates in the circuit is 145
+2. Gate connecting is started.
+   Time: 0.000237 seconds.
+3. Pair each gate with it's related gates.
+   Time: 0.02017 seconds.
+----------The initialization of the Circuit takes 0.022662 seconds----------
+
+----------Initialization of CNF formula----------
+----------Initialization of CNF formula takes Time: 0.001482 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 254 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 784, 32.398% fault are selected by the fault model
+   Time: 1.1e-05 seconds.
+2. Read initial SSAF test patterns.
+   28 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 0
+   Time: 0.122144 seconds.
+----------The initialization of the ATPG takes 0.126537 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.017304 seconds.
+2. Compress undetected DSA Faults.
+   Potential Undetected DSA number (without compressing): 4
+   Undetected DSA number (after compressing): 0, Compressing ratio: 0
+   Time: 21.2481 seconds.
+----------DSA Faults checking takes 21.2654 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 0
+   additional Test Pattern size: 0, 0 comparing with SSAF Patterns
+   redundantDSAF size: 0, -nan among all undetected DSA
+----------Additional test patterns generation takes 21.2654 seconds----------
+
+
+
+
+
+
+
+the ignoredFaults by the given DSA test(check by circuitSimulation)
+
+
+
+Undetected DSA:
+Total execution time: 31.4057 seconds.
+
+

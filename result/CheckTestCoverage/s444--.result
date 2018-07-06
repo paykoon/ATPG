@@ -1,0 +1,234 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.001481 seconds.
+   The number of gates in the circuit is 212
+2. Gate connecting is started.
+   Time: 0.000708 seconds.
+3. Pair each gate with it's related gates.
+   Time: 0.060681 seconds.
+----------The initialization of the Circuit takes 0.062934 seconds----------
+
+----------Initialization of CNF formula----------
+----------Initialization of CNF formula takes Time: 0.004101 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 410 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 1158, 35.4059% fault are selected by the fault model
+   Time: 1.2e-05 seconds.
+2. Read initial SSAF test patterns.
+   25 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 18
+   Time: 0.19126 seconds.
+----------The initialization of the ATPG takes 0.195433 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.043103 seconds.
+2. Compress undetected DSA Faults.
+   Potential Undetected DSA number (without compressing): 244
+   Undetected DSA number (after compressing): 56, Compressing ratio: 0.229508
+   Time: 0.08427 seconds.
+----------DSA Faults checking takes 0.12739 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 1
+   additional Test Pattern size: 1, 0.04 comparing with SSAF Patterns
+   redundantDSAF size: 173, 3.08929 among all undetected DSA
+----------Additional test patterns generation takes 0.12739 seconds----------
+
+
+
+
+
+
+
+the ignoredFaults by the given DSA test(check by circuitSimulation)
+330(RSSAF) 332(RSSAF)  ***R N F***
+330(RSSAF) 333  ***R N F***
+330(RSSAF) 334(RSSAF)  ***R N F***
+330(RSSAF) 340(RSSAF)  ***R N F***
+330(RSSAF) 348(RSSAF)  ***R N F***
+330(RSSAF) 594(RSSAF)  ***R N F***
+330(RSSAF) 596(RSSAF)  ***R N F***
+330(RSSAF) 598(RSSAF)  ***R N F***
+330(RSSAF) 604(RSSAF)  ***R N F***
+330(RSSAF) 612(RSSAF)  ***R N F***
+330(RSSAF) 850(RSSAF)  ***R N F***
+330(RSSAF) 852(RSSAF)  ***R N F***
+330(RSSAF) 854(RSSAF)  ***R N F***
+330(RSSAF) 860(RSSAF)  ***R N F***
+330(RSSAF) 868(RSSAF)  ***R N F***
+330(RSSAF) 1252(RSSAF)  ***R N F***
+330(RSSAF) 1259(RSSAF)  ***R N F***
+330(RSSAF) 1347(RSSAF)  ***R N F***
+331 332(RSSAF)  ***R N F***
+331 334(RSSAF)  ***R N F***
+331 348(RSSAF)  ***R N F***
+332(RSSAF) 334(RSSAF)  ***R N F***
+332(RSSAF) 340(RSSAF)  ***R N F***
+332(RSSAF) 348(RSSAF)  ***R N F***
+332(RSSAF) 594(RSSAF)  ***R N F***
+332(RSSAF) 596(RSSAF)  ***R N F***
+332(RSSAF) 598(RSSAF)  ***R N F***
+332(RSSAF) 604(RSSAF)  ***R N F***
+332(RSSAF) 612(RSSAF)  ***R N F***
+332(RSSAF) 850(RSSAF)  ***R N F***
+332(RSSAF) 852(RSSAF)  ***R N F***
+332(RSSAF) 854(RSSAF)  ***R N F***
+332(RSSAF) 860(RSSAF)  ***R N F***
+332(RSSAF) 868(RSSAF)  ***R N F***
+332(RSSAF) 1252(RSSAF)  ***R N F***
+332(RSSAF) 1259(RSSAF)  ***R N F***
+332(RSSAF) 1347(RSSAF)  ***R N F***
+333 334(RSSAF)  ***R N F***
+333 340(RSSAF)  ***R N F***
+334(RSSAF) 340(RSSAF)  ***R N F***
+334(RSSAF) 348(RSSAF)  ***R N F***
+334(RSSAF) 594(RSSAF)  ***R N F***
+334(RSSAF) 596(RSSAF)  ***R N F***
+334(RSSAF) 598(RSSAF)  ***R N F***
+334(RSSAF) 604(RSSAF)  ***R N F***
+334(RSSAF) 612(RSSAF)  ***R N F***
+334(RSSAF) 850(RSSAF)  ***R N F***
+334(RSSAF) 852(RSSAF)  ***R N F***
+334(RSSAF) 854(RSSAF)  ***R N F***
+334(RSSAF) 860(RSSAF)  ***R N F***
+334(RSSAF) 868(RSSAF)  ***R N F***
+334(RSSAF) 1252(RSSAF)  ***R N F***
+334(RSSAF) 1259(RSSAF)  ***R N F***
+334(RSSAF) 1347(RSSAF)  ***R N F***
+340(RSSAF) 348(RSSAF)  ***R N F***
+340(RSSAF) 594(RSSAF)  ***R N F***
+340(RSSAF) 596(RSSAF)  ***R N F***
+340(RSSAF) 598(RSSAF)  ***R N F***
+340(RSSAF) 604(RSSAF)  ***R N F***
+340(RSSAF) 612(RSSAF)  ***R N F***
+340(RSSAF) 850(RSSAF)  ***R N F***
+340(RSSAF) 852(RSSAF)  ***R N F***
+340(RSSAF) 854(RSSAF)  ***R N F***
+340(RSSAF) 860(RSSAF)  ***R N F***
+340(RSSAF) 868(RSSAF)  ***R N F***
+340(RSSAF) 1252(RSSAF)  ***R N F***
+340(RSSAF) 1259(RSSAF)  ***R N F***
+340(RSSAF) 1347(RSSAF)  ***R N F***
+348(RSSAF) 594(RSSAF)  ***R N F***
+348(RSSAF) 596(RSSAF)  ***R N F***
+348(RSSAF) 598(RSSAF)  ***R N F***
+348(RSSAF) 604(RSSAF)  ***R N F***
+348(RSSAF) 612(RSSAF)  ***R N F***
+348(RSSAF) 850(RSSAF)  ***R N F***
+348(RSSAF) 852(RSSAF)  ***R N F***
+348(RSSAF) 854(RSSAF)  ***R N F***
+348(RSSAF) 860(RSSAF)  ***R N F***
+348(RSSAF) 868(RSSAF)  ***R N F***
+348(RSSAF) 1252(RSSAF)  ***R N F***
+348(RSSAF) 1259(RSSAF)  ***R N F***
+348(RSSAF) 1347(RSSAF)  ***R N F***
+594(RSSAF) 596(RSSAF)  ***R N F***
+594(RSSAF) 597  ***R N F***
+594(RSSAF) 598(RSSAF)  ***R N F***
+594(RSSAF) 604(RSSAF)  ***R N F***
+594(RSSAF) 612(RSSAF)  ***R N F***
+594(RSSAF) 850(RSSAF)  ***R N F***
+594(RSSAF) 852(RSSAF)  ***R N F***
+594(RSSAF) 854(RSSAF)  ***R N F***
+594(RSSAF) 860(RSSAF)  ***R N F***
+594(RSSAF) 868(RSSAF)  ***R N F***
+594(RSSAF) 1252(RSSAF)  ***R N F***
+594(RSSAF) 1259(RSSAF)  ***R N F***
+594(RSSAF) 1347(RSSAF)  ***R N F***
+595 596(RSSAF)  ***R N F***
+595 598(RSSAF)  ***R N F***
+595 612(RSSAF)  ***R N F***
+596(RSSAF) 598(RSSAF)  ***R N F***
+596(RSSAF) 604(RSSAF)  ***R N F***
+596(RSSAF) 612(RSSAF)  ***R N F***
+596(RSSAF) 850(RSSAF)  ***R N F***
+596(RSSAF) 852(RSSAF)  ***R N F***
+596(RSSAF) 854(RSSAF)  ***R N F***
+596(RSSAF) 860(RSSAF)  ***R N F***
+596(RSSAF) 868(RSSAF)  ***R N F***
+596(RSSAF) 1252(RSSAF)  ***R N F***
+596(RSSAF) 1259(RSSAF)  ***R N F***
+596(RSSAF) 1347(RSSAF)  ***R N F***
+597 598(RSSAF)  ***R N F***
+597 604(RSSAF)  ***R N F***
+598(RSSAF) 604(RSSAF)  ***R N F***
+598(RSSAF) 612(RSSAF)  ***R N F***
+598(RSSAF) 850(RSSAF)  ***R N F***
+598(RSSAF) 852(RSSAF)  ***R N F***
+598(RSSAF) 854(RSSAF)  ***R N F***
+598(RSSAF) 860(RSSAF)  ***R N F***
+598(RSSAF) 868(RSSAF)  ***R N F***
+598(RSSAF) 1252(RSSAF)  ***R N F***
+598(RSSAF) 1259(RSSAF)  ***R N F***
+598(RSSAF) 1347(RSSAF)  ***R N F***
+604(RSSAF) 612(RSSAF)  ***R N F***
+604(RSSAF) 850(RSSAF)  ***R N F***
+604(RSSAF) 852(RSSAF)  ***R N F***
+604(RSSAF) 854(RSSAF)  ***R N F***
+604(RSSAF) 860(RSSAF)  ***R N F***
+604(RSSAF) 868(RSSAF)  ***R N F***
+604(RSSAF) 1252(RSSAF)  ***R N F***
+604(RSSAF) 1259(RSSAF)  ***R N F***
+604(RSSAF) 1347(RSSAF)  ***R N F***
+612(RSSAF) 850(RSSAF)  ***R N F***
+612(RSSAF) 852(RSSAF)  ***R N F***
+612(RSSAF) 854(RSSAF)  ***R N F***
+612(RSSAF) 860(RSSAF)  ***R N F***
+612(RSSAF) 868(RSSAF)  ***R N F***
+612(RSSAF) 1252(RSSAF)  ***R N F***
+612(RSSAF) 1259(RSSAF)  ***R N F***
+612(RSSAF) 1347(RSSAF)  ***R N F***
+850(RSSAF) 852(RSSAF)  ***R N F***
+850(RSSAF) 853  ***R N F***
+850(RSSAF) 854(RSSAF)  ***R N F***
+850(RSSAF) 860(RSSAF)  ***R N F***
+850(RSSAF) 868(RSSAF)  ***R N F***
+850(RSSAF) 1252(RSSAF)  ***R N F***
+850(RSSAF) 1259(RSSAF)  ***R N F***
+850(RSSAF) 1347(RSSAF)  ***R N F***
+851 852(RSSAF)  ***R N F***
+851 854(RSSAF)  ***R N F***
+851 868(RSSAF)  ***R N F***
+852(RSSAF) 854(RSSAF)  ***R N F***
+852(RSSAF) 860(RSSAF)  ***R N F***
+852(RSSAF) 868(RSSAF)  ***R N F***
+852(RSSAF) 1252(RSSAF)  ***R N F***
+852(RSSAF) 1259(RSSAF)  ***R N F***
+852(RSSAF) 1347(RSSAF)  ***R N F***
+853 854(RSSAF)  ***R N F***
+853 860(RSSAF)  ***R N F***
+854(RSSAF) 860(RSSAF)  ***R N F***
+854(RSSAF) 868(RSSAF)  ***R N F***
+854(RSSAF) 1252(RSSAF)  ***R N F***
+854(RSSAF) 1259(RSSAF)  ***R N F***
+854(RSSAF) 1347(RSSAF)  ***R N F***
+860(RSSAF) 868(RSSAF)  ***R N F***
+860(RSSAF) 1252(RSSAF)  ***R N F***
+860(RSSAF) 1259(RSSAF)  ***R N F***
+860(RSSAF) 1347(RSSAF)  ***R N F***
+868(RSSAF) 1252(RSSAF)  ***R N F***
+868(RSSAF) 1259(RSSAF)  ***R N F***
+868(RSSAF) 1347(RSSAF)  ***R N F***
+1234 1252(RSSAF)  ***R N F***
+1252(RSSAF) 1347(RSSAF)  ***R N F***
+1258 1259(RSSAF)  ***R N F***
+1259(RSSAF) 1347(RSSAF)  ***R N F***
+1346 1347(RSSAF)  ***R N F***
+
+
+
+Undetected DSA:
+Total execution time: 33.3838 seconds.
+
+

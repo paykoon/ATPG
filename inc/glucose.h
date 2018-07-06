@@ -27,7 +27,7 @@ namespace Glucose {
       int SATCircuit(vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &result, int theCircuitSize, int PISize) {
         if (CNFOriAndFauCir.size() == 0) return 0;
         vector<int> allValue;
-        if (runGlucose(CNFOriAndFauCir, allValue)) {
+        if (runGlucose(CNFOriAndFauCir, allValue) == 1) {
           // cout << "SAT" << endl;
           // only take the PI value in "allValue" as result
           // original circuit | faulty circuit | new input | new XOR | new output | an "OR" gate for all outputs | constant wire(stuck at faults)

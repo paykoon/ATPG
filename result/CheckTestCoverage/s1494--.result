@@ -1,0 +1,181 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.01494 seconds.
+   The number of gates in the circuit is 712
+2. Gate connecting is started.
+   Time: 0.007022 seconds.
+3. Pair each gate with it's related gates.
+   Time: 0.179334 seconds.
+----------The initialization of the Circuit takes 0.201345 seconds----------
+
+----------Initialization of CNF formula----------
+----------Initialization of CNF formula takes Time: 0.00713 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 1530 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 4194, 36.4807% fault are selected by the fault model
+   Time: 1.1e-05 seconds.
+2. Read initial SSAF test patterns.
+   110 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 15
+   Time: 5.94947 seconds.
+----------The initialization of the ATPG takes 5.95951 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.297931 seconds.
+2. Compress undetected DSA Faults.
+   Potential Undetected DSA number (without compressing): 92
+   Undetected DSA number (after compressing): 41, Compressing ratio: 0.445652
+   Time: 0.372582 seconds.
+----------DSA Faults checking takes 0.670527 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 2
+   additional Test Pattern size: 2, 0.0181818 comparing with SSAF Patterns
+   redundantDSAF size: 120, 2.92683 among all undetected DSA
+----------Additional test patterns generation takes 0.670527 seconds----------
+
+
+
+
+
+
+
+the ignoredFaults by the given DSA test(check by circuitSimulation)
+1396 1397(RSSAF)  ***R N F***
+1397(RSSAF) 2346(RSSAF)  ***R N F***
+1397(RSSAF) 2970(RSSAF)  ***R N F***
+1397(RSSAF) 3578(RSSAF)  ***R N F***
+1397(RSSAF) 3581(RSSAF)  ***R N F***
+1397(RSSAF) 3582(RSSAF)  ***R N F***
+1397(RSSAF) 3635(RSSAF)  ***R N F***
+1397(RSSAF) 3652(RSSAF)  ***R N F***
+1397(RSSAF) 3900(RSSAF)  ***R N F***
+1397(RSSAF) 4026(RSSAF)  ***R N F***
+1397(RSSAF) 4243(RSSAF)  ***R N F***
+1397(RSSAF) 4244(RSSAF)  ***R N F***
+1397(RSSAF) 4246(RSSAF)  ***R N F***
+1397(RSSAF) 4298(RSSAF)  ***R N F***
+1397(RSSAF) 4323(RSSAF)  ***R N F***
+2346(RSSAF) 2970(RSSAF)  ***R N F***
+2346(RSSAF) 3578(RSSAF)  ***R N F***
+2346(RSSAF) 3581(RSSAF)  ***R N F***
+2346(RSSAF) 3582(RSSAF)  ***R N F***
+2346(RSSAF) 3635(RSSAF)  ***R N F***
+2346(RSSAF) 3652(RSSAF)  ***R N F***
+2346(RSSAF) 3900(RSSAF)  ***R N F***
+2346(RSSAF) 4026(RSSAF)  ***R N F***
+2346(RSSAF) 4243(RSSAF)  ***R N F***
+2346(RSSAF) 4244(RSSAF)  ***R N F***
+2346(RSSAF) 4246(RSSAF)  ***R N F***
+2346(RSSAF) 4298(RSSAF)  ***R N F***
+2346(RSSAF) 4323(RSSAF)  ***R N F***
+2970(RSSAF) 3578(RSSAF)  ***R N F***
+2970(RSSAF) 3581(RSSAF)  ***R N F***
+2970(RSSAF) 3582(RSSAF)  ***R N F***
+2970(RSSAF) 3635(RSSAF)  ***R N F***
+2970(RSSAF) 3652(RSSAF)  ***R N F***
+2970(RSSAF) 3900(RSSAF)  ***R N F***
+2970(RSSAF) 4026(RSSAF)  ***R N F***
+2970(RSSAF) 4243(RSSAF)  ***R N F***
+2970(RSSAF) 4244(RSSAF)  ***R N F***
+2970(RSSAF) 4246(RSSAF)  ***R N F***
+2970(RSSAF) 4298(RSSAF)  ***R N F***
+2970(RSSAF) 4323(RSSAF)  ***R N F***
+3578(RSSAF) 3580  ***R N F***
+3578(RSSAF) 3581(RSSAF)  ***R N F***
+3578(RSSAF) 3582(RSSAF)  ***R N F***
+3578(RSSAF) 3635(RSSAF)  ***R N F***
+3578(RSSAF) 3652(RSSAF)  ***R N F***
+3578(RSSAF) 3900(RSSAF)  ***R N F***
+3578(RSSAF) 4026(RSSAF)  ***R N F***
+3578(RSSAF) 4243(RSSAF)  ***R N F***
+3578(RSSAF) 4244(RSSAF)  ***R N F***
+3578(RSSAF) 4246(RSSAF)  ***R N F***
+3578(RSSAF) 4298(RSSAF)  ***R N F***
+3578(RSSAF) 4323(RSSAF)  ***R N F***
+3579 3581(RSSAF)  ***R N F***
+3579 3582(RSSAF)  ***R N F***
+3579 3652(RSSAF)  ***R N F***
+3580 3581(RSSAF)  ***R N F***
+3580 3582(RSSAF)  ***R N F***
+3580 3652(RSSAF)  ***R N F***
+3581(RSSAF) 3582(RSSAF)  ***R N F***
+3581(RSSAF) 3635(RSSAF)  ***R N F***
+3581(RSSAF) 3652(RSSAF)  ***R N F***
+3581(RSSAF) 3900(RSSAF)  ***R N F***
+3581(RSSAF) 4026(RSSAF)  ***R N F***
+3581(RSSAF) 4243(RSSAF)  ***R N F***
+3581(RSSAF) 4244(RSSAF)  ***R N F***
+3581(RSSAF) 4246(RSSAF)  ***R N F***
+3581(RSSAF) 4298(RSSAF)  ***R N F***
+3581(RSSAF) 4323(RSSAF)  ***R N F***
+3582(RSSAF) 3635(RSSAF)  ***R N F***
+3582(RSSAF) 3652(RSSAF)  ***R N F***
+3582(RSSAF) 3900(RSSAF)  ***R N F***
+3582(RSSAF) 4026(RSSAF)  ***R N F***
+3582(RSSAF) 4243(RSSAF)  ***R N F***
+3582(RSSAF) 4244(RSSAF)  ***R N F***
+3582(RSSAF) 4246(RSSAF)  ***R N F***
+3582(RSSAF) 4298(RSSAF)  ***R N F***
+3582(RSSAF) 4323(RSSAF)  ***R N F***
+3583 3652(RSSAF)  ***R N F***
+3634 3635(RSSAF)  ***R N F***
+3635(RSSAF) 3652(RSSAF)  ***R N F***
+3635(RSSAF) 3900(RSSAF)  ***R N F***
+3635(RSSAF) 4026(RSSAF)  ***R N F***
+3635(RSSAF) 4243(RSSAF)  ***R N F***
+3635(RSSAF) 4244(RSSAF)  ***R N F***
+3635(RSSAF) 4246(RSSAF)  ***R N F***
+3635(RSSAF) 4298(RSSAF)  ***R N F***
+3635(RSSAF) 4323(RSSAF)  ***R N F***
+3652(RSSAF) 3900(RSSAF)  ***R N F***
+3652(RSSAF) 4026(RSSAF)  ***R N F***
+3652(RSSAF) 4243(RSSAF)  ***R N F***
+3652(RSSAF) 4244(RSSAF)  ***R N F***
+3652(RSSAF) 4246(RSSAF)  ***R N F***
+3652(RSSAF) 4298(RSSAF)  ***R N F***
+3652(RSSAF) 4323(RSSAF)  ***R N F***
+3900(RSSAF) 4026(RSSAF)  ***R N F***
+3900(RSSAF) 4243(RSSAF)  ***R N F***
+3900(RSSAF) 4244(RSSAF)  ***R N F***
+3900(RSSAF) 4246(RSSAF)  ***R N F***
+3900(RSSAF) 4298(RSSAF)  ***R N F***
+3900(RSSAF) 4323(RSSAF)  ***R N F***
+4026(RSSAF) 4243(RSSAF)  ***R N F***
+4026(RSSAF) 4244(RSSAF)  ***R N F***
+4026(RSSAF) 4246(RSSAF)  ***R N F***
+4026(RSSAF) 4298(RSSAF)  ***R N F***
+4026(RSSAF) 4323(RSSAF)  ***R N F***
+4242 4243(RSSAF)  ***R N F***
+4242 4244(RSSAF)  ***R N F***
+4242 4246(RSSAF)  ***R N F***
+4242 4298(RSSAF)  ***R N F***
+4243(RSSAF) 4244(RSSAF)  ***R N F***
+4243(RSSAF) 4245  ***R N F***
+4243(RSSAF) 4246(RSSAF)  ***R N F***
+4243(RSSAF) 4298(RSSAF)  ***R N F***
+4244(RSSAF) 4246(RSSAF)  ***R N F***
+4244(RSSAF) 4298(RSSAF)  ***R N F***
+4245 4246(RSSAF)  ***R N F***
+4245 4298(RSSAF)  ***R N F***
+4246(RSSAF) 4298(RSSAF)  ***R N F***
+4247 4298(RSSAF)  ***R N F***
+4322 4323(RSSAF)  ***R N F***
+
+
+
+Undetected DSA:
+Total execution time: 4743.27 seconds.
+
+
