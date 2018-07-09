@@ -29,7 +29,8 @@ namespace ATPG{
   class atpg{
     public:
       vector <gate*> theCircuit;
-      map<int, set<int>> gateToRelatedGates;
+      map<int, vector<uint64_t>> gateToRelatedGates;
+      static const int WSIZE = 64;
       int PISize, POSize, gateSize;
       // the circuit will be changed if faults are added to circuit.
       // the original unchanged gate will be stored here.
@@ -222,7 +223,6 @@ namespace ATPG{
         cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         endTime = clock();
         cout << "----------DSA Faults checking takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------\n\n" << endl;
-        /*
         cout << "----------Additional test patterns generation for the undetected DSA faults----------" << endl;
         preTime = clock();
         generateDSATest(undetectedDSA);
@@ -272,7 +272,7 @@ namespace ATPG{
         cout << "\n\n\n******Analyzation(not picked by out method)********" << endl;
         analyzeIgnoredUndetected(undetectedDSAbySSAPT_Simulte, undetectedDSA);
         */
-        /*
+
         set<set<int>> undetectedDSAbyDSAPT;
         vector<vector<int>> testVectors;
         testVectors.assign(SSAFPatterns.begin(), SSAFPatterns.end());
@@ -280,7 +280,7 @@ namespace ATPG{
           testVectors.push_back(DSA);
         }
         testDSA_pattern(allSSAFList, testVectors, undetectedDSAbyDSAPT);
-        printUndetectedDSA(undetectedDSAbyDSAPT);*/
+        printUndetectedDSA(undetectedDSAbyDSAPT);
         /*
         set<int> connectedGates;
         findConnectedGatesDFS(theCircuit[41], connectedGates);
@@ -301,34 +301,55 @@ namespace ATPG{
         return (gateID << 3) + (port << 1) + stuckat;
       }
 
+      int isSet(int pos, vector<uint64_t> &vec) {
+        int w = pos / WSIZE;
+        int b = pos % WSIZE;
+        uint64_t val = (vec[w] >> b);
+        return (val & 1ULL) > 0 ? 1 : 0;
+      }
+
       int faultIDToGateID(int faultID) {
         return (faultID >> 3);
       }
 
-      void getAllRelatedGates(set<int> &faults, set<int> &gates) {
+      vector<uint64_t> getAllRelatedGates(vector<int> &faults) {
+        vector<uint64_t> relatedGatesgates((theCircuit.size() - 1) / WSIZE + 1, 0);
         for (auto faultID : faults) {
           int gateID = faultIDToGateID(faultID);
-          gates.insert(gateToRelatedGates[gateID].begin(), gateToRelatedGates[gateID].end());
+          for (int i = 0; i < relatedGatesgates.size(); i++) {
+            relatedGatesgates[i] |= gateToRelatedGates[gateID][i];
+          }
         }
+        return relatedGatesgates;
       }
 
       // mode == 0, reset the entire circuit
       // mode == 1, reset the given gates
-      void resetAllVisitedisPath(int mode, set<int> &gates) {
+      void resetAllVisitedisPath(int mode, vector<uint64_t> &relatedGates) {
         if (mode == 0) {
           for (int i = 0; i < theCircuit.size(); i++) {
-            theCircuit[i]->visited = false;
             theCircuit[i]->different = false;
             theCircuit[i]->isPath = false;
           }
         } else {
-          for (auto gateID : gates) {
-            theCircuit[gateID]->visited = false;
-            theCircuit[gateID]->different = false;
-            theCircuit[gateID]->isPath = false;
+          int w = 0;
+          int size = relatedGates.size();
+          while (w < size) {
+            while (w < size && relatedGates[w] == 0) w++;
+            if (w == size) break;
+            uint64_t val = relatedGates[w];
+            int gateID = w * WSIZE;
+            for (int i = 0; i < WSIZE; i++) {
+              if ((val & 1) == 1) {
+                theCircuit[gateID]->different = false;
+                theCircuit[gateID]->isPath = false;
+              }
+              val >>= 1;
+              gateID++;
+            }
+            w++;
           }
           for (int i = PI + gateSize; i < theCircuit.size(); i++) {
-            theCircuit[i]->visited = false;
             theCircuit[i]->different = false;
             theCircuit[i]->isPath = false;
           }
@@ -346,12 +367,12 @@ namespace ATPG{
         return 1;
       }
 
-      // mode == 0, propagate the value to the entire circuit
-      // mode == 1, propagate the value to the given gates
+      // mode == 0, propagate the value in the entire circuit
+      // mode == 1, propagate the value only in the given gates
       // if PI is first propagated in faulty circuit then propagate in correct circuit
       // if the new out value is different from the previous one, set it as the visited
       // whether it's really faulty gates need to check later
-      void propagatePI(int mode, set<int> &gates){
+      void propagatePI(int mode, vector<uint64_t> &relatedGates){
         if (mode == 0) {
           for(int i = 0; i < theCircuit.size(); i++){
             int preValue = theCircuit[i]->outValue;
@@ -360,11 +381,24 @@ namespace ATPG{
             theCircuit[i]->different = (preValue != curValue);
           }
         } else {
-          for (auto gateID : gates) {
-            int preValue = theCircuit[gateID]->outValue;
-            theCircuit[gateID]->setOut();
-            int curValue = theCircuit[gateID]->outValue;
-            theCircuit[gateID]->different = (preValue != curValue);
+          int w = 0;
+          int size = relatedGates.size();
+          while (w < size) {
+            while (w < size && relatedGates[w] == 0) w++;
+            if (w == size) break;
+            uint64_t val = relatedGates[w];
+            int gateID = w * WSIZE;
+            for (int i = 0; i < WSIZE; i++) {
+              if ((val & 1) == 1) {
+                int preValue = theCircuit[gateID]->outValue;
+                theCircuit[gateID]->setOut();
+                int curValue = theCircuit[gateID]->outValue;
+                theCircuit[gateID]->different = (preValue != curValue);
+              }
+              val >>= 1;
+              gateID++;
+            }
+            w++;
           }
         }
       }
@@ -683,21 +717,17 @@ namespace ATPG{
         */
         //printCircuit(theCircuit);
         //****************
-        set<int> relatedGates;
-        set<int> faults;
-        //faults.insert(newFaults.begin(), newFaults.end());
-        //getAllRelatedGates(faults, relatedGates);
-
-        resetAllVisitedisPath(0, relatedGates);
+        vector<uint64_t> relatedGates = getAllRelatedGates(newFaults);
+        resetAllVisitedisPath(1, relatedGates);
         resetFaultsInCircuit();
         injectFaultsInCircuit(newFaults);
         assignPIs(testVector);
-        propagatePI(0, relatedGates);
+        propagatePI(1, relatedGates);
 
-        resetAllVisitedisPath(0, relatedGates);
+        resetAllVisitedisPath(1, relatedGates);
         resetFaultsInCircuit();
         assignPIs(testVector);
-        propagatePI(0, relatedGates);
+        propagatePI(1, relatedGates);
 
 
         // ****only for DSA fault now*******
@@ -710,9 +740,7 @@ namespace ATPG{
           POGate = theCircuit[PISize + gateSize + i];
           // if the fautls can be detected in one of the PO, then it's detected.
           if (POGate->different == true) {
-            // find the SSA that may block it in its propagatioin path.
             curGate = theCircuit[gateID];
-            // ***only work for current fault model.
             if (mode == 1) {
               preGate = (port == 1) ? curGate->fanin1 : curGate->fanin2;
               findBlockSSADFS(theCircuit[gateID], preGate, blockFaultsList, faultList, redundantSSAF, newFaults[0]);
@@ -722,6 +750,134 @@ namespace ATPG{
         }
         return 0;
       }
+
+      // ----------------------propagate 64 values at the same time-------------------------------
+      int assignPIs_64(vector<uint64_t> &inValues_64){
+        if (inValues_64.size() != PISize){
+          cout << "\n***Input vector does not match the size of PI***\n" << endl;
+          return 0;
+        }
+        for (int i = 0; i < inValues_64.size(); i++){
+            theCircuit[i]->setPI_64(inValues_64[i]);
+        }
+        return 1;
+      }
+
+      // mode == 0, propagate the value in the entire circuit
+      // mode == 1, propagate the value only in the given gates
+      void propagatePI_64(int mode, vector<uint64_t> &relatedGates){
+        if (mode == 0) {
+          for(int i = 0; i < theCircuit.size(); i++){
+            theCircuit[i]->setOut_64();
+          }
+        } else {
+          int w = 0;
+          int size = relatedGates.size();
+          while (w < size) {
+            while (w < size && relatedGates[w] == 0) w++;
+            if (w == size) break;
+            uint64_t val = relatedGates[w];
+            int gateID = w * WSIZE;
+            for (int i = 0; i < WSIZE; i++) {
+              if ((val & 1) == 1) {
+                theCircuit[gateID]->setOut_64();
+              }
+              val >>= 1;
+              gateID++;
+            }
+            w++;
+          }
+        }
+      }
+
+      int getLeft1Pos(uint64_t i) {
+        i = i & ~(i-1); // only the right most "1" will remain.
+        int n = -1;
+        if (i & 0xffffffff00000000) {
+          n += 32;
+          i >>= 32;
+        }
+        if (i & 0x00000000ffff0000) {
+          n += 16;
+          i >>= 16;
+        };
+        if (i & 0x000000000000ff00) {
+          n += 8;
+          i >>= 8;
+        };
+        if (i & 0x00000000000000f0) {
+          n += 4;
+          i >>= 4;
+        };
+        if (i & 0x000000000000000c) {
+          n += 2;
+          i >>= 2;
+        };
+        return n + i;
+      }
+
+      // propagate 64 set of PI to entire circuit one time.
+      // return the index of test pattern that can detect the faults.
+      // return -1 if no test pattern can detect that fault.
+      int check64Patterns(vector<int> &newFaults, vector<uint64_t> &testVector_64) {
+        vector<uint64_t> relatedGates = getAllRelatedGates(newFaults);
+        vector<uint64_t> isDiff_64(POSize, 0);
+        resetFaultsInCircuit();
+        injectFaultsInCircuit(newFaults);
+        assignPIs_64(testVector_64);
+        propagatePI_64(1, relatedGates);
+        for (int i = 0; i < POSize; i++) {
+          isDiff_64[i] = theCircuit[PISize + gateSize + i]->outValue_64;
+        }
+        resetFaultsInCircuit();
+        assignPIs_64(testVector_64);
+        propagatePI_64(1, relatedGates);
+        for (int i = 0; i < POSize; i++) {
+          isDiff_64[i] = theCircuit[PISize + gateSize + i]->outValue_64 ^ isDiff_64[i];
+        }
+        for (int i = 0; i < POSize; i++) {
+          if (isDiff_64[i] != 0) {
+            return getLeft1Pos(isDiff_64[i]);
+          }
+        }
+        return -1;
+      }
+
+      // return 0 if no test can detect the fault.
+      // else return 1. And the corresponding pattern will be in "detectedPattern"
+      // example
+      //    b        0 1 0 1 1 0 ...
+      // curNum      1 1 0 0 1 0 ...
+      //             p             patternLength
+      // patterns_64 64 64 64....(each number means one of the PI value of the 64 patterns)
+      int checkallPatterns(vector<int> &newFaults, vector<vector<int>> &patterns, vector<int> &detectedPattern) {
+        int patternNum = patterns.size();
+        int patternLength = patterns[0].size();
+        vector<int> isDetected(patternNum, 0);
+        // each time check 64 patterns simultaneous.
+        int max = (patternNum - 1) / WSIZE;
+        for (int i = 0; i <= max; i++) {
+          vector<uint64_t> patterns_64(patternLength, 0);
+          // put 64 patterns to pattern_64
+          // if remaining patterns are smaller than 64, then only check the remaining ones.
+          int curNum = (i < max) ? WSIZE : (patternNum - max * WSIZE);
+          int startIdx = max * i;
+          for (int p = 0; p < patternLength; p++) {
+            uint64_t val = 0;
+            for (int b = 0; b < curNum; b++) {
+              val |= (patterns[startIdx + b][p] << b);
+            }
+            patterns_64[p] = val;
+          }
+          int patternIdx = check64Patterns(newFaults, patterns_64);
+          if (patternIdx >= 0) {
+            detectedPattern.assign(patterns[startIdx + patternIdx].begin(), patterns[startIdx + patternIdx].end());
+            return 1;
+          }
+        }
+        return 0;
+      }
+      // ----------------------propagate 64 values at the same time-------------------------------
 
       // find the potentiallyUndetected.
       // assume that the initial test pattern can already detect all SSAF.
@@ -851,21 +1007,18 @@ namespace ATPG{
 
         // add the double faults that are both redundant to the list.
         // only add two faults that are mutually in the related gates.
-
         vector<int> vec;
         for (auto faultID : redundantSSAF) {
           vec.push_back(faultID);
         }
-        set<int> DSA;
         for (int i = 0; i < vec.size() - 1; i++) {
           for (int j = i + 1; j < vec.size(); j++) {
             int gateID1 = faultIDToGateID(vec[i]);
             int gateID2 = faultIDToGateID(vec[j]);
-            DSA.clear();
+            set<int> DSA;
             DSA.insert(vec[i]);
             DSA.insert(vec[j]);
-            if (gateToRelatedGates[gateID1].find(gateID2) != gateToRelatedGates[gateID1].end() &&
-                gateToRelatedGates[gateID2].find(gateID1) != gateToRelatedGates[gateID2].end()) {
+            if (isSet(gateID2, gateToRelatedGates[gateID1]) == 1 && isSet(gateID1, gateToRelatedGates[gateID2]) == 1) {
               undetectedDSA.insert(DSA);
             } else {
               redundantDSAF.insert(DSA);

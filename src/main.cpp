@@ -35,5 +35,6 @@ int main(int argc, char **argv){
   atpg *ATPGInit = new atpg(pCircuit, patternFile, testBySAT);
   endTime = clock();
   cout << "Total execution time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds.\n\n" << endl;
+
   return 1;
 }

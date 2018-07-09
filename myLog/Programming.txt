@@ -290,8 +290,13 @@ unset the bit.
 iterator to return the "1" bit one by one????
 But is it really necessary???
 
-bit operation may work for:
+bit operation may work fo:DONe!!
 1. gate -> related gate
 2. several gate's corresponding gates, then propagate the gates.
    after the combination, need to know the "1"'s position one by one?..still need to traverse entire circuit size.
 3. propagate values.
+
+next step!
+1. 64 patterns processed one times
+2. the SAT only process the corresponding circuits.
+3. the bit operation of the circuit still can be optimized ?????? try

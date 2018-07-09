@@ -26,7 +26,8 @@ namespace Circuit {
       vector <gate*> theCircuit;
       // Key : signal name. Value : corresponding ID
       map<string, int> MapNumWire;
-      map<int, set<int>> gateToRelatedGates;
+      map<int, vector<uint64_t>> gateToRelatedGates;
+      static const int WSIZE = 64;
 
       circuit(char *blifFile){
         PISize = 0;
@@ -64,12 +65,6 @@ namespace Circuit {
 
         endTime = clock();
         cout << "----------The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
-      }
-
-      void resetAllVisited() {
-        for (int i = 0; i < theCircuit.size(); i++) {
-          theCircuit[i]->visited = false;
-        }
       }
 
     private:
@@ -222,16 +217,17 @@ namespace Circuit {
       }
 
       void pairGateWithRelatedGates() {
-        set<int> relatedGates;
+        int size = theCircuit.size();
         for (auto curGate : theCircuit) {
-          relatedGates.clear();
+          vector<uint64_t> relatedGates((size - 1) / WSIZE + 1, 0);
+          setBit(curGate->gateID, relatedGates);  // the gate itself is also the related gate
+          // relatedGates.insert(curGate->gateID);
           findrelatedGatesDFS(curGate, relatedGates);
-          relatedGates.insert(curGate->gateID);  // the circuit itself is also the related gate
           gateToRelatedGates.insert(make_pair(curGate->gateID, relatedGates));
         }
       }
 
-      void findrelatedGatesDFS(gate *curGate, set<int> &relatedGates) {
+      void findrelatedGatesDFS(gate *curGate, vector<uint64_t> &relatedGates) {
         if (curGate->gateType == PO) {
           findrelatedGates_helperDFS(curGate, relatedGates);
           return;
@@ -241,13 +237,21 @@ namespace Circuit {
         }
       }
 
-      void findrelatedGates_helperDFS(gate *curGate, set<int> &relatedGates) {
-        relatedGates.insert(curGate->gateID);
+      void findrelatedGates_helperDFS(gate *curGate, vector<uint64_t> &relatedGates) {
+        // relatedGates.insert(curGate->gateID);
+        setBit(curGate->gateID, relatedGates);
         if (curGate->gateType == PI || curGate->gateType == constant) {
           return;
         }
         findrelatedGates_helperDFS(curGate->fanin1, relatedGates);
         if (curGate->gateType == aig) findrelatedGates_helperDFS(curGate->fanin2, relatedGates);
+      }
+
+      void setBit(int pos, vector<uint64_t> &vec) {
+        int w = pos / WSIZE;
+        int b = pos % WSIZE;
+        uint64_t mask = 1ULL << b;
+        vec[w] |= mask;
       }
   };
 }
