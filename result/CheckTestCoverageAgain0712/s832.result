@@ -1,0 +1,137 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.002867 seconds.
+   The number of gates in the circuit is 404
+2. Gate connecting is started.
+   Time: 0.001721 seconds.
+3. Pair each gate with it's related gates.
+   Time: 0.00761 seconds.
+----------The initialization of the Circuit takes 0.012247 seconds----------
+
+----------Initialization of CNF formula----------
+----------Initialization of CNF formula takes Time: 0.011601 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 838 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 2328, 35.9966% fault are selected by the fault model
+   Time: 0.009923 seconds.
+2. Read initial SSAF test patterns.
+   101 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 12
+   Time: 0.107965 seconds.
+----------The initialization of the ATPG takes 0.117903 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.083118 seconds.
+2. Compress undetected DSA Faults.
+   Undetected DSA number (without compressing): 83
+   Undetected DSA number (after compressing): 51, Compressing ratio: 0.614458
+   Time: 0.030734 seconds.
+----------DSA Faults checking takes 0.113868 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 2
+   additional Test Pattern size: 2, 0.019802 comparing with SSAF Patterns
+   redundantDSAF size: 76, 1.4902 among all undetected DSA
+----------Additional test patterns generation takes 0.489707 seconds----------
+
+
+
+
+
+
+
+the ignoredFaults by the given DSA test(check by circuitSimulation)
+1236(RSSAF) 1563(RSSAF)  ***R N F***
+1236(RSSAF) 2029(RSSAF)  ***R N F***
+1236(RSSAF) 2037(RSSAF)  ***R N F***
+1236(RSSAF) 2075(RSSAF)  ***R N F***
+1236(RSSAF) 2076(RSSAF)  ***R N F***
+1236(RSSAF) 2077(RSSAF)  ***R N F***
+1236(RSSAF) 2078(RSSAF)  ***R N F***
+1236(RSSAF) 2082(RSSAF)  ***R N F***
+1236(RSSAF) 2106(RSSAF)  ***R N F***
+1236(RSSAF) 2474(RSSAF)  ***R N F***
+1236(RSSAF) 2549(RSSAF)  ***R N F***
+1562 1563(RSSAF)  ***R N F***
+1563(RSSAF) 2029(RSSAF)  ***R N F***
+1563(RSSAF) 2037(RSSAF)  ***R N F***
+1563(RSSAF) 2075(RSSAF)  ***R N F***
+1563(RSSAF) 2076(RSSAF)  ***R N F***
+1563(RSSAF) 2077(RSSAF)  ***R N F***
+1563(RSSAF) 2078(RSSAF)  ***R N F***
+1563(RSSAF) 2082(RSSAF)  ***R N F***
+1563(RSSAF) 2106(RSSAF)  ***R N F***
+1563(RSSAF) 2474(RSSAF)  ***R N F***
+1563(RSSAF) 2549(RSSAF)  ***R N F***
+2028 2029(RSSAF)  ***R N F***
+2029(RSSAF) 2037(RSSAF)  ***R N F***
+2029(RSSAF) 2075(RSSAF)  ***R N F***
+2029(RSSAF) 2076(RSSAF)  ***R N F***
+2029(RSSAF) 2077(RSSAF)  ***R N F***
+2029(RSSAF) 2078(RSSAF)  ***R N F***
+2029(RSSAF) 2082(RSSAF)  ***R N F***
+2029(RSSAF) 2106(RSSAF)  ***R N F***
+2029(RSSAF) 2474(RSSAF)  ***R N F***
+2029(RSSAF) 2549(RSSAF)  ***R N F***
+2036 2037(RSSAF)  ***R N F***
+2037(RSSAF) 2075(RSSAF)  ***R N F***
+2037(RSSAF) 2076(RSSAF)  ***R N F***
+2037(RSSAF) 2077(RSSAF)  ***R N F***
+2037(RSSAF) 2078(RSSAF)  ***R N F***
+2037(RSSAF) 2082(RSSAF)  ***R N F***
+2037(RSSAF) 2106(RSSAF)  ***R N F***
+2037(RSSAF) 2474(RSSAF)  ***R N F***
+2037(RSSAF) 2549(RSSAF)  ***R N F***
+2074 2075(RSSAF)  ***R N F***
+2074 2076(RSSAF)  ***R N F***
+2074 2078(RSSAF)  ***R N F***
+2074 2106(RSSAF)  ***R N F***
+2075(RSSAF) 2076(RSSAF)  ***R N F***
+2075(RSSAF) 2077(RSSAF)  ***R N F***
+2075(RSSAF) 2078(RSSAF)  ***R N F***
+2075(RSSAF) 2082(RSSAF)  ***R N F***
+2075(RSSAF) 2106(RSSAF)  ***R N F***
+2075(RSSAF) 2474(RSSAF)  ***R N F***
+2075(RSSAF) 2549(RSSAF)  ***R N F***
+2076(RSSAF) 2077(RSSAF)  ***R N F***
+2076(RSSAF) 2078(RSSAF)  ***R N F***
+2076(RSSAF) 2082(RSSAF)  ***R N F***
+2076(RSSAF) 2106(RSSAF)  ***R N F***
+2076(RSSAF) 2474(RSSAF)  ***R N F***
+2076(RSSAF) 2549(RSSAF)  ***R N F***
+2077(RSSAF) 2078(RSSAF)  ***R N F***
+2077(RSSAF) 2082(RSSAF)  ***R N F***
+2077(RSSAF) 2106(RSSAF)  ***R N F***
+2077(RSSAF) 2130  ***R N F***
+2077(RSSAF) 2549(RSSAF)  ***R N F***
+2078(RSSAF) 2082(RSSAF)  ***R N F***
+2078(RSSAF) 2106(RSSAF)  ***R N F***
+2078(RSSAF) 2474(RSSAF)  ***R N F***
+2078(RSSAF) 2549(RSSAF)  ***R N F***
+2079 2106(RSSAF)  ***R N F***
+2082(RSSAF) 2106(RSSAF)  ***R N F***
+2082(RSSAF) 2130  ***R N F***
+2082(RSSAF) 2474(RSSAF)  ***R N F***
+2082(RSSAF) 2549(RSSAF)  ***R N F***
+2106(RSSAF) 2474(RSSAF)  ***R N F***
+2106(RSSAF) 2549(RSSAF)  ***R N F***
+2474(RSSAF) 2549(RSSAF)  ***R N F***
+2548 2549(RSSAF)  ***R N F***
+
+
+
+Undetected DSA:
+Total execution time: 510.898 seconds.
+
+

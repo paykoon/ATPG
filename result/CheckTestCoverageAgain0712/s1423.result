@@ -1,0 +1,444 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.00907 seconds.
+   The number of gates in the circuit is 635
+2. Gate connecting is started.
+   Time: 0.005928 seconds.
+3. Pair each gate with it's related gates.
+   Time: 3.29662 seconds.
+----------The initialization of the Circuit takes 3.31175 seconds----------
+
+----------Initialization of CNF formula----------
+----------Initialization of CNF formula takes Time: 0.006349 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation is started. 
+   SSA Fault number is 1256 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 3464, 36.2587% fault are selected by the fault model
+   Time: 0.006038 seconds.
+2. Read initial SSAF test patterns.
+   25 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 28
+   Time: 0.12986 seconds.
+----------The initialization of the ATPG takes 0.135909 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.158301 seconds.
+2. Compress undetected DSA Faults.
+   Undetected DSA number (without compressing): 682
+   Undetected DSA number (after compressing): 106, Compressing ratio: 0.155425
+   Time: 0.091261 seconds.
+----------DSA Faults checking takes 0.249575 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 3
+   additional Test Pattern size: 3, 0.12 comparing with SSAF Patterns
+   redundantDSAF size: 386, 3.64151 among all undetected DSA
+----------Additional test patterns generation takes 1.39163 seconds----------
+
+
+
+
+
+
+
+the ignoredFaults by the given DSA test(check by circuitSimulation)
+1876 1877(RSSAF)  ***R N F***
+1877(RSSAF) 2738(RSSAF)  ***R N F***
+1877(RSSAF) 2740(RSSAF)  ***R N F***
+1877(RSSAF) 2742(RSSAF)  ***R N F***
+1877(RSSAF) 2748(RSSAF)  ***R N F***
+1877(RSSAF) 2834(RSSAF)  ***R N F***
+1877(RSSAF) 2836(RSSAF)  ***R N F***
+1877(RSSAF) 2838(RSSAF)  ***R N F***
+1877(RSSAF) 2844(RSSAF)  ***R N F***
+1877(RSSAF) 2906(RSSAF)  ***R N F***
+1877(RSSAF) 2908(RSSAF)  ***R N F***
+1877(RSSAF) 2910(RSSAF)  ***R N F***
+1877(RSSAF) 2916(RSSAF)  ***R N F***
+1877(RSSAF) 3002(RSSAF)  ***R N F***
+1877(RSSAF) 3004(RSSAF)  ***R N F***
+1877(RSSAF) 3006(RSSAF)  ***R N F***
+1877(RSSAF) 3012(RSSAF)  ***R N F***
+1877(RSSAF) 3202(RSSAF)  ***R N F***
+1877(RSSAF) 3868(RSSAF)  ***R N F***
+1877(RSSAF) 4050(RSSAF)  ***R N F***
+1877(RSSAF) 4067(RSSAF)  ***R N F***
+1877(RSSAF) 4274(RSSAF)  ***R N F***
+1877(RSSAF) 4275(RSSAF)  ***R N F***
+1877(RSSAF) 4277(RSSAF)  ***R N F***
+1877(RSSAF) 4278(RSSAF)  ***R N F***
+1877(RSSAF) 4283(RSSAF)  ***R N F***
+1877(RSSAF) 4284(RSSAF)  ***R N F***
+2738(RSSAF) 2740(RSSAF)  ***R N F***
+2738(RSSAF) 2741  ***R N F***
+2738(RSSAF) 2742(RSSAF)  ***R N F***
+2738(RSSAF) 2748(RSSAF)  ***R N F***
+2738(RSSAF) 2834(RSSAF)  ***R N F***
+2738(RSSAF) 2836(RSSAF)  ***R N F***
+2738(RSSAF) 2838(RSSAF)  ***R N F***
+2738(RSSAF) 2844(RSSAF)  ***R N F***
+2738(RSSAF) 2906(RSSAF)  ***R N F***
+2738(RSSAF) 2908(RSSAF)  ***R N F***
+2738(RSSAF) 2910(RSSAF)  ***R N F***
+2738(RSSAF) 2916(RSSAF)  ***R N F***
+2738(RSSAF) 3002(RSSAF)  ***R N F***
+2738(RSSAF) 3004(RSSAF)  ***R N F***
+2738(RSSAF) 3006(RSSAF)  ***R N F***
+2738(RSSAF) 3012(RSSAF)  ***R N F***
+2738(RSSAF) 3202(RSSAF)  ***R N F***
+2738(RSSAF) 3868(RSSAF)  ***R N F***
+2738(RSSAF) 4050(RSSAF)  ***R N F***
+2738(RSSAF) 4067(RSSAF)  ***R N F***
+2738(RSSAF) 4274(RSSAF)  ***R N F***
+2738(RSSAF) 4275(RSSAF)  ***R N F***
+2738(RSSAF) 4277(RSSAF)  ***R N F***
+2738(RSSAF) 4278(RSSAF)  ***R N F***
+2738(RSSAF) 4283(RSSAF)  ***R N F***
+2738(RSSAF) 4284(RSSAF)  ***R N F***
+2739 2740(RSSAF)  ***R N F***
+2739 2742(RSSAF)  ***R N F***
+2739 2748(RSSAF)  ***R N F***
+2740(RSSAF) 2742(RSSAF)  ***R N F***
+2740(RSSAF) 2748(RSSAF)  ***R N F***
+2740(RSSAF) 2834(RSSAF)  ***R N F***
+2740(RSSAF) 2836(RSSAF)  ***R N F***
+2740(RSSAF) 2838(RSSAF)  ***R N F***
+2740(RSSAF) 2844(RSSAF)  ***R N F***
+2740(RSSAF) 2906(RSSAF)  ***R N F***
+2740(RSSAF) 2908(RSSAF)  ***R N F***
+2740(RSSAF) 2910(RSSAF)  ***R N F***
+2740(RSSAF) 2916(RSSAF)  ***R N F***
+2740(RSSAF) 3002(RSSAF)  ***R N F***
+2740(RSSAF) 3004(RSSAF)  ***R N F***
+2740(RSSAF) 3006(RSSAF)  ***R N F***
+2740(RSSAF) 3012(RSSAF)  ***R N F***
+2740(RSSAF) 3202(RSSAF)  ***R N F***
+2740(RSSAF) 3868(RSSAF)  ***R N F***
+2740(RSSAF) 4050(RSSAF)  ***R N F***
+2740(RSSAF) 4067(RSSAF)  ***R N F***
+2740(RSSAF) 4274(RSSAF)  ***R N F***
+2740(RSSAF) 4275(RSSAF)  ***R N F***
+2740(RSSAF) 4277(RSSAF)  ***R N F***
+2740(RSSAF) 4278(RSSAF)  ***R N F***
+2740(RSSAF) 4283(RSSAF)  ***R N F***
+2740(RSSAF) 4284(RSSAF)  ***R N F***
+2741 2742(RSSAF)  ***R N F***
+2741 2748(RSSAF)  ***R N F***
+2742(RSSAF) 2748(RSSAF)  ***R N F***
+2742(RSSAF) 2834(RSSAF)  ***R N F***
+2742(RSSAF) 2836(RSSAF)  ***R N F***
+2742(RSSAF) 2838(RSSAF)  ***R N F***
+2742(RSSAF) 2844(RSSAF)  ***R N F***
+2742(RSSAF) 2906(RSSAF)  ***R N F***
+2742(RSSAF) 2908(RSSAF)  ***R N F***
+2742(RSSAF) 2910(RSSAF)  ***R N F***
+2742(RSSAF) 2916(RSSAF)  ***R N F***
+2742(RSSAF) 3002(RSSAF)  ***R N F***
+2742(RSSAF) 3004(RSSAF)  ***R N F***
+2742(RSSAF) 3006(RSSAF)  ***R N F***
+2742(RSSAF) 3012(RSSAF)  ***R N F***
+2742(RSSAF) 3202(RSSAF)  ***R N F***
+2742(RSSAF) 3868(RSSAF)  ***R N F***
+2742(RSSAF) 4050(RSSAF)  ***R N F***
+2742(RSSAF) 4067(RSSAF)  ***R N F***
+2742(RSSAF) 4274(RSSAF)  ***R N F***
+2742(RSSAF) 4275(RSSAF)  ***R N F***
+2742(RSSAF) 4277(RSSAF)  ***R N F***
+2742(RSSAF) 4278(RSSAF)  ***R N F***
+2742(RSSAF) 4283(RSSAF)  ***R N F***
+2742(RSSAF) 4284(RSSAF)  ***R N F***
+2743 2748(RSSAF)  ***R N F***
+2748(RSSAF) 2834(RSSAF)  ***R N F***
+2748(RSSAF) 2836(RSSAF)  ***R N F***
+2748(RSSAF) 2838(RSSAF)  ***R N F***
+2748(RSSAF) 2844(RSSAF)  ***R N F***
+2748(RSSAF) 2906(RSSAF)  ***R N F***
+2748(RSSAF) 2908(RSSAF)  ***R N F***
+2748(RSSAF) 2910(RSSAF)  ***R N F***
+2748(RSSAF) 2916(RSSAF)  ***R N F***
+2748(RSSAF) 3002(RSSAF)  ***R N F***
+2748(RSSAF) 3004(RSSAF)  ***R N F***
+2748(RSSAF) 3006(RSSAF)  ***R N F***
+2748(RSSAF) 3012(RSSAF)  ***R N F***
+2748(RSSAF) 3202(RSSAF)  ***R N F***
+2748(RSSAF) 3868(RSSAF)  ***R N F***
+2748(RSSAF) 4050(RSSAF)  ***R N F***
+2748(RSSAF) 4067(RSSAF)  ***R N F***
+2748(RSSAF) 4274(RSSAF)  ***R N F***
+2748(RSSAF) 4275(RSSAF)  ***R N F***
+2748(RSSAF) 4277(RSSAF)  ***R N F***
+2748(RSSAF) 4278(RSSAF)  ***R N F***
+2748(RSSAF) 4283(RSSAF)  ***R N F***
+2748(RSSAF) 4284(RSSAF)  ***R N F***
+2834(RSSAF) 2836(RSSAF)  ***R N F***
+2834(RSSAF) 2837  ***R N F***
+2834(RSSAF) 2838(RSSAF)  ***R N F***
+2834(RSSAF) 2844(RSSAF)  ***R N F***
+2834(RSSAF) 2906(RSSAF)  ***R N F***
+2834(RSSAF) 2908(RSSAF)  ***R N F***
+2834(RSSAF) 2910(RSSAF)  ***R N F***
+2834(RSSAF) 2916(RSSAF)  ***R N F***
+2834(RSSAF) 3002(RSSAF)  ***R N F***
+2834(RSSAF) 3004(RSSAF)  ***R N F***
+2834(RSSAF) 3006(RSSAF)  ***R N F***
+2834(RSSAF) 3012(RSSAF)  ***R N F***
+2834(RSSAF) 3202(RSSAF)  ***R N F***
+2834(RSSAF) 3868(RSSAF)  ***R N F***
+2834(RSSAF) 4050(RSSAF)  ***R N F***
+2834(RSSAF) 4067(RSSAF)  ***R N F***
+2834(RSSAF) 4274(RSSAF)  ***R N F***
+2834(RSSAF) 4275(RSSAF)  ***R N F***
+2834(RSSAF) 4277(RSSAF)  ***R N F***
+2834(RSSAF) 4278(RSSAF)  ***R N F***
+2834(RSSAF) 4283(RSSAF)  ***R N F***
+2834(RSSAF) 4284(RSSAF)  ***R N F***
+2835 2836(RSSAF)  ***R N F***
+2835 2838(RSSAF)  ***R N F***
+2835 2844(RSSAF)  ***R N F***
+2836(RSSAF) 2838(RSSAF)  ***R N F***
+2836(RSSAF) 2844(RSSAF)  ***R N F***
+2836(RSSAF) 2906(RSSAF)  ***R N F***
+2836(RSSAF) 2908(RSSAF)  ***R N F***
+2836(RSSAF) 2910(RSSAF)  ***R N F***
+2836(RSSAF) 2916(RSSAF)  ***R N F***
+2836(RSSAF) 3002(RSSAF)  ***R N F***
+2836(RSSAF) 3004(RSSAF)  ***R N F***
+2836(RSSAF) 3006(RSSAF)  ***R N F***
+2836(RSSAF) 3012(RSSAF)  ***R N F***
+2836(RSSAF) 3202(RSSAF)  ***R N F***
+2836(RSSAF) 3868(RSSAF)  ***R N F***
+2836(RSSAF) 4050(RSSAF)  ***R N F***
+2836(RSSAF) 4067(RSSAF)  ***R N F***
+2836(RSSAF) 4274(RSSAF)  ***R N F***
+2836(RSSAF) 4275(RSSAF)  ***R N F***
+2836(RSSAF) 4277(RSSAF)  ***R N F***
+2836(RSSAF) 4278(RSSAF)  ***R N F***
+2836(RSSAF) 4283(RSSAF)  ***R N F***
+2836(RSSAF) 4284(RSSAF)  ***R N F***
+2837 2838(RSSAF)  ***R N F***
+2837 2844(RSSAF)  ***R N F***
+2838(RSSAF) 2844(RSSAF)  ***R N F***
+2838(RSSAF) 2906(RSSAF)  ***R N F***
+2838(RSSAF) 2908(RSSAF)  ***R N F***
+2838(RSSAF) 2910(RSSAF)  ***R N F***
+2838(RSSAF) 2916(RSSAF)  ***R N F***
+2838(RSSAF) 3002(RSSAF)  ***R N F***
+2838(RSSAF) 3004(RSSAF)  ***R N F***
+2838(RSSAF) 3006(RSSAF)  ***R N F***
+2838(RSSAF) 3012(RSSAF)  ***R N F***
+2838(RSSAF) 3202(RSSAF)  ***R N F***
+2838(RSSAF) 3868(RSSAF)  ***R N F***
+2838(RSSAF) 4050(RSSAF)  ***R N F***
+2838(RSSAF) 4067(RSSAF)  ***R N F***
+2838(RSSAF) 4274(RSSAF)  ***R N F***
+2838(RSSAF) 4275(RSSAF)  ***R N F***
+2838(RSSAF) 4277(RSSAF)  ***R N F***
+2838(RSSAF) 4278(RSSAF)  ***R N F***
+2838(RSSAF) 4283(RSSAF)  ***R N F***
+2838(RSSAF) 4284(RSSAF)  ***R N F***
+2839 2844(RSSAF)  ***R N F***
+2844(RSSAF) 2906(RSSAF)  ***R N F***
+2844(RSSAF) 2908(RSSAF)  ***R N F***
+2844(RSSAF) 2910(RSSAF)  ***R N F***
+2844(RSSAF) 2916(RSSAF)  ***R N F***
+2844(RSSAF) 3002(RSSAF)  ***R N F***
+2844(RSSAF) 3004(RSSAF)  ***R N F***
+2844(RSSAF) 3006(RSSAF)  ***R N F***
+2844(RSSAF) 3012(RSSAF)  ***R N F***
+2844(RSSAF) 3202(RSSAF)  ***R N F***
+2844(RSSAF) 3868(RSSAF)  ***R N F***
+2844(RSSAF) 4050(RSSAF)  ***R N F***
+2844(RSSAF) 4067(RSSAF)  ***R N F***
+2844(RSSAF) 4274(RSSAF)  ***R N F***
+2844(RSSAF) 4275(RSSAF)  ***R N F***
+2844(RSSAF) 4277(RSSAF)  ***R N F***
+2844(RSSAF) 4278(RSSAF)  ***R N F***
+2844(RSSAF) 4283(RSSAF)  ***R N F***
+2844(RSSAF) 4284(RSSAF)  ***R N F***
+2906(RSSAF) 2908(RSSAF)  ***R N F***
+2906(RSSAF) 2909  ***R N F***
+2906(RSSAF) 2910(RSSAF)  ***R N F***
+2906(RSSAF) 2916(RSSAF)  ***R N F***
+2906(RSSAF) 3002(RSSAF)  ***R N F***
+2906(RSSAF) 3004(RSSAF)  ***R N F***
+2906(RSSAF) 3006(RSSAF)  ***R N F***
+2906(RSSAF) 3012(RSSAF)  ***R N F***
+2906(RSSAF) 3202(RSSAF)  ***R N F***
+2906(RSSAF) 3868(RSSAF)  ***R N F***
+2906(RSSAF) 4050(RSSAF)  ***R N F***
+2906(RSSAF) 4067(RSSAF)  ***R N F***
+2906(RSSAF) 4274(RSSAF)  ***R N F***
+2906(RSSAF) 4275(RSSAF)  ***R N F***
+2906(RSSAF) 4277(RSSAF)  ***R N F***
+2906(RSSAF) 4278(RSSAF)  ***R N F***
+2906(RSSAF) 4283(RSSAF)  ***R N F***
+2906(RSSAF) 4284(RSSAF)  ***R N F***
+2907 2908(RSSAF)  ***R N F***
+2907 2910(RSSAF)  ***R N F***
+2907 2916(RSSAF)  ***R N F***
+2908(RSSAF) 2910(RSSAF)  ***R N F***
+2908(RSSAF) 2916(RSSAF)  ***R N F***
+2908(RSSAF) 3002(RSSAF)  ***R N F***
+2908(RSSAF) 3004(RSSAF)  ***R N F***
+2908(RSSAF) 3006(RSSAF)  ***R N F***
+2908(RSSAF) 3012(RSSAF)  ***R N F***
+2908(RSSAF) 3202(RSSAF)  ***R N F***
+2908(RSSAF) 3868(RSSAF)  ***R N F***
+2908(RSSAF) 4050(RSSAF)  ***R N F***
+2908(RSSAF) 4067(RSSAF)  ***R N F***
+2908(RSSAF) 4274(RSSAF)  ***R N F***
+2908(RSSAF) 4275(RSSAF)  ***R N F***
+2908(RSSAF) 4277(RSSAF)  ***R N F***
+2908(RSSAF) 4278(RSSAF)  ***R N F***
+2908(RSSAF) 4283(RSSAF)  ***R N F***
+2908(RSSAF) 4284(RSSAF)  ***R N F***
+2909 2910(RSSAF)  ***R N F***
+2909 2916(RSSAF)  ***R N F***
+2910(RSSAF) 2916(RSSAF)  ***R N F***
+2910(RSSAF) 3002(RSSAF)  ***R N F***
+2910(RSSAF) 3004(RSSAF)  ***R N F***
+2910(RSSAF) 3006(RSSAF)  ***R N F***
+2910(RSSAF) 3012(RSSAF)  ***R N F***
+2910(RSSAF) 3202(RSSAF)  ***R N F***
+2910(RSSAF) 3868(RSSAF)  ***R N F***
+2910(RSSAF) 4050(RSSAF)  ***R N F***
+2910(RSSAF) 4067(RSSAF)  ***R N F***
+2910(RSSAF) 4274(RSSAF)  ***R N F***
+2910(RSSAF) 4275(RSSAF)  ***R N F***
+2910(RSSAF) 4277(RSSAF)  ***R N F***
+2910(RSSAF) 4278(RSSAF)  ***R N F***
+2910(RSSAF) 4283(RSSAF)  ***R N F***
+2910(RSSAF) 4284(RSSAF)  ***R N F***
+2911 2916(RSSAF)  ***R N F***
+2916(RSSAF) 3002(RSSAF)  ***R N F***
+2916(RSSAF) 3004(RSSAF)  ***R N F***
+2916(RSSAF) 3006(RSSAF)  ***R N F***
+2916(RSSAF) 3012(RSSAF)  ***R N F***
+2916(RSSAF) 3202(RSSAF)  ***R N F***
+2916(RSSAF) 3868(RSSAF)  ***R N F***
+2916(RSSAF) 4050(RSSAF)  ***R N F***
+2916(RSSAF) 4067(RSSAF)  ***R N F***
+2916(RSSAF) 4274(RSSAF)  ***R N F***
+2916(RSSAF) 4275(RSSAF)  ***R N F***
+2916(RSSAF) 4277(RSSAF)  ***R N F***
+2916(RSSAF) 4278(RSSAF)  ***R N F***
+2916(RSSAF) 4283(RSSAF)  ***R N F***
+2916(RSSAF) 4284(RSSAF)  ***R N F***
+3002(RSSAF) 3004(RSSAF)  ***R N F***
+3002(RSSAF) 3005  ***R N F***
+3002(RSSAF) 3006(RSSAF)  ***R N F***
+3002(RSSAF) 3012(RSSAF)  ***R N F***
+3002(RSSAF) 3202(RSSAF)  ***R N F***
+3002(RSSAF) 3868(RSSAF)  ***R N F***
+3002(RSSAF) 4050(RSSAF)  ***R N F***
+3002(RSSAF) 4067(RSSAF)  ***R N F***
+3002(RSSAF) 4274(RSSAF)  ***R N F***
+3002(RSSAF) 4275(RSSAF)  ***R N F***
+3002(RSSAF) 4277(RSSAF)  ***R N F***
+3002(RSSAF) 4278(RSSAF)  ***R N F***
+3002(RSSAF) 4283(RSSAF)  ***R N F***
+3002(RSSAF) 4284(RSSAF)  ***R N F***
+3003 3004(RSSAF)  ***R N F***
+3003 3006(RSSAF)  ***R N F***
+3003 3012(RSSAF)  ***R N F***
+3004(RSSAF) 3006(RSSAF)  ***R N F***
+3004(RSSAF) 3012(RSSAF)  ***R N F***
+3004(RSSAF) 3202(RSSAF)  ***R N F***
+3004(RSSAF) 3868(RSSAF)  ***R N F***
+3004(RSSAF) 4050(RSSAF)  ***R N F***
+3004(RSSAF) 4067(RSSAF)  ***R N F***
+3004(RSSAF) 4274(RSSAF)  ***R N F***
+3004(RSSAF) 4275(RSSAF)  ***R N F***
+3004(RSSAF) 4277(RSSAF)  ***R N F***
+3004(RSSAF) 4278(RSSAF)  ***R N F***
+3004(RSSAF) 4283(RSSAF)  ***R N F***
+3004(RSSAF) 4284(RSSAF)  ***R N F***
+3005 3006(RSSAF)  ***R N F***
+3005 3012(RSSAF)  ***R N F***
+3006(RSSAF) 3012(RSSAF)  ***R N F***
+3006(RSSAF) 3202(RSSAF)  ***R N F***
+3006(RSSAF) 3868(RSSAF)  ***R N F***
+3006(RSSAF) 4050(RSSAF)  ***R N F***
+3006(RSSAF) 4067(RSSAF)  ***R N F***
+3006(RSSAF) 4274(RSSAF)  ***R N F***
+3006(RSSAF) 4275(RSSAF)  ***R N F***
+3006(RSSAF) 4277(RSSAF)  ***R N F***
+3006(RSSAF) 4278(RSSAF)  ***R N F***
+3006(RSSAF) 4283(RSSAF)  ***R N F***
+3006(RSSAF) 4284(RSSAF)  ***R N F***
+3007 3012(RSSAF)  ***R N F***
+3012(RSSAF) 3202(RSSAF)  ***R N F***
+3012(RSSAF) 3868(RSSAF)  ***R N F***
+3012(RSSAF) 4050(RSSAF)  ***R N F***
+3012(RSSAF) 4067(RSSAF)  ***R N F***
+3012(RSSAF) 4274(RSSAF)  ***R N F***
+3012(RSSAF) 4275(RSSAF)  ***R N F***
+3012(RSSAF) 4277(RSSAF)  ***R N F***
+3012(RSSAF) 4278(RSSAF)  ***R N F***
+3012(RSSAF) 4283(RSSAF)  ***R N F***
+3012(RSSAF) 4284(RSSAF)  ***R N F***
+3202(RSSAF) 3868(RSSAF)  ***R N F***
+3202(RSSAF) 4050(RSSAF)  ***R N F***
+3202(RSSAF) 4067(RSSAF)  ***R N F***
+3202(RSSAF) 4274(RSSAF)  ***R N F***
+3202(RSSAF) 4275(RSSAF)  ***R N F***
+3202(RSSAF) 4277(RSSAF)  ***R N F***
+3202(RSSAF) 4278(RSSAF)  ***R N F***
+3202(RSSAF) 4283(RSSAF)  ***R N F***
+3202(RSSAF) 4284(RSSAF)  ***R N F***
+3868(RSSAF) 4050(RSSAF)  ***R N F***
+3868(RSSAF) 4067(RSSAF)  ***R N F***
+3868(RSSAF) 4274(RSSAF)  ***R N F***
+3868(RSSAF) 4275(RSSAF)  ***R N F***
+3868(RSSAF) 4277(RSSAF)  ***R N F***
+3868(RSSAF) 4278(RSSAF)  ***R N F***
+3868(RSSAF) 4283(RSSAF)  ***R N F***
+3868(RSSAF) 4284(RSSAF)  ***R N F***
+4050(RSSAF) 4067(RSSAF)  ***R N F***
+4050(RSSAF) 4274(RSSAF)  ***R N F***
+4050(RSSAF) 4275(RSSAF)  ***R N F***
+4050(RSSAF) 4277(RSSAF)  ***R N F***
+4050(RSSAF) 4278(RSSAF)  ***R N F***
+4050(RSSAF) 4283(RSSAF)  ***R N F***
+4050(RSSAF) 4284(RSSAF)  ***R N F***
+4066 4067(RSSAF)  ***R N F***
+4067(RSSAF) 4274(RSSAF)  ***R N F***
+4067(RSSAF) 4275(RSSAF)  ***R N F***
+4067(RSSAF) 4277(RSSAF)  ***R N F***
+4067(RSSAF) 4278(RSSAF)  ***R N F***
+4067(RSSAF) 4283(RSSAF)  ***R N F***
+4067(RSSAF) 4284(RSSAF)  ***R N F***
+4274(RSSAF) 4275(RSSAF)  ***R N F***
+4274(RSSAF) 4277(RSSAF)  ***R N F***
+4274(RSSAF) 4278(RSSAF)  ***R N F***
+4274(RSSAF) 4283(RSSAF)  ***R N F***
+4274(RSSAF) 4284(RSSAF)  ***R N F***
+4275(RSSAF) 4276  ***R N F***
+4275(RSSAF) 4277(RSSAF)  ***R N F***
+4275(RSSAF) 4278(RSSAF)  ***R N F***
+4275(RSSAF) 4284(RSSAF)  ***R N F***
+4276 4277(RSSAF)  ***R N F***
+4276 4278(RSSAF)  ***R N F***
+4276 4284(RSSAF)  ***R N F***
+4277(RSSAF) 4278(RSSAF)  ***R N F***
+4277(RSSAF) 4284(RSSAF)  ***R N F***
+4278(RSSAF) 4284(RSSAF)  ***R N F***
+4279 4284(RSSAF)  ***R N F***
+4282 4283(RSSAF)  ***R N F***
+
+
+
+Undetected DSA:
+Total execution time: 500.47 seconds.
+
+

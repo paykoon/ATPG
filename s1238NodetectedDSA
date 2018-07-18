@@ -1,0 +1,69 @@
+Undetected DSA:
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig
+when we dont include the double SSA that are both redundant. 
+in s1238, many of them will be activated.
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2866 faultID: 2866, GateID: 358, port: G5, stuckat: 0, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2883 faultID: 2883, GateID: 360, port: G11, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2891 faultID: 2891, GateID: 361, port: G4, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2907 faultID: 2907, GateID: 363, port: G3, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+2995 faultID: 2995, GateID: 374, port: n405, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig
+
+
+2874 faultID: 2874, GateID: 359, port: G4, stuckat: 0, gateType aig
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig
+
+
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig
+
+
+3435 faultID: 3435, GateID: 429, port: n135, stuckat: 1, gateType aig
+3443 faultID: 3443, GateID: 430, port: n97, stuckat: 1, gateType aig

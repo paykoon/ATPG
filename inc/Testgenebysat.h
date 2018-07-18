@@ -31,6 +31,7 @@ namespace TESTGENEBYSAT {
     // the gate changed due to the fault.
     // key : gateID in "oriAndFauCir", value is the gate in oriAndFauCir
     map<int, gate*> preGateInOriAndFauCir;
+    map<int, vector<uint64_t>> gateToRelatedGates;
     int faultsInsertedoriAndFauCir;
     int copyCount;
     vector<gate*>theCircuit;
@@ -44,20 +45,19 @@ namespace TESTGENEBYSAT {
       this->PISize = pCircuit->PISize;
       this->gateSize = pCircuit->gateSize;
       this->POSize = pCircuit->POSize;
+      this->gateToRelatedGates = pCircuit->gateToRelatedGates;
       this->copyCount = 1;
       initialize();
     }
 
-    ~testgenebysat() {
-
-    }
+    ~testgenebysat() {}
 
     void initialize() {
       cout << "----------Initialization of CNF formula----------" << endl;
       double startTime, endTime, preTime, curTime;
       preTime = clock();
-      generateOriAndFau(oriAndFauCir);
-      generateCNF(oriAndFauCir);
+      generateOriAndFau(oriAndFauCir, theCircuit);
+      generateCNF(oriAndFauCir, CNFOriAndFauCir);
       curTime = clock();
       cout << "----------Initialization of CNF formula takes Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds----------"  << endl;
     }
@@ -216,17 +216,17 @@ namespace TESTGENEBYSAT {
     // creat oriAndFauCir, which is used to generate the CNFFormula
     // oriAndFauCir: original circuit | faulty circuit | new input | new XOR | new output
     // connect the new input with the original and faulty circuits. Do the same things for XOR output.
-    void generateOriAndFau(vector<gate*> &oriAndFauCir) {
-      oriAndFauCir.reserve(theCircuit.size() * 3);
+    void generateOriAndFau(vector<gate*> &oriAndFauCir, vector<gate*> &curCircuit) {
+      oriAndFauCir.reserve(curCircuit.size() * 3);
       copyCircuit(oriAndFauCir);
       vector<gate*> temp;
       copyCircuit(temp);
       oriAndFauCir.insert(oriAndFauCir.end(), temp.begin(), temp.end());
-      int origialSize = theCircuit.size();
+      int origialSize = curCircuit.size();
       // generate new inputs, and connect them with the input wires of origianl and faulty circuits
       // change gate type(PI->buf)
       for (int i = 0; i < PISize; i++) {
-        string name = "newIN_"+theCircuit[i]->outName;
+        string name = "newIN_"+curCircuit[i]->outName;
         gate *newInput = new gate(PI, name);
         oriAndFauCir.push_back(newInput);
         gate *originalInput = oriAndFauCir[i];
@@ -246,7 +246,7 @@ namespace TESTGENEBYSAT {
         gate *originalOutput = oriAndFauCir[PISize+gateSize+i];
         gate *faultyOutput = oriAndFauCir[origialSize+PISize+gateSize+i];
         // fanin1 for original output, fanin2 for faulty output.
-        string oriOutName = theCircuit[PISize+gateSize+i]->outName;
+        string oriOutName = curCircuit[PISize+gateSize+i]->outName;
         string in1Name = originalOutput->outName, in2Name = faultyOutput->outName, outName = "XOR_"+oriOutName;
         string invIn1 = "1", invIn2 = "1", invOut = "1";
         gate *newXOR = new gate(XOR, in1Name, in2Name, outName, invIn1, invIn2, invOut);
@@ -277,7 +277,7 @@ namespace TESTGENEBYSAT {
     // at last insert the clause that (out1 + out2 + out3 + ..) ensure at least one of the output is SAT
     // CNF formula:
     // original circuit | faulty circuit | new input | new XOR | new output | an "OR" gate for all outputs
-    void generateCNF(vector <gate*> &curCircuit) {
+    void generateCNF(vector <gate*> &curCircuit, vector<vector<vector<int>>> &CNFOriAndFauCir) {
       CNFOriAndFauCir.reserve(curCircuit.size() * 3);
       vector<vector<int>> gateClause;
       vector<int> output;
@@ -312,32 +312,6 @@ namespace TESTGENEBYSAT {
       if (origialSize == 0) return 0;
       int preSize = origialSize + origialSize + PISize + POSize + POSize + 1;
       vector<vector<int>> gateClause;
-      gate *preFauGate;
-      gate *deletedGate;
-      // reset the circuit "oriAndFauCir" and "CNFOriAndFauCir"
-      for (map<int, gate*>::iterator iter = preGateInOriAndFauCir.begin(); iter != preGateInOriAndFauCir.end(); iter++) {
-        // bit index:     [ ,3]        [2  1]    0
-        //                gateID       port     stuckat
-        // port: 01 input1, 10 input2, 11 output
-        int fauGateID = iter->first;
-        preFauGate = iter->second;
-        preFauGate->copyGate(oriAndFauCir[fauGateID]);
-        gateClause.clear();
-        generateClause(gateClause, preFauGate);
-        // preFauGate->generateClause(gateClause);
-        delete preFauGate;
-        deletedGate = oriAndFauCir[oriAndFauCir.size() - 1];
-        delete deletedGate;
-        oriAndFauCir.pop_back();
-        CNFOriAndFauCir[fauGateID].clear();
-        CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
-      }
-      preGateInOriAndFauCir.clear();
-      while (faultsInsertedoriAndFauCir > 0) {
-        faultsInsertedoriAndFauCir--;
-        CNFOriAndFauCir.pop_back();  // delete the constant wire which put in last time
-      }
-
       // inject new faults
       for (int i = 0; i < newFaults.size(); i++) {
         int faultID = newFaults[i];
@@ -399,9 +373,42 @@ namespace TESTGENEBYSAT {
       return 1;
     }
 
+    int resetFaultsInCNF() {
+      int origialSize = theCircuit.size();
+      if (origialSize == 0) return 0;
+      gate *preFauGate;
+      gate *deletedGate;
+      vector<vector<int>> gateClause;
+      // reset the circuit "oriAndFauCir" and "CNFOriAndFauCir"
+      for (map<int, gate*>::iterator iter = preGateInOriAndFauCir.begin(); iter != preGateInOriAndFauCir.end(); iter++) {
+        // bit index:     [ ,3]        [2  1]    0
+        //                gateID       port     stuckat
+        // port: 01 input1, 10 input2, 11 output
+        int fauGateID = iter->first;
+        preFauGate = iter->second;
+        preFauGate->copyGate(oriAndFauCir[fauGateID]);
+        gateClause.clear();
+        generateClause(gateClause, preFauGate);
+        // preFauGate->generateClause(gateClause);
+        delete preFauGate;
+        deletedGate = oriAndFauCir[oriAndFauCir.size() - 1];
+        delete deletedGate;
+        oriAndFauCir.pop_back();
+        CNFOriAndFauCir[fauGateID].clear();
+        CNFOriAndFauCir[fauGateID].assign(gateClause.begin(), gateClause.end());
+      }
+      preGateInOriAndFauCir.clear();
+      while (faultsInsertedoriAndFauCir > 0) {
+        faultsInsertedoriAndFauCir--;
+        CNFOriAndFauCir.pop_back();  // delete the constant wire which put in last time
+      }
+      return 1;
+    }
+
     // return 1 if SAT. else UNSAT, which means redundant
     int generateTestBySAT(vector<int> &newFaults, vector<int> &testVector) {
       glucose *SATSolver = new glucose();
+      resetFaultsInCNF();
       injectFaultsInCNF(newFaults);
       int result = SATSolver->SATCircuit(CNFOriAndFauCir, testVector, theCircuit.size(), PISize);
       delete SATSolver;
@@ -409,6 +416,83 @@ namespace TESTGENEBYSAT {
     }
     //----------------------SAT Process---------------------------
 
+    /*
+    int faultIDToGateID(int faultID) {
+      return (faultID >> 3);
+    }
+
+    // get the related circuit; and all the PI ID in that part of circuit.
+    void getAllRelatedGates(vector<int> &faults, vector<gate*> &curCircuit, vector<int> &PIIDs) {
+      vector<uint64_t> relatedGates((theCircuit.size() - 1) / WSIZE + 1, 0);
+      for (auto faultID : faults) {
+        int gateID = faultIDToGateID(faultID);
+        for (int i = 0; i < relatedGates.size(); i++) {
+          relatedGates[i] |= gateToRelatedGates[gateID][i];
+        }
+      }
+      int w = 0;
+      int size = relatedGates.size();
+      gate *curGate;
+      while (w < size) {
+        while (w < size && relatedGates[w] == 0) w++;
+        if (w == size) break;
+        uint64_t val = relatedGates[w];
+        int gateID = w * WSIZE;
+        for (int i = 0; i < WSIZE; i++) {
+          if ((val & 1) == 1) {
+            curGate = theCircuit[gateID];
+            curCircuit.push_back(curGate);
+            if (curGate->gateType == PI) {
+              PIIDs.push_back(gateID);
+            }
+          }
+          val >>= 1;
+          gateID++;
+        }
+        w++;
+      }
+    }
+
+    void generateRelatedCNF(vector<int> &newFaults, vector<int> &curCircuit, vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &PIIDs, vector<gate*> &oriAndFauCir) {
+      getAllRelatedGates(newFaults, curCircuit, PIIDs);
+      generateOriAndFau(oriAndFauCir, curCircuit);
+      generateCNF(curCircuit, CNFOriAndFauCir);
+      // inject the fault to cnf
+
+    }
+
+    // testVectorTmp contains the test for the related Circuit's input, we need to add the dont care values.
+    void getCompletedTestVector(vector<int> &PIIDs, vector<int> &testVectorTmp, vector<int> &testVector) {
+      int PIIDCount = 0;
+      for (int i = 0; i < PISize; i++) {
+        if (PIIDCount < PIIDs.size() && PIIDs[PIIDCount] == i) {
+          testVector.push_back(testVectorTmp[PIIDCount]);
+          PIIDCount++;
+        } else {
+          testVector.push_back(0);  // the PI that we dont care.
+        }
+      }
+    }
+
+    int generateTestBySAT_1(vector<int> &newFaults, vector<int> &testVector) {
+      vector<int> curCircuit;
+      vector<int> PIIDs;
+      vector<gate*> oriAndFauCir;
+      vector<vector<vector<int>>> CNFOriAndFauCir;
+      vector<int> testVectorTmp;
+      generateRelatedCNF(newFaults, curCircuit, CNFOriAndFauCir, PIIDs, oriAndFauCir);
+      glucose *SATSolver = new glucose();
+      int result = SATSolver->SATCircuit(CNFOriAndFauCir, testVectorTmp, curCircuit.size(), PIIDs.size());
+      if (result == 1) {
+        getCompletedTestVector(PIIDs, testVectorTmp, testVector);
+      }
+      for (auto curGate : oriAndFauCir) {
+        delete curGate;
+      }
+      delete SATSolver;
+      return result;
+    }
+    */
     void printFault(int ID) {
       int faultID = ID;                         cout << "faultID: " << faultID;
       int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;

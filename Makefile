@@ -1,5 +1,5 @@
 compiler = g++
-bin = ATPG1
+bin = ATPG3
 src = $(shell find ./src -name "*.cpp")
 obj = $(src:%.c=%.o)
 inc = -Iinc -Iglucose -Iglucose/utils -Iglucose/core -Iglucose/simp

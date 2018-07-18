@@ -1,7 +1,6 @@
 #include "Circuit.h"
 #include "Gate.h"
 #include "ATPG.h"
-#include "MSATest.h"
 #include "glucose.h"
 #include "Testgenebysat.h"
 #include "time.h"
@@ -17,7 +16,6 @@ using namespace std;
 using namespace Circuit;
 using namespace Glucose;
 using namespace ATPG;
-using namespace MSATEST;
 
 int main(int argc, char **argv){
   if(argc < 3){

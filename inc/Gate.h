@@ -100,19 +100,6 @@ namespace Gate {
         return outValue;
       }
 
-      // given the input value, get the output value of current gate.
-      uint64_t getOutValue_64(uint64_t in1_64, uint64_t in2_64){
-        uint64_t outValue_64 = 0;
-        if (gateType == PO) {
-          outValue_64 = in1_64;
-        } else if (gateType == bufInv){
-          outValue_64 = ~( ~(in1_64 ^ invIn1_64) ^ invOut_64);
-        } else if (gateType == aig){
-          outValue_64 = ~( ( ~(in1_64 ^ invIn1_64) & ~(in2_64 ^ invIn2_64) ) ^ invOut_64);
-        }
-        return outValue_64;
-      }
-
       void setPI(bool inValues){
         if (gateType == PI) {
           outValue = inValues;
@@ -136,14 +123,26 @@ namespace Gate {
         }
       }
 
-      void setOut_64(){
+      // max means the actual bit length. it may be smaller than 64.
+      // should not change the value of constant.
+      void setOut_64(uint64_t bitMax){
         if (gateType == PO) {
-          outValue_64 = fanin1->outValue_64;
+          outValue_64 = fanin1->outValue_64 & bitMax;
         } else if (gateType == bufInv){
-          outValue_64 = ~( ~(fanin1->outValue_64 ^ invIn1_64) ^ invOut_64);
+          outValue_64 = ~( ~(fanin1->outValue_64 ^ invIn1_64) ^ invOut_64) & bitMax;
         } else if (gateType == aig){
-          outValue_64 = ~( ( ~(fanin1->outValue_64 ^ invIn1_64) & ~(fanin2->outValue_64 ^ invIn2_64) ) ^ invOut_64);
+          outValue_64 = ~( ( ~(fanin1->outValue_64 ^ invIn1_64) & ~(fanin2->outValue_64 ^ invIn2_64) ) ^ invOut_64) & bitMax;
         }
+      }
+
+      void changeOutputStuckat(gate *fanin1) {
+        this->gateType = bufInv;
+        this->fanin1 = fanin1;
+        this->in1Name = fanin1->outName;
+        this->invIn1 = 1;
+        this->invOut = 1;
+        this->invIn1_64 = one_64;
+        this->invOut_64 = one_64;
       }
 
       void setID(int gateID){
