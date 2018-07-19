@@ -1,0 +1,8 @@
+
+----------Initialization of circuit----------
+1. Blif parsing is started. 
+   Blif parsing is completed. Time: 0.067288 seconds.
+   The number of gates in the circuit is 16009
+2. Gate connecting is started.
+   Time: 0.032048 seconds.
+3. Pair each gate with it's related gates.

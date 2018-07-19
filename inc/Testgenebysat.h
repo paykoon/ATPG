@@ -38,6 +38,7 @@ namespace TESTGENEBYSAT {
     int PISize;
     int gateSize;
     int POSize;
+    static const int WSIZE = 64;
 
     testgenebysat(circuit *pCircuit) {
       this->theCircuit = pCircuit->theCircuit;
@@ -222,7 +223,7 @@ namespace TESTGENEBYSAT {
       vector<gate*> temp;
       copyCircuit(temp);
       oriAndFauCir.insert(oriAndFauCir.end(), temp.begin(), temp.end());
-      int origialSize = curCircuit.size();
+      int originalSize = curCircuit.size();
       // generate new inputs, and connect them with the input wires of origianl and faulty circuits
       // change gate type(PI->buf)
       for (int i = 0; i < PISize; i++) {
@@ -230,7 +231,7 @@ namespace TESTGENEBYSAT {
         gate *newInput = new gate(PI, name);
         oriAndFauCir.push_back(newInput);
         gate *originalInput = oriAndFauCir[i];
-        gate *faultyInput = oriAndFauCir[i+origialSize];
+        gate *faultyInput = oriAndFauCir[i+originalSize];
         newInput->fanout.push_back(originalInput);
         newInput->fanout.push_back(faultyInput);
         faultyInput->fanin1 = newInput;
@@ -244,7 +245,7 @@ namespace TESTGENEBYSAT {
       vector<gate*> finalOutput;
       for (int i = 0; i < POSize; i++) {
         gate *originalOutput = oriAndFauCir[PISize+gateSize+i];
-        gate *faultyOutput = oriAndFauCir[origialSize+PISize+gateSize+i];
+        gate *faultyOutput = oriAndFauCir[originalSize+PISize+gateSize+i];
         // fanin1 for original output, fanin2 for faulty output.
         string oriOutName = curCircuit[PISize+gateSize+i]->outName;
         string in1Name = originalOutput->outName, in2Name = faultyOutput->outName, outName = "XOR_"+oriOutName;
@@ -308,15 +309,15 @@ namespace TESTGENEBYSAT {
     // creat oriAndFauCir, which is used to generate the CNFFormula
     // oriAndFauCir: original circuit | faulty circuit | new input | new XOR | new output | a blank gate
     int injectFaultsInCNF(vector<int> &newFaults) {
-      int origialSize = theCircuit.size();
-      if (origialSize == 0) return 0;
-      int preSize = origialSize + origialSize + PISize + POSize + POSize + 1;
+      int originalSize = theCircuit.size();
+      if (originalSize == 0) return 0;
+      int preSize = originalSize + originalSize + PISize + POSize + POSize + 1;
       vector<vector<int>> gateClause;
       // inject new faults
       for (int i = 0; i < newFaults.size(); i++) {
         int faultID = newFaults[i];
         int oriGateID = (faultID >> 3);
-        int fauGateID = oriGateID + origialSize;
+        int fauGateID = oriGateID + originalSize;
         int port = (faultID >> 1) & 3;
         int stuckat = faultID & 1;
         int gateType = theCircuit[oriGateID]->gateType;
@@ -374,8 +375,8 @@ namespace TESTGENEBYSAT {
     }
 
     int resetFaultsInCNF() {
-      int origialSize = theCircuit.size();
-      if (origialSize == 0) return 0;
+      int originalSize = theCircuit.size();
+      if (originalSize == 0) return 0;
       gate *preFauGate;
       gate *deletedGate;
       vector<vector<int>> gateClause;
@@ -416,14 +417,19 @@ namespace TESTGENEBYSAT {
     }
     //----------------------SAT Process---------------------------
 
-    /*
     int faultIDToGateID(int faultID) {
       return (faultID >> 3);
     }
 
+    int isSet(int pos, vector<uint64_t> &vec) {
+      int w = pos / WSIZE;
+      int b = pos % WSIZE;
+      uint64_t val = (vec[w] >> b);
+      return (val & 1ULL) > 0 ? 1 : 0;
+    }
+
     // get the related circuit; and all the PI ID in that part of circuit.
-    void getAllRelatedGates(vector<int> &faults, vector<gate*> &curCircuit, vector<int> &PIIDs) {
-      vector<uint64_t> relatedGates((theCircuit.size() - 1) / WSIZE + 1, 0);
+    void getAllRelatedGates(vector<int> &faults, vector<gate*> &curCircuit, vector<int> &PIIDs, vector<int> &gatePOSize, map<int,int> &oriCirIDToCur, vector<uint64_t> &relatedGates) {
       for (auto faultID : faults) {
         int gateID = faultIDToGateID(faultID);
         for (int i = 0; i < relatedGates.size(); i++) {
@@ -433,6 +439,7 @@ namespace TESTGENEBYSAT {
       int w = 0;
       int size = relatedGates.size();
       gate *curGate;
+      int curID = 0;
       while (w < size) {
         while (w < size && relatedGates[w] == 0) w++;
         if (w == size) break;
@@ -442,8 +449,14 @@ namespace TESTGENEBYSAT {
           if ((val & 1) == 1) {
             curGate = theCircuit[gateID];
             curCircuit.push_back(curGate);
+            oriCirIDToCur.insert(make_pair(gateID, curID));
+            curID++;
             if (curGate->gateType == PI) {
               PIIDs.push_back(gateID);
+            } else if (curGate->gateType == PO) {
+              gatePOSize[1]++;
+            } else {
+              gatePOSize[0]++;
             }
           }
           val >>= 1;
@@ -453,12 +466,188 @@ namespace TESTGENEBYSAT {
       }
     }
 
-    void generateRelatedCNF(vector<int> &newFaults, vector<int> &curCircuit, vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &PIIDs, vector<gate*> &oriAndFauCir) {
-      getAllRelatedGates(newFaults, curCircuit, PIIDs);
-      generateOriAndFau(oriAndFauCir, curCircuit);
-      generateCNF(curCircuit, CNFOriAndFauCir);
-      // inject the fault to cnf
+    void copyCircuit_1(vector <gate*> &copy, vector<gate*> &curCircuit, map<int, int> &oriCirIDToCur, int copyCount, vector<uint64_t> &relatedGates) {
+      for (int i = 0; i < curCircuit.size(); i++) {
+        // new a gate, then change its information
+        gate *newGate = new gate();
+        newGate->gateType = curCircuit[i]->gateType;
+        newGate->in1Name = curCircuit[i]->in1Name + "_" + to_string(copyCount);
+        newGate->in2Name = curCircuit[i]->in2Name + "_" + to_string(copyCount);
+        newGate->outName = curCircuit[i]->outName + "_" + to_string(copyCount);
+        newGate->invIn1 = curCircuit[i]->invIn1;
+        newGate->invIn2 = curCircuit[i]->invIn2;
+        newGate->invOut = curCircuit[i]->invOut;
+        newGate->isPath = curCircuit[i]->isPath;
+        newGate->gateID = curCircuit[i]->gateID;
+        newGate->outValue = curCircuit[i]->outValue;
+        newGate->gateID = i;
+        copy.push_back(newGate);
+      }
+      gate *curGate;
+      for (int i = 0; i < curCircuit.size(); i++) {
+        curGate = curCircuit[i];
+        // PI and constant have no fanin
+        if (curGate->gateType != PI && curGate->gateType != constant) {
+          int fanin1ID = oriCirIDToCur[curGate->fanin1->gateID];
+          copy[i]->fanin1 = copy[fanin1ID];
+        }
+        if (curGate->gateType == aig || curGate->gateType == OR || curGate->gateType == XOR) {
+          int fanin2ID = oriCirIDToCur[curGate->fanin2->gateID];
+          copy[i]->fanin2 = copy[fanin2ID];
+        }
+        // PO doesnt have fanout
+        if (curGate->gateType != PO) {
+          for (int j = 0; j < curGate->fanout.size(); j++) {
+            int fanoutID = curGate->fanout[j]->gateID;
+            if (isSet(fanoutID, relatedGates) == 1) {
+              fanoutID = oriCirIDToCur[fanoutID];
+              copy[i]->fanout.push_back(copy[fanoutID]);
+            }
+          }
+        }
+      }
+    }
 
+    // oriAndFauCir: original circuit | faulty circuit | new input | new XOR | new output
+    void generateOriAndFau_1(vector<gate*> &oriAndFauCir, vector<gate*> &curCircuit, int PISize, int gateSize, int POSize, map<int, int> &oriCirIDToCur, vector<uint64_t> &relatedGates) {
+      oriAndFauCir.reserve(curCircuit.size() * 3);
+      copyCircuit_1(oriAndFauCir, curCircuit, oriCirIDToCur, 1, relatedGates);
+      vector<gate*> temp;
+      temp.reserve(curCircuit.size());
+      copyCircuit_1(temp, curCircuit, oriCirIDToCur, 2, relatedGates);
+      oriAndFauCir.insert(oriAndFauCir.end(), temp.begin(), temp.end());
+      int originalSize = curCircuit.size();
+      // generate new inputs, and connect them with the input wires of origianl and faulty circuits
+      // change gate type(PI->buf)
+      for (int i = 0; i < PISize; i++) {
+        string name = "newIN_" + curCircuit[i]->outName;
+        gate *newInput = new gate(PI, name);
+        oriAndFauCir.push_back(newInput);
+        gate *originalInput = oriAndFauCir[i];
+        gate *faultyInput = oriAndFauCir[i + originalSize];
+        newInput->fanout.push_back(originalInput);
+        newInput->fanout.push_back(faultyInput);
+        faultyInput->fanin1 = newInput;
+        faultyInput->gateType = bufInv;
+        faultyInput->in1Name = newInput->outName;
+        originalInput->fanin1 = newInput;
+        originalInput->gateType = bufInv;
+        originalInput->in1Name = newInput->outName;
+      }
+      // generate the XOR gates, change the gate type of original PO to buf;
+      vector<gate*> finalOutput;
+      for (int i = 0; i < POSize; i++) {
+        gate *originalOutput = oriAndFauCir[PISize+gateSize+i];
+        gate *faultyOutput = oriAndFauCir[originalSize+PISize+gateSize+i];
+        // fanin1 for original output, fanin2 for faulty output.
+        string oriOutName = curCircuit[PISize+gateSize+i]->outName;
+        string in1Name = originalOutput->outName, in2Name = faultyOutput->outName, outName = "XOR_"+oriOutName;
+        string invIn1 = "1", invIn2 = "1", invOut = "1";
+        gate *newXOR = new gate(XOR, in1Name, in2Name, outName, invIn1, invIn2, invOut);
+        oriAndFauCir.push_back(newXOR);
+        originalOutput->fanout.push_back(newXOR);
+        originalOutput->gateType = bufInv;
+        faultyOutput->fanout.push_back(newXOR);
+        faultyOutput->gateType = bufInv;
+        newXOR->fanin1 = originalOutput;
+        newXOR->fanin2 = faultyOutput;
+        //connect all XOR with output wires
+        string name = "newOut_"+oriOutName;
+        gate *newOutput = new gate(PO, name);
+        newOutput->in1Name = newXOR->outName;
+        finalOutput.push_back(newOutput);
+        newOutput->fanin1 = newXOR;
+        newXOR->fanout.push_back(newOutput);
+      }
+      oriAndFauCir.insert(oriAndFauCir.end(), finalOutput.begin(), finalOutput.end());
+      // re-assign the gateID
+      for (int i = 0; i < oriAndFauCir.size(); i++) {
+        oriAndFauCir[i]->gateID = i;
+      }
+    }
+
+    // oriAndFauCir: original circuit | faulty circuit | new input | new XOR | new output | stuck at values.
+    int injectFaultsInOriAndFau_1(vector<int> &newFaults, vector<gate*> &curCircuit, vector<gate*> &oriAndFauCir, int PISize, int POSize, map<int,int> &oriCirIDToCur) {
+      int originalSize = curCircuit.size();
+      if (originalSize == 0) return 0;
+      int preSize = originalSize + originalSize + PISize + POSize + POSize + 1;
+      vector<vector<int>> gateClause;
+      // inject new faults
+      for (int i = 0; i < newFaults.size(); i++) {
+        int faultID = newFaults[i];
+        int oriGateID = oriCirIDToCur[(faultID >> 3)];
+        int fauGateID = oriGateID + originalSize;
+        int port = (faultID >> 1) & 3;
+        int stuckat = faultID & 1;
+        int gateType = curCircuit[oriGateID]->gateType;
+        gate *faultGate = oriAndFauCir[fauGateID];
+        if ((faultGate->gateType != aig && faultGate->gateType != OR && faultGate->gateType != XOR) || port == 0){
+          if (port == 2 || port == 0) {
+            cout << "Skip this fault since it has problem." << endl;
+            printFault(faultID);
+            continue;
+          }
+        }
+        // contant wire connected to the stuckat inputs
+        // name by stuckat+faultID
+        string name = "stuck-at"+to_string(stuckat);
+        string stuckatStr = to_string(stuckat);
+        gate *stuckatCons = new gate(name, stuckatStr);
+        stuckatCons->gateID = preSize + i;
+        oriAndFauCir.push_back(stuckatCons);
+        if (port != 3) {  // input wire
+          if (gateType == PI || gateType == constant) {
+            faultGate->gateType = bufInv;
+          }
+          if (port == 1) { // input1
+            faultGate->fanin1 = stuckatCons;
+            faultGate->in1Name = stuckatCons->outName;
+          } else {         // input2
+            faultGate->fanin2 = stuckatCons;
+            faultGate->in2Name = stuckatCons->outName;
+          }
+        } else {  // output wire. change the gate to bufinv, whose input connect to stuck at constant wire.
+          faultGate->gateType = bufInv;
+          faultGate->fanin1 = stuckatCons;
+          faultGate->in1Name = stuckatCons->outName;
+          faultGate->invIn1 = 1;
+          faultGate->invOut = 1;
+        }
+      }
+      return 1;
+    }
+
+    // CNF:          original circuit | faulty circuit | new input | new XOR | new output | stuck at values | an "OR" gate for all outputs
+    void generateCNF_1(vector <gate*> &oriAndFauCir, vector<vector<vector<int>>> &CNFOriAndFauCir) {
+      CNFOriAndFauCir.reserve(oriAndFauCir.size() + 10);
+      vector<vector<int>> gateClause;
+      vector<int> output;
+      for (int i = 0; i < oriAndFauCir.size(); i++) {
+        gate *curGate = oriAndFauCir[i];
+        generateClause(gateClause, curGate);
+        CNFOriAndFauCir.push_back(gateClause);
+        if (curGate->gateType == PO) {
+          output.push_back(i + 1);
+        }
+        gateClause.clear();
+      }
+      // insert the clause : (out1 + out2 + out3 + ..)
+      gateClause.clear();
+      gateClause.push_back(output);
+      CNFOriAndFauCir.push_back(gateClause);
+    }
+
+    void generateRelatedCNF(vector<int> &newFaults, vector<gate*> &curCircuit, vector<vector<vector<int>>> &CNFOriAndFauCir, vector<int> &PIIDs, vector<gate*> &oriAndFauCir) {
+      map<int, int> oriCirIDToCur;
+      vector<int> gatePOSize;
+      vector<uint64_t> relatedGates((theCircuit.size() - 1) / WSIZE + 1, 0);
+      gatePOSize.push_back(0); gatePOSize.push_back(0);
+      getAllRelatedGates(newFaults, curCircuit, PIIDs, gatePOSize, oriCirIDToCur, relatedGates);
+      int gateSize = gatePOSize[0];
+      int POSize = gatePOSize[1];
+      generateOriAndFau_1(oriAndFauCir, curCircuit, PIIDs.size(), gateSize, POSize, oriCirIDToCur, relatedGates);
+      injectFaultsInOriAndFau_1(newFaults, curCircuit, oriAndFauCir, PIIDs.size(), POSize, oriCirIDToCur);
+      generateCNF_1(oriAndFauCir, CNFOriAndFauCir);
     }
 
     // testVectorTmp contains the test for the related Circuit's input, we need to add the dont care values.
@@ -475,7 +664,7 @@ namespace TESTGENEBYSAT {
     }
 
     int generateTestBySAT_1(vector<int> &newFaults, vector<int> &testVector) {
-      vector<int> curCircuit;
+      vector<gate*> curCircuit;
       vector<int> PIIDs;
       vector<gate*> oriAndFauCir;
       vector<vector<vector<int>>> CNFOriAndFauCir;
@@ -492,11 +681,28 @@ namespace TESTGENEBYSAT {
       delete SATSolver;
       return result;
     }
-    */
+
     void printFault(int ID) {
       int faultID = ID;                         cout << "faultID: " << faultID;
       int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;
       int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << fauGateID;
+      int port = (faultID >> 1) & 3;           cout << ", port: ";
+      if (port < 3) {
+        cout << "input" << port;
+      }
+      else {
+        cout << "output";
+      }
+      int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
+      cout << ", gateType ";
+      printGateType(theCircuit[oriGateID]->gateType);
+      cout << endl;
+    }
+
+    void printFault(int ID, map<int,int> &oriCirIDToCur) {
+      int faultID = ID;                         cout << "faultID: " << faultID;
+      int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriCirIDToCur[oriGateID];
+      int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << oriCirIDToCur[fauGateID];
       int port = (faultID >> 1) & 3;           cout << ", port: ";
       if (port < 3) {
         cout << "input" << port;
@@ -560,36 +766,6 @@ namespace TESTGENEBYSAT {
     void printCircuit(vector <gate*> &curCircuit) {
       for (int i = 0; i < curCircuit.size(); i++) {
         cout << curCircuit[i]->gateID << " ";
-        /*
-        if (curCircuit[i]->gateType == null) {
-          cout << "Big OR gate";
-        } else if (curCircuit[i]->gateType == constant) {
-          cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") " <<  curCircuit[i]->outValue;
-        } else if (curCircuit[i]->gateType == PI) {
-          cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
-        } else {
-          cout << curCircuit[i]->fanin1->outName << "(" << curCircuit[i]->fanin1->gateID << ") ";
-          if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
-            cout << curCircuit[i]->fanin2->outName << "(" << curCircuit[i]->fanin2->gateID << ") ";
-          }
-          cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
-        }
-        */
-        /*
-        if (curCircuit[i]->gateType == null) {
-          cout << "Big OR gate";
-        } else if (curCircuit[i]->gateType == constant) {
-          cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << " " << curCircuit[i]->invOut << ") " <<  curCircuit[i]->outValue;
-        } else if (curCircuit[i]->gateType == PI) {
-          cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
-        } else {
-          cout << curCircuit[i]->fanin1->outName << "(" << curCircuit[i]->fanin1->gateID << " " << curCircuit[i]->invIn1 << ") ";
-          if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
-            cout << curCircuit[i]->fanin2->outName << "(" << curCircuit[i]->fanin2->gateID << " " << curCircuit[i]->invIn2 << ") ";
-          }
-          cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << " " << curCircuit[i]->invOut <<  ") ";
-        }
-        */
         if (curCircuit[i]->gateType == null) {
           cout << "Big OR gate";
         } else if (curCircuit[i]->gateType == constant) {
@@ -605,19 +781,6 @@ namespace TESTGENEBYSAT {
         }
         // constant, bufInv, aig, PO, PI, OR, XOR
         cout << " "; printGateType(curCircuit[i]->gateType);
-        /*
-        if (curCircuit[i]->isPath) {
-          cout << " faultyGate  ";
-        } else {
-          cout << " NormalGate  ";
-        }
-        if (curCircuit[i]->visited) {
-          cout << " visited";
-        } else {
-          cout << " unvisited";
-        }
-        cout << " outValue: " << curCircuit[i]->outValue;
-        */
         cout << " diff" << curCircuit[i]->different;
         cout << endl;
       }

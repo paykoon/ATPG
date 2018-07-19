@@ -299,4 +299,4 @@ bit operation may work fo:DONe!!
 next step!
 1. 64 patterns processed one times
 2. the SAT only process the corresponding circuits.
-3. the bit operation of the circuit still can be optimized ?????? try
+3. the bit operation of the circuit still can be optimized ?????? try.

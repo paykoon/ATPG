@@ -138,6 +138,7 @@ namespace ATPG{
         cout << "   redundantDSAF size: " << redundantDSAF.size() << ", " << (double)redundantDSAF.size()/undetectedDSA.size() << " among all undetected DSA"<< endl;
         cout << "----------Additional test patterns generation takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------\n\n" << endl;
 
+
         /*
         for (auto iter : SSAFToPatterns) {
           cout << "fault: " << iter.first << endl;
@@ -256,10 +257,7 @@ namespace ATPG{
           newFaults.push_back(faultID);
           int patternIdx = checkallPatterns(newFaults, SSAFPatterns);
           if (patternIdx >= 0) {
-            if (collapsedSSAFList.find(faultID) != collapsedSSAFList.end()) {
-	      SSAFToPatterns.insert(make_pair(faultID, SSAFPatterns[patternIdx]));
-	    }
-            //SSAFToPatterns.insert(make_pair(faultID, SSAFPatterns[patternIdx]));
+            SSAFToPatterns.insert(make_pair(faultID, SSAFPatterns[patternIdx]));
             checked.insert(faultID);
           }
         }
@@ -1094,7 +1092,7 @@ namespace ATPG{
           if(checkallPatterns(curFault, DSAFPatterns) >= 0) continue;
           // if it cannot be detected, then generate test by SAT
           testVector.clear();
-          if (testBySAT->generateTestBySAT(curFault, testVector) == 1) {
+          if (testBySAT->generateTestBySAT_1(curFault, testVector) == 1) {
             DSAFPatterns.push_back(testVector);
             DSANeedNewPattern.insert(DSA);
           } else {
