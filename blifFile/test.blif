@@ -1,0 +1,7 @@
+# Benchmark "../DATA/s27" written by ABC on Thu Jul 14 15:54:20 2016
+.model ../DATA/s27
+.inputs a b
+.outputs c
+.names a b c
+11 1
+.end

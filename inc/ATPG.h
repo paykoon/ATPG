@@ -100,6 +100,7 @@ namespace ATPG{
           cout << "   Pattern file has problem"<< endl;
           return 0;
         }
+
         cout << "   Build the connection between SSAF and the initial test set." << endl;
         cout << "   (We just assume that the initial test patterns can cover all SSAF)" << endl;
         pairSSAPatternWithSSAF(allSSAFList, collapsedSSAFList, redundantSSAF, SSAFPatterns);
@@ -191,7 +192,7 @@ namespace ATPG{
         cout << "\n\n\n******Analyzation(not picked by out method)********" << endl;
         analyzeIgnoredUndetected(undetectedDSAbySSAPT_Simulte, undetectedDSA);
         */
-        /*
+
         set<set<int>> undetectedDSAbyDSAPT;
         vector<vector<int>> testVectors;
         testVectors.assign(SSAFPatterns.begin(), SSAFPatterns.end());
@@ -954,6 +955,7 @@ namespace ATPG{
         }
         // add the double faults that are both redundant to the list.
         // only add two faults that are mutually in the related gates.
+        /*
         vector<int> vec;
         for (auto faultID : redundantSSAF) {
           vec.push_back(faultID);
@@ -973,6 +975,7 @@ namespace ATPG{
             }
           }
         }
+        */
       }
 
       //***********************************
@@ -1045,20 +1048,6 @@ namespace ATPG{
           for (auto faultID : DSA) {
             newFaults.push_back(faultID);
           }
-          /*
-          bool isDetected = false;
-          for (auto testVector: SSAFPatterns) {
-            if (findSSAFsBlocked(newFaults, testVector, empty, empty, empty, 0) == 1) {
-              isDetected = true;
-              break;
-            }
-          }
-          if (isDetected == false) {
-            temp.clear();
-            temp.insert(DSA.begin(), DSA.end());
-            finalUndetected.insert(temp);
-          }
-          */
           if(checkallPatterns(newFaults, SSAFPatterns) < 0) {
             temp.clear();
             temp.insert(DSA.begin(), DSA.end());
@@ -1199,40 +1188,23 @@ namespace ATPG{
                   curFault.clear();
                   curFault.push_back(list[i]);
                   curFault.push_back(list[j]);
-                  bool successFlag = false;
-                  for (auto testVector : testVectors) {
-                    if (findSSAFsBlocked(curFault, testVector, empty, empty, empty, 0) == 1) {
-                      successFlag = true;
-                      break;
-                    }
-                  }
-                  if (successFlag == false) {
+                  if(checkallPatterns(curFault, testVectors) < 0) {
                     set<int> temp;
                     for (auto fault : curFault) temp.insert(fault);
                     DSAtmp.insert(temp);
                   }
               }
           }
-          cout << "\n\n\n\n\nthe ignoredFaults by the given DSA test(check by circuitSimulation)" << endl;
           int DSARedundantNumber = 0;
+
           for (auto faultSet : DSAtmp) {
-            for (auto fault : faultSet) {
-              cout << fault;
-              if (redundantSSAF.find(fault) != redundantSSAF.end()) {
-                cout << "(RSSAF)";
-              }
-              cout << " ";
-            }
             vector<int> pattern;
             vector<int> inputFault;
             inputFault.assign(faultSet.begin(), faultSet.end());
-            if (testBySAT->generateTestBySAT(inputFault, pattern) == 0) {
-              cout << " ***R N F***";
-              DSARedundantNumber++;
+            if (testBySAT->generateTestBySAT_1(inputFault, pattern) == 0) {
             } else {
               undetectedDSAbyDSAPT.insert(faultSet);
             }
-            cout << endl;
           }
       }
 
@@ -1352,6 +1324,12 @@ namespace ATPG{
           for (auto faultID : DSA) {
             cout << faultID << " ";
             printFault2(faultID);
+            vector<int> curFault;
+            curFault.push_back(faultID);
+            vector<int> pattern;
+            if (testBySAT->generateTestBySAT_1(curFault, pattern) == 0) {
+              cout << "******Redundant SSAF******";
+            }
           }
           cout << "\n\n";
         }

@@ -188,8 +188,10 @@ lbool SimpSolver::solve_(bool do_simp, bool turn_off_simp)
 
     if (result == l_True)
         result = Solver::solve_();
-    else if (verbosity >= 1)
-    //    printf("===============================================================================\n");
+    else if (verbosity >= 1) {
+      //  printf("===============================================================================\n");
+    }
+
 
     if (result == l_True)
         extendModel();
