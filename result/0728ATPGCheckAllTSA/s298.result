@@ -1,0 +1,48 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 145
+   Pair each gate with it's related gates.
+   Time: 0.00506 seconds.
+----------Time 0.008373 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.002007 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 254 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 784, 32.398% fault are selected by the fault model
+   Time: 0.007486 seconds.
+2. Read initial SSAF test patterns.
+   28 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 0
+   Time: 0.040914 seconds.
+----------Time: 0.048419 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.019812 seconds.
+2. Compress undetected DSA Faults.
+   Undetected DSA number (without compressing): 2
+   Undetected DSA number (after compressing): 0, Compressing ratio: 0
+   Time: 0.006309 seconds.
+----------Time: 0.026138 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 0
+   additional Test Pattern size: 0, 0 comparing with SSAF Patterns
+   redundantDSAF size: 0, -nan among all undetected DSA
+----------Time: 3e-06 seconds----------
+
+
+undetected TSA number: 0
+Total execution time: 1247.81 seconds.
+
+

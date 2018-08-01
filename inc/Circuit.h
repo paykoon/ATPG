@@ -44,27 +44,16 @@ namespace Circuit {
         startTime = clock();
         preTime = clock();
         cout << endl << "----------Initialization of circuit----------" << endl;
-
-        cout << "1. Blif parsing is started. " << endl;
         if ( !blifParser(blifFile) )  exit(1);
-        curTime = clock();
-        cout << "   Blif parsing is completed. Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         cout << "   The number of gates in the circuit is " << theCircuit.size() << endl;
-
-        cout << "2. Gate connecting is started." << endl;
-        preTime = clock();
         if ( !connectGates() )  return;
-        curTime = clock();
-        cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
-
-        cout << "3. Pair each gate with it's related gates." << endl;
+        cout << "   Pair each gate with it's related gates." << endl;
         preTime = clock();
         pairGateWithRelatedGates();
         curTime = clock();
         cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
-
         endTime = clock();
-        cout << "----------The initialization of the Circuit takes " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
+        cout << "----------Time " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
       }
 
     private:

@@ -1,0 +1,5226 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 597
+   Pair each gate with it's related gates.
+   Time: 0.169433 seconds.
+----------Time 0.178041 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.00639 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 1348 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 3452, 39.0498% fault are selected by the fault model
+   Time: 0.007134 seconds.
+2. Read initial SSAF test patterns.
+   130 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 84
+   Time: 0.202489 seconds.
+----------Time: 0.209637 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.214962 seconds.
+2. Compress undetected DSA Faults.
+   Undetected DSA number (without compressing): 700
+   Undetected DSA number (after compressing): 384, Compressing ratio: 0.548571
+   Time: 0.168325 seconds.
+----------Time: 0.383302 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 11
+   additional Test Pattern size: 11, 0.0846154 comparing with SSAF Patterns
+   redundantDSAF size: 2213, 5.76302 among all undetected DSA
+----------Time: 3.65459 seconds----------
+
+
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+418 2506 
+******Redundant DSAF******
+418 3050 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 2915 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 2947 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 2955 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 3411 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 3427 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 3429 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 3431 
+******Redundant DSAF******
+418 faultID: 418, GateID: 52, port: G10, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+418 2836 
+******Redundant DSAF******
+418 3437 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+419 2506 
+******Redundant DSAF******
+419 3050 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 2915 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 2947 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 2955 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 3411 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 3427 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 3429 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 3431 
+******Redundant DSAF******
+419 faultID: 419, GateID: 52, port: G10, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+419 2836 
+******Redundant DSAF******
+419 3437 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+420 2506 
+******Redundant DSAF******
+420 3050 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 2915 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 2947 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 2955 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 3411 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 3427 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 3429 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 3431 
+******Redundant DSAF******
+420 faultID: 420, GateID: 52, port: n80, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+420 2836 
+******Redundant DSAF******
+420 3437 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+422 2506 
+******Redundant DSAF******
+422 3050 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 2915 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 2947 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 2955 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 3411 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 3427 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 3429 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 3431 
+******Redundant DSAF******
+422 faultID: 422, GateID: 52, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+422 2836 
+******Redundant DSAF******
+422 3437 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+428 2506 
+******Redundant DSAF******
+428 3050 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 2915 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 2947 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 2955 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 3411 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 3427 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 3429 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 3431 
+******Redundant DSAF******
+428 faultID: 428, GateID: 53, port: n85, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+428 2836 
+******Redundant DSAF******
+428 3437 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+498 2506 
+******Redundant DSAF******
+498 3050 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 2915 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 2947 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 2955 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 3411 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 3427 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 3429 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 3431 
+******Redundant DSAF******
+498 faultID: 498, GateID: 62, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+498 2836 
+******Redundant DSAF******
+498 3437 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+499 2506 
+******Redundant DSAF******
+499 3050 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 2915 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 2947 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 2955 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 3411 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 3427 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 3429 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 3431 
+******Redundant DSAF******
+499 faultID: 499, GateID: 62, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+499 2836 
+******Redundant DSAF******
+499 3437 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+500 2506 
+******Redundant DSAF******
+500 3050 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 2915 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 2947 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 2955 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 3411 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 3427 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 3429 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 3431 
+******Redundant DSAF******
+500 faultID: 500, GateID: 62, port: n94, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+500 2836 
+******Redundant DSAF******
+500 3437 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+502 2506 
+******Redundant DSAF******
+502 3050 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 2915 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 2947 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 2955 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 3411 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 3427 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 3429 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 3431 
+******Redundant DSAF******
+502 faultID: 502, GateID: 62, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+502 2836 
+******Redundant DSAF******
+502 3437 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+555 2506 
+******Redundant DSAF******
+555 3050 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 2915 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 2947 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 2955 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 3411 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 3427 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 3429 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 3431 
+******Redundant DSAF******
+555 faultID: 555, GateID: 69, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+555 2836 
+******Redundant DSAF******
+555 3437 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+562 2506 
+******Redundant DSAF******
+562 3050 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 2915 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 2947 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 2955 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 3411 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 3427 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 3429 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 3431 
+******Redundant DSAF******
+562 faultID: 562, GateID: 70, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+562 2836 
+******Redundant DSAF******
+562 3437 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+570 2506 
+******Redundant DSAF******
+570 3050 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 2915 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 2947 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 2955 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 3411 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 3427 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 3429 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 3431 
+******Redundant DSAF******
+570 faultID: 570, GateID: 71, port: n95, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+570 2836 
+******Redundant DSAF******
+570 3437 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+867 2506 
+******Redundant DSAF******
+867 3050 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 2915 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 2947 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 2955 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 3411 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 3427 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 3429 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 3431 
+******Redundant DSAF******
+867 faultID: 867, GateID: 108, port: G6, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+867 2836 
+******Redundant DSAF******
+867 3437 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+875 2506 
+******Redundant DSAF******
+875 3050 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 2915 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 2947 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 2955 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 3411 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 3427 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 3429 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 3431 
+******Redundant DSAF******
+875 faultID: 875, GateID: 109, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+875 2836 
+******Redundant DSAF******
+875 3437 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+876 2506 
+******Redundant DSAF******
+876 3050 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 2915 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 2947 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 2955 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 3411 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 3427 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 3429 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 3431 
+******Redundant DSAF******
+876 faultID: 876, GateID: 109, port: G6, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+876 2836 
+******Redundant DSAF******
+876 3437 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1018 2506 
+******Redundant DSAF******
+1018 3050 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 2915 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 2947 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 2955 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 3411 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 3427 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 3429 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 3431 
+******Redundant DSAF******
+1018 faultID: 1018, GateID: 127, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1018 2836 
+******Redundant DSAF******
+1018 3437 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1435 2506 
+******Redundant DSAF******
+1435 3050 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 2915 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 2947 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 2955 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 3411 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 3427 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 3429 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 3431 
+******Redundant DSAF******
+1435 faultID: 1435, GateID: 179, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1435 2836 
+******Redundant DSAF******
+1435 3437 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1460 2506 
+******Redundant DSAF******
+1460 3050 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 2915 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 2947 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 2955 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 3411 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 3427 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 3429 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 3431 
+******Redundant DSAF******
+1460 faultID: 1460, GateID: 182, port: n134, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1460 2836 
+******Redundant DSAF******
+1460 3437 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1523 2506 
+******Redundant DSAF******
+1523 3050 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 2915 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 2947 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 2955 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 3411 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 3427 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 3429 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 3431 
+******Redundant DSAF******
+1523 faultID: 1523, GateID: 190, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1523 2836 
+******Redundant DSAF******
+1523 3437 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1538 2506 
+******Redundant DSAF******
+1538 3050 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 2915 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 2947 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 2955 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 3411 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 3427 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 3429 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 3431 
+******Redundant DSAF******
+1538 faultID: 1538, GateID: 192, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1538 2836 
+******Redundant DSAF******
+1538 3437 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1548 2506 
+******Redundant DSAF******
+1548 3050 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 2915 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 2947 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 2955 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 3411 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 3427 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 3429 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 3431 
+******Redundant DSAF******
+1548 faultID: 1548, GateID: 193, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1548 2836 
+******Redundant DSAF******
+1548 3437 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1563 2506 
+******Redundant DSAF******
+1563 3050 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 2915 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 2947 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 2955 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 3411 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 3427 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 3429 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 3431 
+******Redundant DSAF******
+1563 faultID: 1563, GateID: 195, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1563 2836 
+******Redundant DSAF******
+1563 3437 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1581 2506 
+******Redundant DSAF******
+1581 3050 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 2915 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 2947 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 2955 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 3411 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 3427 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 3429 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 3431 
+******Redundant DSAF******
+1581 faultID: 1581, GateID: 197, port: n229, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1581 2836 
+******Redundant DSAF******
+1581 3437 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1771 2506 
+******Redundant DSAF******
+1771 3050 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 2915 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 2947 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 2955 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 3411 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 3427 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 3429 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 3431 
+******Redundant DSAF******
+1771 faultID: 1771, GateID: 221, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1771 2836 
+******Redundant DSAF******
+1771 3437 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+1780 2506 
+******Redundant DSAF******
+1780 3050 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 2915 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 2947 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 2955 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 3411 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 3427 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 3429 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 3431 
+******Redundant DSAF******
+1780 faultID: 1780, GateID: 222, port: G11, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+1780 2836 
+******Redundant DSAF******
+1780 3437 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2098 2506 
+******Redundant DSAF******
+2098 3050 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 2915 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 2947 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 2955 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 3411 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 3427 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 3429 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 3431 
+******Redundant DSAF******
+2098 faultID: 2098, GateID: 262, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2098 2836 
+******Redundant DSAF******
+2098 3437 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2101 2506 
+******Redundant DSAF******
+2101 3050 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 2915 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 2947 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 2955 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 3411 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 3427 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 3429 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 3431 
+******Redundant DSAF******
+2101 faultID: 2101, GateID: 262, port: G5, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2101 2836 
+******Redundant DSAF******
+2101 3437 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2107 2506 
+******Redundant DSAF******
+2107 3050 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 2915 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 2947 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 2955 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 3411 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 3427 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 3429 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 3431 
+******Redundant DSAF******
+2107 faultID: 2107, GateID: 263, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2107 2836 
+******Redundant DSAF******
+2107 3437 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2109 2506 
+******Redundant DSAF******
+2109 3050 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 2915 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 2947 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 2955 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 3411 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 3427 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 3429 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 3431 
+******Redundant DSAF******
+2109 faultID: 2109, GateID: 263, port: n295, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2109 2836 
+******Redundant DSAF******
+2109 3437 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2110 2506 
+******Redundant DSAF******
+2110 3050 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 2915 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 2947 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 2955 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 3411 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 3427 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 3429 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 3431 
+******Redundant DSAF******
+2110 faultID: 2110, GateID: 263, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2110 2836 
+******Redundant DSAF******
+2110 3437 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2122 2506 
+******Redundant DSAF******
+2122 3050 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 2915 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 2947 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 2955 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 3411 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 3427 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 3429 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 3431 
+******Redundant DSAF******
+2122 faultID: 2122, GateID: 265, port: n296, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2122 2836 
+******Redundant DSAF******
+2122 3437 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 2915 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 2947 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 2955 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2836 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 3411 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 3427 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 3429 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 3431 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 2836 
+******Redundant DSAF******
+2506 3437 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2842 
+******Redundant DSAF******
+2842 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2851 faultID: 2851, GateID: 356, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2851 
+******Redundant DSAF******
+2851 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2866 faultID: 2866, GateID: 358, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2866 
+******Redundant DSAF******
+2866 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2874 faultID: 2874, GateID: 359, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2874 
+******Redundant DSAF******
+2874 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2883 faultID: 2883, GateID: 360, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2883 
+******Redundant DSAF******
+2883 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2891 faultID: 2891, GateID: 361, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2891 
+******Redundant DSAF******
+2891 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2907 faultID: 2907, GateID: 363, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2907 
+******Redundant DSAF******
+2907 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2915 
+******Redundant DSAF******
+2915 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2938 faultID: 2938, GateID: 367, port: G1, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2938 
+******Redundant DSAF******
+2938 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2947 
+******Redundant DSAF******
+2947 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2955 
+******Redundant DSAF******
+2955 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2995 faultID: 2995, GateID: 374, port: n405, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 2995 
+******Redundant DSAF******
+2995 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 3019 
+******Redundant DSAF******
+3019 3050 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3243 
+******Redundant DSAF******
+3050 3243 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3251 
+******Redundant DSAF******
+3050 3251 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3274 faultID: 3274, GateID: 409, port: G7, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 3274 
+******Redundant DSAF******
+3050 3274 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3277 faultID: 3277, GateID: 409, port: n125, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3277 
+******Redundant DSAF******
+3050 3277 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3279 faultID: 3279, GateID: 409, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3279 
+******Redundant DSAF******
+3050 3279 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3283 faultID: 3283, GateID: 410, port: n312, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3283 
+******Redundant DSAF******
+3050 3283 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3285 faultID: 3285, GateID: 410, port: n442, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3285 
+******Redundant DSAF******
+3050 3285 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3286 faultID: 3286, GateID: 410, port: output, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 3286 
+******Redundant DSAF******
+3050 3286 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3291 faultID: 3291, GateID: 411, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3291 
+******Redundant DSAF******
+3050 3291 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3292 faultID: 3292, GateID: 411, port: n443, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 3292 
+******Redundant DSAF******
+3050 3292 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3299 faultID: 3299, GateID: 412, port: n107, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3299 
+******Redundant DSAF******
+3050 3299 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3355 faultID: 3355, GateID: 419, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3355 
+******Redundant DSAF******
+3050 3355 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3357 faultID: 3357, GateID: 419, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3357 
+******Redundant DSAF******
+3050 3357 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3359 faultID: 3359, GateID: 419, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3359 
+******Redundant DSAF******
+3050 3359 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3365 faultID: 3365, GateID: 420, port: n452, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3365 
+******Redundant DSAF******
+3050 3365 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3411 
+******Redundant DSAF******
+3050 3411 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3427 
+******Redundant DSAF******
+3050 3427 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3429 
+******Redundant DSAF******
+3050 3429 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3431 
+******Redundant DSAF******
+3050 3431 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3435 faultID: 3435, GateID: 429, port: n135, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3435 
+******Redundant DSAF******
+3050 3435 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3437 
+******Redundant DSAF******
+3050 3437 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3439 faultID: 3439, GateID: 429, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3439 
+******Redundant DSAF******
+3050 3439 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3443 faultID: 3443, GateID: 430, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3443 
+******Redundant DSAF******
+3050 3443 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3445 faultID: 3445, GateID: 430, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3445 
+******Redundant DSAF******
+3050 3445 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3515 
+******Redundant DSAF******
+3050 3515 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3517 
+******Redundant DSAF******
+3050 3517 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3547 faultID: 3547, GateID: 443, port: n452, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3547 
+******Redundant DSAF******
+3050 3547 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 3626 
+******Redundant DSAF******
+3050 3626 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 3635 
+******Redundant DSAF******
+3050 3635 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 4348 
+******Redundant DSAF******
+3050 4348 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 4355 
+******Redundant DSAF******
+3050 4355 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2506 4371 
+******Redundant DSAF******
+3050 4371 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 4378 
+******Redundant DSAF******
+3050 4378 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 4388 
+******Redundant DSAF******
+3050 4388 
+******Redundant DSAF******
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2506 4444 
+******Redundant DSAF******
+3050 4444 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 2915 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 2947 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 2955 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2842 faultID: 2842, GateID: 355, port: n169, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 2842 
+******Redundant DSAF******
+2842 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2914 faultID: 2914, GateID: 364, port: G2, stuckat: 0, gateType aig 
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2914 2915 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 2947 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 2955 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+2915 3019 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+2915 3021 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+2915 3035 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+2915 3050 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+2915 3243 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+2915 3251 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2915 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+2915 3515 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+2915 3517 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+2915 3626 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+2915 3635 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+2915 4348 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+2915 4355 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+2915 4371 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+2915 4378 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+2915 4388 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+2915 4444 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2946 faultID: 2946, GateID: 368, port: G3, stuckat: 0, gateType aig 
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2946 2947 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 2955 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+2947 3019 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+2947 3021 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+2947 3035 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+2947 3050 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+2947 3243 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+2947 3251 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2947 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+2947 3515 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+2947 3517 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+2947 3626 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+2947 3635 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+2947 4348 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+2947 4355 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+2947 4371 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+2947 4378 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+2947 4388 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+2947 4444 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2954 faultID: 2954, GateID: 369, port: n382, stuckat: 0, gateType aig 
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2954 2955 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+2955 3019 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+2955 3021 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+2955 3035 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+2955 3050 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+2955 3243 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+2955 3251 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2955 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+2955 3515 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+2955 3517 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+2955 3626 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+2955 3635 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+2955 4348 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+2955 4355 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+2955 4371 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+2955 4378 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+2955 4388 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+2955 4444 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+3019 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+3019 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+3019 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+3019 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3019 faultID: 3019, GateID: 377, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3019 
+******Redundant DSAF******
+3019 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+3021 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+3021 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+3021 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+3021 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3021 faultID: 3021, GateID: 377, port: n376, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3021 
+******Redundant DSAF******
+3021 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+3035 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+3035 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+3035 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+3035 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3035 faultID: 3035, GateID: 379, port: G36, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3035 
+******Redundant DSAF******
+3035 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+3050 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+3050 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+3050 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+3050 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3050 
+******Redundant DSAF******
+3050 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+3243 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+3243 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+3243 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+3243 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3243 
+******Redundant DSAF******
+3243 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+3251 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+3251 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+3251 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+3251 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3251 
+******Redundant DSAF******
+3251 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3410 faultID: 3410, GateID: 426, port: n324, stuckat: 0, gateType aig 
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3410 3411 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3411 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+3411 3515 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+3411 3517 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+3411 3626 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+3411 3635 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+3411 4348 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+3411 4355 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+3411 4371 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+3411 4378 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+3411 4388 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+3411 4444 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3426 faultID: 3426, GateID: 428, port: G9, stuckat: 0, gateType aig 
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3426 3427 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3426 faultID: 3426, GateID: 428, port: G9, stuckat: 0, gateType aig 
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3426 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3426 faultID: 3426, GateID: 428, port: G9, stuckat: 0, gateType aig 
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3426 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3427 3437 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+3427 3515 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+3427 3517 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+3427 3626 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+3427 3635 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+3427 4348 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+3427 4355 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+3427 4371 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+3427 4378 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+3427 4388 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+3427 4444 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3428 faultID: 3428, GateID: 428, port: n123_1, stuckat: 0, gateType aig 
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3428 3429 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3428 faultID: 3428, GateID: 428, port: n123_1, stuckat: 0, gateType aig 
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3428 3431 
+******Redundant DSAF******
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3428 faultID: 3428, GateID: 428, port: n123_1, stuckat: 0, gateType aig 
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3428 3437 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 3431 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3429 3437 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+3429 3515 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+3429 3517 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+3429 3626 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+3429 3635 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+3429 4348 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+3429 4355 
+******Redundant DSAF******
+
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+3429 4371 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+3429 4378 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+3429 4388 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+3429 4444 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3430 faultID: 3430, GateID: 428, port: output, stuckat: 0, gateType aig 
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3430 3431 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3430 faultID: 3430, GateID: 428, port: output, stuckat: 0, gateType aig 
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3430 3437 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3431 3437 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+3431 3515 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+3431 3517 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+3431 3626 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+3431 3635 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+3431 4348 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+3431 4355 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+3431 4371 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+3431 4378 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+3431 4388 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+3431 4444 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3436 faultID: 3436, GateID: 429, port: n461, stuckat: 0, gateType aig 
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3436 3437 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3515 faultID: 3515, GateID: 439, port: G0, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3515 
+******Redundant DSAF******
+3437 3515 
+******Redundant DSAF******
+
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3517 faultID: 3517, GateID: 439, port: n462, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3517 
+******Redundant DSAF******
+3437 3517 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3626 faultID: 3626, GateID: 453, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 3626 
+******Redundant DSAF******
+3437 3626 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3635 faultID: 3635, GateID: 454, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 3635 
+******Redundant DSAF******
+3437 3635 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4348 faultID: 4348, GateID: 543, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4348 
+******Redundant DSAF******
+3437 4348 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4355 faultID: 4355, GateID: 544, port: G1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4355 
+******Redundant DSAF******
+3437 4355 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4371 faultID: 4371, GateID: 546, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+2836 4371 
+******Redundant DSAF******
+3437 4371 
+******Redundant DSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4378 faultID: 4378, GateID: 547, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4378 
+******Redundant DSAF******
+3437 4378 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4388 faultID: 4388, GateID: 548, port: n107, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4388 
+******Redundant DSAF******
+3437 4388 
+******Redundant DSAF******
+
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+4444 faultID: 4444, GateID: 555, port: n238, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2836 4444 
+******Redundant DSAF******
+3437 4444 
+******Redundant DSAF******
+
+
+2938 faultID: 2938, GateID: 367, port: G1, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3299 faultID: 3299, GateID: 412, port: n107, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3315 faultID: 3315, GateID: 414, port: n390, stuckat: 1, gateType aig 
+2938 3299 
+******Redundant DSAF******
+
+
+2938 faultID: 2938, GateID: 367, port: G1, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3299 faultID: 3299, GateID: 412, port: n107, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3316 faultID: 3316, GateID: 414, port: n392, stuckat: 0, gateType aig 
+2938 3299 
+******Redundant DSAF******
+
+
+
+
+
+2938 faultID: 2938, GateID: 367, port: G1, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3299 faultID: 3299, GateID: 412, port: n107, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3318 faultID: 3318, GateID: 414, port: output, stuckat: 0, gateType aig 
+2938 3299 
+******Redundant DSAF******
+
+
+
+
+2938 faultID: 2938, GateID: 367, port: G1, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3299 faultID: 3299, GateID: 412, port: n107, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3324 faultID: 3324, GateID: 415, port: n447, stuckat: 0, gateType aig 
+2938 3299 
+******Redundant DSAF******
+undetected TSA number: 517
+
+
+Total execution time: 323598 seconds.
+
+

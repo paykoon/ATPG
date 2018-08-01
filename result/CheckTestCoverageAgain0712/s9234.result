@@ -55903,3 +55903,7 @@ Undetected DSA:
 Total execution time: 75824.1 seconds.
 
 
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 2534
+   Pair each gate with it's related gates.

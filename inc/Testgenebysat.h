@@ -17,10 +17,12 @@
 #include "Circuit.h"
 #include "Gate.h"
 #include "CNFGeneration.h"
+
 using namespace std;
 using namespace Gate;
 using namespace Circuit;
 using namespace Glucose;
+
 
 namespace TESTGENEBYSAT {
   class testgenebysat {
@@ -60,7 +62,7 @@ namespace TESTGENEBYSAT {
       generateOriAndFau(oriAndFauCir, theCircuit);
       generateCNF(oriAndFauCir, CNFOriAndFauCir);
       curTime = clock();
-      cout << "----------Initialization of CNF formula takes Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds----------"  << endl;
+      cout << "----------Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds----------"  << endl;
     }
 
     // generate current clause in CNF format
@@ -658,7 +660,8 @@ namespace TESTGENEBYSAT {
           testVector.push_back(testVectorTmp[PIIDCount]);
           PIIDCount++;
         } else {
-          testVector.push_back(0);  // the PI that we dont care.
+          //testVector.push_back(0);  // the PI that we dont care.
+          testVector.push_back(rand() % 2);
         }
       }
     }
@@ -686,23 +689,6 @@ namespace TESTGENEBYSAT {
       int faultID = ID;                         cout << "faultID: " << faultID;
       int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;
       int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << fauGateID;
-      int port = (faultID >> 1) & 3;           cout << ", port: ";
-      if (port < 3) {
-        cout << "input" << port;
-      }
-      else {
-        cout << "output";
-      }
-      int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
-      cout << ", gateType ";
-      printGateType(theCircuit[oriGateID]->gateType);
-      cout << endl;
-    }
-
-    void printFault(int ID, map<int,int> &oriCirIDToCur) {
-      int faultID = ID;                         cout << "faultID: " << faultID;
-      int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriCirIDToCur[oriGateID];
-      int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << oriCirIDToCur[fauGateID];
       int port = (faultID >> 1) & 3;           cout << ", port: ";
       if (port < 3) {
         cout << "input" << port;
@@ -744,47 +730,6 @@ namespace TESTGENEBYSAT {
           break;
       }
       cout << " ";
-    }
-
-    void printCNF(vector<vector<vector<int>>> &CNFFormula) {
-      for (int m = 0; m < CNFFormula.size(); m++) {  // gate
-        cout << m << ": ";
-        for (int i = 0; i < CNFFormula[m].size(); i++) {//clauses
-          for (int j = 0; j < CNFFormula[m][i].size(); j++) {//literals
-              if (CNFFormula[m][i][j] > 0) {
-                  cout << CNFFormula[m][i][j] /*- 1*/ << " ";
-              } else {
-                  cout << "-" << (-1)*CNFFormula[m][i][j] /*- 1*/ << " ";
-              }
-          }
-          cout << ", ";
-        }
-        cout << endl;
-      }
-    }
-
-    void printCircuit(vector <gate*> &curCircuit) {
-      for (int i = 0; i < curCircuit.size(); i++) {
-        cout << curCircuit[i]->gateID << " ";
-        if (curCircuit[i]->gateType == null) {
-          cout << "Big OR gate";
-        } else if (curCircuit[i]->gateType == constant) {
-          cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue << " inv" << curCircuit[i]->invOut << ") " <<  curCircuit[i]->outValue;
-        } else if (curCircuit[i]->gateType == PI) {
-          cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue << ") ";
-        } else {
-          cout << curCircuit[i]->fanin1->outName << "(val" << curCircuit[i]->fanin1->outValue << " inv" << curCircuit[i]->invIn1 << ") ";
-          if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
-            cout << curCircuit[i]->fanin2->outName << "(val" << curCircuit[i]->fanin2->outValue << " inv" << curCircuit[i]->invIn2 << ") ";
-          }
-          cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue << " inv" << curCircuit[i]->invOut <<  ") ";
-        }
-        // constant, bufInv, aig, PO, PI, OR, XOR
-        cout << " "; printGateType(curCircuit[i]->gateType);
-        cout << " diff" << curCircuit[i]->different;
-        cout << endl;
-      }
-      cout << endl;
     }
 
   };

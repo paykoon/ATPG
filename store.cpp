@@ -967,3 +967,319 @@ void propagatePI(){
     theCircuit[i]->different = (preValue != curValue);
   }
 }
+
+
+
+
+
+// -----------generate multiple faults, and check the coverage of them----------------
+// SSAFList: initial SSA fault list. allNFaults: the multiple faults generate according to SSAFList.
+// N multile faults number. mode = 0, only generate the N simultaneous faults. mode = 1, generate all faults <= N.
+// generateAllNSA(collapsedSSAFList, allDoubleFaults_collapsed, 2, 1);
+void generateAllNSA(set<int> &SSAFList, vector<vector<int>> &allNFaults, int N, int mode) {
+  if (N > SSAFList.size()) return;
+  vector<int> list;
+  vector<int> curFaults;
+  for (auto elem : SSAFList) {
+    list.push_back(elem);
+  }
+  generateAllNSA_helper(list, curFaults,allNFaults, 0, N, mode);
+}
+void generateAllNSA_helper(vector<int> &list, vector<int> &curFaults, vector<vector<int>> &allNFaults, int index, int N, int mode) {
+  if (mode == 0 && curFaults.size() == N) {
+    vector<int> temp(curFaults);
+    allNFaults.push_back(temp);
+    return;
+  } else if (mode == 1 && index == N) {
+    return;
+  }
+  for (int i = index; i < list.size(); i++) {
+    curFaults.push_back(list[i]);
+    if (mode == 1) {
+      vector<int> temp(curFaults);
+      allNFaults.push_back(temp);
+    }
+    generateAllNSA_helper(list, curFaults,allNFaults, i + 1, N, mode);
+    curFaults.pop_back();
+  }
+}
+
+
+
+
+
+void printFault(int ID) {
+  int faultID = ID;                         cout << "faultID: " << faultID;
+  int oriGateID = (faultID >> 3);           cout << ", oriGateID: " << oriGateID;
+  int fauGateID = oriGateID + theCircuit.size();  cout << ", fauGateID: " << fauGateID;
+  int port = (faultID >> 1) & 3;           cout << ", port: ";
+  if (port < 3) {
+    cout << "input" << port;
+  }
+  else {
+    cout << "output";
+  }
+  int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
+  cout << ", gateType ";
+  printGateType(theCircuit[oriGateID]->gateType);
+  cout << endl;
+}
+
+void printGateType(Type gateType) {
+  switch (gateType){
+    case constant:
+      cout << "constant";
+      break;
+    case bufInv:
+      cout << "bufInv";
+      break;
+    case aig:
+      cout << "aig";
+      break;
+    case PO:
+      cout << "PO";
+      break;
+    case PI:
+      cout << "PI";
+      break;
+    case OR:
+      cout << "OR";
+      break;
+    case XOR:
+      cout << "XOR";
+      break;
+    case null:
+      cout << "null";
+      break;
+  }
+  cout << " ";
+}
+
+// ----------------
+void printPotentiallyDSA(map<int, set<int>> &potentiallyUndetected) {
+  cout << "\npotentiallyUndetected:" << endl;
+  for (map<int, set<int>>::iterator iter = potentiallyUndetected.begin(); iter != potentiallyUndetected.end(); iter++) {
+    int faultID = iter->first;
+    set<int> blockFaultSet = iter->second;
+    cout << faultID << ": ";
+    for (auto blockFault : blockFaultSet) {
+      cout << blockFault << " ";
+    }
+    cout << endl << endl;
+  }
+}
+
+void printPotentiallyDSA2(map<int, set<int>> &potentiallyUndetected, map<int, vector<int>> &SSAFToPatterns) {
+  cout << "\npotentiallyUndetected:" << endl;
+  for (map<int, set<int>>::iterator iter = potentiallyUndetected.begin(); iter != potentiallyUndetected.end(); iter++) {
+    int faultID = iter->first;
+    set<int> blockFaultSet = iter->second;
+    printFault2(faultID);
+    printTestVector(SSAFToPatterns[faultID]);
+    for (auto blockFault : blockFaultSet) {
+      printFault2(blockFault);
+    }
+    cout << endl << endl;
+  }
+}
+
+void printUndetectedDSA(set<set<int>> &undetectedDSA, testgenebysat *testBySAT) {
+  cout << "\n\n\nUndetected DSA:" << endl;
+  for (auto DSA : undetectedDSA) {
+    for (auto faultID : DSA) {
+      cout << faultID << " ";
+      printFault2(faultID);
+      vector<int> curFault;
+      curFault.push_back(faultID);
+      vector<int> pattern;
+      if (testBySAT->generateTestBySAT_1(curFault, pattern) == 0) {
+        cout << "******Redundant SSAF******" << endl;
+      }
+    }
+    cout << "\n\n";
+  }
+}
+
+void printTestVector(vector<int> &testVector) {
+  cout << "test pattern: ";
+  for (auto i : testVector) {
+    cout << i;
+  }
+  cout << endl;
+}
+
+void printFault2(int ID) {
+  int faultID = ID;                         cout << "faultID: " << faultID;
+  int GateID = (faultID >> 3);           cout << ", GateID: " << GateID;
+  int port = (faultID >> 1) & 3;           cout << ", port: ";
+  if (port < 3) {
+    if (port == 1) {
+      cout << theCircuit[GateID]->in1Name;
+    } else {
+      cout << theCircuit[GateID]->in2Name;
+    }
+  }
+  else {
+    cout << "output";
+  }
+  int stuckat = faultID & 1;                cout << ", stuckat: " << stuckat;
+  cout << ", gateType ";
+  printGateType(theCircuit[GateID]->gateType);
+  cout << endl;
+}
+
+void printCircuit(vector <gate*> &curCircuit) {
+  for (int i = 0; i < curCircuit.size(); i++) {
+    cout << curCircuit[i]->gateID << " ";
+    if (curCircuit[i]->gateType == null) {
+      cout << "Big OR gate";
+    } else if (curCircuit[i]->gateType == constant) {
+      cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue << " inv" << curCircuit[i]->invOut << ") " <<  curCircuit[i]->outValue;
+    } else if (curCircuit[i]->gateType == PI) {
+      cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue << ") ";
+    } else {
+      cout << curCircuit[i]->fanin1->outName << "(val" << curCircuit[i]->fanin1->outValue << " inv" << curCircuit[i]->invIn1 << ") ";
+      if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
+        cout << curCircuit[i]->fanin2->outName << "(val" << curCircuit[i]->fanin2->outValue << " inv" << curCircuit[i]->invIn2 << ") ";
+      }
+      cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue << " inv" << curCircuit[i]->invOut <<  ") ";
+    }
+    // constant, bufInv, aig, PO, PI, OR, XOR
+    cout << " "; printGateType(curCircuit[i]->gateType);
+    cout << " diff" << curCircuit[i]->different;
+    cout << endl;
+  }
+  cout << endl;
+}
+
+void printCircuit_64(vector <gate*> &curCircuit) {
+  for (int i = 0; i < curCircuit.size(); i++) {
+    cout << curCircuit[i]->gateID << " ";
+    if (curCircuit[i]->gateType == null) {
+      cout << "Big OR gate";
+    } else if (curCircuit[i]->gateType == constant) {
+      cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue_64 << " inv" << curCircuit[i]->invOut << ") " <<  curCircuit[i]->outValue;
+    } else if (curCircuit[i]->gateType == PI) {
+      cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue_64 << ") ";
+    } else {
+      cout << curCircuit[i]->fanin1->outName << "(val" << curCircuit[i]->fanin1->outValue_64 << " inv" << curCircuit[i]->invIn1 << ") ";
+      if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
+        cout << curCircuit[i]->fanin2->outName << "(val" << curCircuit[i]->fanin2->outValue_64 << " inv" << curCircuit[i]->invIn2 << ") ";
+      }
+      cout << curCircuit[i]->outName << "(val" << curCircuit[i]->outValue_64 << " inv" << curCircuit[i]->invOut <<  ") ";
+    }
+    // constant, bufInv, aig, PO, PI, OR, XOR
+    cout << " "; printGateType(curCircuit[i]->gateType);
+    cout << endl;
+  }
+  cout << endl;
+}
+
+void printNfaults(vector<vector<int>>multipleFaults) {
+  for (auto faultSet : multipleFaults) {
+    cout << "=======================" << endl;
+    for (auto fault : faultSet) {
+      printFault2(fault);
+    }
+    cout << "=======================" << endl;
+  }
+}
+
+void printCircuitBlif(vector <gate*> &curCircuit) {
+  ofstream myfile;
+  myfile.open ("test.blif");
+
+  myfile << ".model test" << endl;
+  myfile << ".inputs ";
+  for (auto curGate : curCircuit) {
+    if (curGate->gateType == PI) {
+      myfile << curGate->outName << " ";
+    }
+  }
+  myfile << endl;
+
+  myfile << ".outputs finalOutput" << endl;
+  for (auto curGate : curCircuit) {
+    if (curGate->gateType == null)  continue;
+    if (curGate->in1Name.compare(curGate->outName) == 0)  continue;
+    myfile << ".names ";
+    if (curGate->gateType == constant) {
+      myfile << curGate->outName << endl;
+      myfile << curGate->outValue << endl;
+    } else {
+      if (curGate->gateType == PI) {
+        myfile << curGate->in1Name << " ";
+      } else {
+        myfile << curGate->fanin1->outName << " ";
+        if (curGate->gateType == aig || curGate->gateType == OR || curGate->gateType == XOR) {
+          myfile << curGate->fanin2->outName << " ";
+        }
+      }
+      myfile << curGate->outName << endl;
+
+      if (curGate->gateType != XOR) {
+        myfile << curGate->invIn1;
+        if (curGate->gateType == aig || curGate->gateType == OR || curGate->gateType == XOR) {
+          myfile << curGate->invIn2;
+        }
+        myfile << " " << curGate->invOut << endl;
+      } else {
+        myfile << "10 1\n01 1\n";
+      }
+    }
+  }
+
+  myfile << ".names ";
+  for (auto curGate : curCircuit) {
+    if (curGate->gateType == PO) {
+      myfile << curGate->outName << " ";
+    }
+  }
+  myfile << "finalOutput" << endl;
+  for (auto curGate : curCircuit) {
+    if (curGate->gateType == PO) {
+      myfile << "0";
+    }
+  }
+  myfile << " 0" << endl;
+  myfile << endl;
+  myfile << ".end" << endl;
+
+
+  myfile.close();
+}
+
+void printForTestbench(vector <gate*> &theCircuit, int inputSize) {
+  cout << "integer w_file;\ninitial\nbegin" << endl;
+  cout << "w_file = $fopen(\"data_out.txt\");" << endl;
+  for (int i = 0; i < inputSize; i++) {
+    cout << theCircuit[i]->outName << " = " << theCircuit[i]->outValue << ";" << endl;
+  }
+  cout << "#80;" << endl;
+  for (auto curGate : theCircuit) {
+    cout << "$fwrite(w_file,\"\\n" << curGate->gateID << " " << curGate->outName << "= \"," << curGate->outName <<");" << endl;
+  }
+  cout << "$fclose(w_file);" << endl;
+  cout << "end" << endl;
+}
+
+void printFaults(set<int> &faults) {
+  for (set<int>::iterator iter = faults.begin(); iter != faults.end(); iter++) {
+    int faultID = *iter;
+    int gateID = faultID >> 3;
+    int port = (faultID >> 1) & 3;
+    int stuckat = faultID & 1;
+    string in1Name = theCircuit[gateID]->in1Name;
+    string in2Name = theCircuit[gateID]->in2Name;
+    string outName = theCircuit[gateID]->outName;
+    cout << "faultID: " << faultID << "   gateID " << gateID << ":  " << in1Name << " " << in2Name << " " << outName << "; ";
+    if (port == 1) {
+      cout << in1Name << " input1 ";
+    } else if (port == 2){
+      cout << in2Name << " input2 ";
+    } else if (port == 3){
+      cout << outName << " output ";
+    }
+    cout << "stuck at " << stuckat << endl;
+  }
+}

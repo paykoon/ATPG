@@ -3,6 +3,7 @@
 #include "ATPG.h"
 #include "glucose.h"
 #include "Testgenebysat.h"
+#include "CircuitSimulation.h"
 #include "time.h"
 #include <vector>
 #include <set>
@@ -16,6 +17,8 @@ using namespace std;
 using namespace Circuit;
 using namespace Glucose;
 using namespace ATPG;
+using namespace Simulation;
+
 
 int main(int argc, char **argv){
   if(argc < 3){
@@ -27,10 +30,11 @@ int main(int argc, char **argv){
   startTime = clock();
   char *blifFile = argv[1];
   char *patternFile = argv[2];
-  // build the circuit
+  
   circuit *pCircuit = new circuit(blifFile);
   testgenebysat *testBySAT = new testgenebysat(pCircuit);
-  atpg *ATPGInit = new atpg(pCircuit, patternFile, testBySAT);
+  simulation *simulate = new simulation(pCircuit);
+  atpg *ATPGInit = new atpg(pCircuit, patternFile, simulate, testBySAT);
   endTime = clock();
   cout << "Total execution time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds.\n\n" << endl;
 

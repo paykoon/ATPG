@@ -1,0 +1,154 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 597
+   Pair each gate with it's related gates.
+   Time: 0.087316 seconds.
+----------Time 0.094276 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.005721 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 1348 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 3452, 39.0498% fault are selected by the fault model
+   Time: 0.007555 seconds.
+2. Read initial SSAF test patterns.
+   130 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (We just assume that the initial test patterns can cover all SSAF)
+   Number of redundant faults(among all faults): 84
+   Time: 0.194707 seconds.
+----------Time: 0.202276 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.206988 seconds.
+2. Compress undetected DSA Faults.
+   Undetected DSA number (without compressing): 414
+   Undetected DSA number (after compressing): 114, Compressing ratio: 0.275362
+   Time: 0.125821 seconds.
+----------Time: 0.332841 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+   Number of DSA faults needs new test pattern is: 4
+   additional Test Pattern size: 4, 0.0307692 comparing with SSAF Patterns
+   redundantDSAF size: 103, 0.903509 among all undetected DSA
+----------Time: 0.982169 seconds----------
+
+
+undetected DSA number: 17
+
+
+
+Undetected DSA:
+2506 faultID: 2506, GateID: 313, port: G2, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3050 faultID: 3050, GateID: 381, port: G3, stuckat: 0, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2866 faultID: 2866, GateID: 358, port: G5, stuckat: 0, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2883 faultID: 2883, GateID: 360, port: G11, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2891 faultID: 2891, GateID: 361, port: G4, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2907 faultID: 2907, GateID: 363, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2947 faultID: 2947, GateID: 368, port: G3, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2955 faultID: 2955, GateID: 369, port: n382, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2995 faultID: 2995, GateID: 374, port: n405, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3411 faultID: 3411, GateID: 426, port: n324, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3427 faultID: 3427, GateID: 428, port: G9, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3429 faultID: 3429, GateID: 428, port: n123_1, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3431 faultID: 3431, GateID: 428, port: output, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2836 faultID: 2836, GateID: 354, port: n386, stuckat: 0, gateType aig 
+******Redundant SSAF******
+3437 faultID: 3437, GateID: 429, port: n461, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+2874 faultID: 2874, GateID: 359, port: G4, stuckat: 0, gateType aig 
+******Redundant SSAF******
+2915 faultID: 2915, GateID: 364, port: G2, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+3243 faultID: 3243, GateID: 405, port: G8, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3251 faultID: 3251, GateID: 406, port: n383, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+3435 faultID: 3435, GateID: 429, port: n135, stuckat: 1, gateType aig 
+******Redundant SSAF******
+3443 faultID: 3443, GateID: 430, port: n97, stuckat: 1, gateType aig 
+******Redundant SSAF******
+
+
+Total execution time: 300.03 seconds.
+
+
