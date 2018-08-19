@@ -30,13 +30,18 @@ int main(int argc, char **argv){
   startTime = clock();
   char *blifFile = argv[1];
   char *patternFile = argv[2];
-  
+  char *TSAFile = argv[3];
+
   circuit *pCircuit = new circuit(blifFile);
   testgenebysat *testBySAT = new testgenebysat(pCircuit);
   simulation *simulate = new simulation(pCircuit);
-  atpg *ATPGInit = new atpg(pCircuit, patternFile, simulate, testBySAT);
+  atpg *ATPGInit = new atpg(pCircuit, patternFile, simulate, testBySAT, TSAFile);
   endTime = clock();
   cout << "Total execution time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds.\n\n" << endl;
 
+  delete pCircuit;
+  delete testBySAT;
+  delete simulate;
+  delete ATPGInit;
   return 1;
 }

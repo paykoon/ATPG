@@ -1,0 +1,65 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 635
+   Pair each gate with it's related gates.
+   Time: 6.24865 seconds.
+----------Time 6.27656 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.012275 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 1256 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 3464, 36.2587% fault are selected by the fault model
+   Time: 0.013652 seconds.
+2. Read initial SSAF test patterns.
+   25 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (Check the coverage for SSA, and generate additional test if it's not enough)
+   **The original SSAF test is not sufficient, generate new test pattern: 1
+   Number of redundant faults(among all faults): 27
+   Time: 0.608429 seconds.
+----------Time: 0.622104 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.434876 seconds.
+2. Compress undetected DSA Faults.
+*******the redundant SSAF pairs that are in same path: 32
+*******(must be redundant DSAF, will not be included in undetectedDSA)
+   Undetected DSA number (without compressing): 596
+   Undetected DSA number (after compressing): 453, Compressing ratio: 0.760067
+   Time: 0.198194 seconds.
+----------Time: 0.6331 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+count_RedundantDSAF: 45
+count_NoRedundantDSAF: 408
+
+count_twoNonReSSA: 70
+count_twoNonReSSA_ReDSA: 0
+count_twoNonReSSA_NonReDSA: 70
+
+count_oneNonReSSA: 370
+count_oneNonReSSA_ReDSA: 36
+count_oneNonReSSA_NonReDSA: 334
+
+count_twoReSSA: 13
+count_twoReSSA_ReDSA: 9
+count_twoReSSA_NonReDSA: 4
+
+undetectedDSA: 453
+   additional Test Pattern size: 22, 22 comparing with SSAF Patterns
+   redundantDSAF size: 383, 0.845475 among all undetected DSA
+----------Time: 0.905301 seconds----------
+
+
+Total execution time: 8.4509 seconds.
+
+

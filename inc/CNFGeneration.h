@@ -17,9 +17,7 @@ namespace CNFGeneration {
       gate* curGate;
 
       cnfgeneration() {}
-      ~cnfgeneration() {
-        delete this;
-      }
+      ~cnfgeneration() {}
       // generate current clause in CNF format
       // ID in cnf formula is gate ID + 1. And it will be -1 in glucose.h
       void generateClause(vector<vector<int>> &gateClause, gate* curGate) {

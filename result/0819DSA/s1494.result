@@ -1,0 +1,65 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 712
+   Pair each gate with it's related gates.
+   Time: 0.048463 seconds.
+----------Time 0.080507 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.028307 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 1530 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 4194, 36.4807% fault are selected by the fault model
+   Time: 0.042756 seconds.
+2. Read initial SSAF test patterns.
+   110 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (Check the coverage for SSA, and generate additional test if it's not enough)
+   The original SSAF test is sufficient to cover all SSAF.
+   Number of redundant faults(among all faults): 15
+   Time: 0.288868 seconds.
+----------Time: 0.331639 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.165768 seconds.
+2. Compress undetected DSA Faults.
+*******the redundant SSAF pairs that are in same path: 12
+*******(must be redundant DSAF, will not be included in undetectedDSA)
+   Undetected DSA number (without compressing): 76
+   Undetected DSA number (after compressing): 31, Compressing ratio: 0.407895
+   Time: 0.045451 seconds.
+----------Time: 0.211238 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+count_RedundantDSAF: 26
+count_NoRedundantDSAF: 5
+
+count_twoNonReSSA: 0
+count_twoNonReSSA_ReDSA: 0
+count_twoNonReSSA_NonReDSA: 0
+
+count_oneNonReSSA: 20
+count_oneNonReSSA_ReDSA: 19
+count_oneNonReSSA_NonReDSA: 1
+
+count_twoReSSA: 11
+count_twoReSSA_ReDSA: 7
+count_twoReSSA_NonReDSA: 4
+
+undetectedDSA: 31
+   additional Test Pattern size: 2, 0.0181818 comparing with SSAF Patterns
+   redundantDSAF size: 120, 3.87097 among all undetected DSA
+----------Time: 0.084643 seconds----------
+
+
+Total execution time: 0.745273 seconds.
+
+

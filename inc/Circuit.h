@@ -35,9 +35,7 @@ namespace Circuit {
         gateSize = 0;
         CircuitInit(blifFile);
       }
-      ~circuit(){
-        delete this;
-      }
+      ~circuit(){}
 
       void CircuitInit(char *blifFile) {
         double startTime, endTime, preTime, curTime;

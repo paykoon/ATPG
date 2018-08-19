@@ -25,6 +25,7 @@ namespace Gate {
       gate *fanin1,*fanin2;
       bool different;
       bool isPath;
+      bool visited;
 
       gate(){
         this->gateType = null;
@@ -40,6 +41,7 @@ namespace Gate {
         this->invOut = 1;
         this->invIn1_64 = one_64;
         this->invOut_64 = one_64;
+        this->visited = 0;
       }
       // constant (The name of In and out are same)
       gate(string &wireName, string &value){
@@ -54,6 +56,7 @@ namespace Gate {
         this->invIn1_64 = one_64;
         this->invOut_64 = one_64;
         this->outValue_64 = (value == "1") ? one_64 : 0;
+        this->visited = 0;
       }
       // buffer or Inverter
       gate(string &in1Name, string &outName, string &invIn1, string &invOut){
@@ -66,6 +69,7 @@ namespace Gate {
           this->invOut = (invOut == "1");
           this->invIn1_64 = (invIn1 == "1") ? one_64 : 0;
           this->invOut_64 = (invOut == "1") ? one_64 : 0;
+          this->visited = 0;
       }
       // AIG or OR gate or XOR gate (XOR and OR gate are just for CNF generation and SAT calculation)
       gate(Type gateType, string &in1Name, string &in2Name, string &outName, string &invIn1, string &invIn2, string &invOut){
@@ -81,6 +85,7 @@ namespace Gate {
           this->invIn1_64 = (invIn1 == "1") ? one_64 : 0;
           this->invIn2_64 = (invIn2 == "1") ? one_64 : 0;
           this->invOut_64 = (invOut == "1") ? one_64 : 0;
+          this->visited = 0;
       }
 
       ~gate(){

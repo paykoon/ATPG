@@ -5,16 +5,16 @@
 blifFolder=`ls blifFile`
 for blifFile in $blifFolder
 do
-  screen_name=${blifFile/.blif/}ATPGCheckAllTSA
+  screen_name=${blifFile/.blif/}ATPG
   testFile=${blifFile/.blif/.patterns}
   resultFile=${blifFile/.blif/.result}
   screen -dmS $screen_name
   #Only considers the faults among our fault model
   #cmd=$"./ATPG_faultModel ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/onlyUseFaultModel/${resultFile}"
   #test all faults.
-  #cmd=$"time ./ATPG ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/allFault/${resultFile}"
+  cmd=$"time ./ATPG ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/0819DSA/${resultFile}"
   #test generate all additional DSA test patterns.
-  cmd=$"./ATPGCheckAllTSA2  ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/0728ATPGCheckAllTSA/${resultFile}"
+  #cmd=$"./ATPGCheckAllTSA2  ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/0728ATPGCheckAllTSA/${resultFile}"
 
   screen -x -S $screen_name -p 0 -X stuff "$cmd"
   screen -x -S $screen_name -p 0 -X stuff $'\n'

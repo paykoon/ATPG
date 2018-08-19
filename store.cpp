@@ -1131,6 +1131,36 @@ void printFault2(int ID) {
 void printCircuit(vector <gate*> &curCircuit) {
   for (int i = 0; i < curCircuit.size(); i++) {
     cout << curCircuit[i]->gateID << " ";
+    /*
+    if (curCircuit[i]->gateType == null) {
+      cout << "Big OR gate";
+    } else if (curCircuit[i]->gateType == constant) {
+      cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") " <<  curCircuit[i]->outValue;
+    } else if (curCircuit[i]->gateType == PI) {
+      cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
+    } else {
+      cout << curCircuit[i]->fanin1->outName << "(" << curCircuit[i]->fanin1->gateID << ") ";
+      if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
+        cout << curCircuit[i]->fanin2->outName << "(" << curCircuit[i]->fanin2->gateID << ") ";
+      }
+      cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
+    }
+    */
+    /*
+    if (curCircuit[i]->gateType == null) {
+      cout << "Big OR gate";
+    } else if (curCircuit[i]->gateType == constant) {
+      cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << " " << curCircuit[i]->invOut << ") " <<  curCircuit[i]->outValue;
+    } else if (curCircuit[i]->gateType == PI) {
+      cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << ") ";
+    } else {
+      cout << curCircuit[i]->fanin1->outName << "(" << curCircuit[i]->fanin1->gateID << " " << curCircuit[i]->invIn1 << ") ";
+      if (curCircuit[i]->gateType == aig || curCircuit[i]->gateType == OR || curCircuit[i]->gateType == XOR) {
+        cout << curCircuit[i]->fanin2->outName << "(" << curCircuit[i]->fanin2->gateID << " " << curCircuit[i]->invIn2 << ") ";
+      }
+      cout << curCircuit[i]->outName << "(" << curCircuit[i]->gateID << " " << curCircuit[i]->invOut <<  ") ";
+    }
+    */
     if (curCircuit[i]->gateType == null) {
       cout << "Big OR gate";
     } else if (curCircuit[i]->gateType == constant) {
@@ -1283,3 +1313,310 @@ void printFaults(set<int> &faults) {
     cout << "stuck at " << stuckat << endl;
   }
 }
+
+
+
+
+// ----------------check redundant SSA can be activated to be Non redundant DSA or not????----------------
+// since too many cases to be consider one by one..backtrace....so just give up.
+void checkRedundantDFS(set<int> &redundantSSAF, set<set<int>> &DSAs) {
+  int count = 0;
+    for (auto faultID : redundantSSAF) {
+        set<int> candidate;
+        checkRedundant(faultID, candidate, redundantSSAF);
+        for (auto faultID2: candidate) {
+            set<int> pair;
+            pair.insert(faultID);
+            pair.insert(faultID2);
+            DSAs.insert(pair);
+        }
+    }
+}
+
+void test2(set<int> &redundantSSAF) {
+    int port = 2;
+    int gateID = 7;
+    int stuckat = 1;
+    int faultID = getFaultID(gateID, port, stuckat);
+    set<int> candidate;
+    checkRedundant(faultID, candidate, redundantSSAF);
+    cout << "candidate.size() " << candidate.size() << endl;
+    for (auto faultID : candidate) {
+        printFault2(faultID);
+    }
+}
+
+// constant, doesnt check.
+// PI, doesnt activate.
+// PO, doesnt propagate.
+void checkRedundant(int faultID, set<int> &candidate, set<int> &redundantSSAF) {
+    // reset the visited
+    vector<int> newFaults;
+    newFaults.push_back(faultID);
+    vector<uint64_t> relatedGates = simulate->getAllRelatedGates(newFaults);
+    simulate->resetAllVisitedisPath(1, relatedGates);
+    int gateID = (faultID >> 3);
+    int port = (faultID >> 1) & 3;
+    int stuckat = faultID & 1;
+    int activateValue = 1 - stuckat;
+    // first try to activate redundant fault
+    int return_value = 0;
+    gate *curGate = theCircuit[gateID];
+    curGate->visited = true;
+    set<int> empty;
+    if (curGate->gateType == constant) return;
+    if (curGate->gateType != PI) {
+        if (port == 1) {
+            return_value = activateDFS(curGate->fanin1, activateValue, candidate, redundantSSAF, empty);
+        } else if (port == 2) {
+            return_value = activateDFS(curGate->fanin2, activateValue, candidate, redundantSSAF, empty);
+        } else {
+            return_value = activateDFS(curGate, activateValue, candidate, redundantSSAF, empty);
+        }
+    }
+    // if activation succeed, then try to propagate the fault.
+    if (return_value == 0) return;
+    if (curGate->gateType != PO) {
+        if (port == 1) {
+            propagateDFS(curGate->fanin1, curGate, candidate, redundantSSAF);
+        } else if (port == 2) {
+            propagateDFS(curGate->fanin2, curGate, candidate, redundantSSAF);
+        } else {
+            for (auto neiGate: curGate->fanout) {
+                propagateDFS(curGate, neiGate, candidate, redundantSSAF);
+            }
+        }
+    }
+}
+
+// try to propagate the fault.
+void propagateDFS(gate *preGate, gate *curGate, set<int> &candidate, set<int> &redundantSSAF) {
+    // actually, redundant cannot be propagated to output.
+    if (curGate->gateType == PO) return;
+    if (curGate->gateType == bufInv) {
+        curGate->visited = true;
+        curGate->setOut();
+        for (auto neiGate: curGate->fanout) {
+            propagateDFS(curGate, neiGate, candidate, redundantSSAF);
+        }
+        curGate->visited = false;
+    } else { // aig
+        gate *sideFanin = (curGate->fanin1 == preGate) ? curGate->fanin2 : curGate->fanin1;
+        bool sideInv = (curGate->fanin1 == preGate) ? curGate->invIn2 : curGate->invIn1;
+        int sidevalue = sideInv;
+        if (sideFanin->visited == false /* &&  sideFanin->gateType != constant */) {
+            set<int> activateVisitedGateID;
+            int return_value = activateDFS(sideFanin, sidevalue, candidate, redundantSSAF, activateVisitedGateID);
+            if (return_value == 1) {
+                curGate->visited = true;
+                curGate->setOut();
+                for (auto neiGate : curGate->fanout) {
+                    propagateDFS(curGate, neiGate, candidate, redundantSSAF);
+                }
+                curGate->visited = false;
+            }
+            // reset the visited when go back to previous level.
+            for (auto gateID : activateVisitedGateID) {
+                theCircuit[gateID]->visited = false;
+            }
+        } else { // already visited.
+            if ((sideFanin->outValue ^ sideInv) == 0) { // match
+                curGate->visited = true;
+                curGate->setOut();
+                for (auto neiGate : curGate->fanout) {
+                    propagateDFS(curGate, neiGate, candidate, redundantSSAF);
+                }
+                curGate->visited = false;
+            }
+        }
+    }
+}
+
+void test() {
+    /*
+    //printCircuit(theCircuit);
+    set<int> redundantSSAF;
+    set<int> candidate;
+    set<int> activateVisitedGateID;
+    int expectedOutValue = 1;
+    gate *curGate = theCircuit[6];
+    activateDFS(curGate, expectedOutValue, candidate, redundantSSAF, activateVisitedGateID);
+    cout << "candidate.size() " << candidate.size() << endl;
+    for (auto faultID : candidate) {
+        printFault2(faultID);
+    }
+    */
+}
+
+// activate curGate to get the expectedOutValue.
+int activateDFS(gate *curGate, bool expectedOutValue, set<int> &candidate, set<int> &redundantSSAF, set<int> &activateVisitedGateID) {
+    // we dont need to check candidiate for constant and PI.
+    // because they must be checked when program is in their fanout gate.
+    if (curGate->visited == true || curGate->gateType == constant) {
+        curGate->visited = true;
+        activateVisitedGateID.insert(curGate->gateID);
+        if (curGate->outValue != expectedOutValue && curGate->gateType == constant) {
+            set<int> faultIDs;
+            changeCurGateOutValue(curGate, expectedOutValue, redundantSSAF, faultIDs);
+            candidate.insert(faultIDs.begin(), faultIDs.end());
+        }
+        return (curGate->outValue == expectedOutValue);
+    }
+    curGate->outValue = expectedOutValue;
+    if (curGate->gateType == PI) {
+        curGate->visited = true;
+        activateVisitedGateID.insert(curGate->gateID);
+        return 1;
+    }
+
+    if (curGate->gateType == bufInv) {
+        int expectedInputValue =  ~( ~(curGate->outValue ^ curGate->invOut) ^ curGate->invIn1);
+        curGate->visited = true;
+        activateVisitedGateID.insert(curGate->gateID);
+        return activate_helper(curGate->fanin1, expectedInputValue, curGate, candidate, redundantSSAF, activateVisitedGateID);
+    } else { // aig
+        for (auto aigInput: aigInputs) {
+          if (curGate->getOutValue(aigInput[0], aigInput[1]) != curGate->outValue) continue;
+          curGate->visited = true;
+          activateVisitedGateID.insert(curGate->gateID);
+          set<int> activateVisitedGateID_sub;
+          set<int> candidate_sub;
+
+          for (int i = 0; i < 2; i++) {
+              if (i == 0) {
+                  int return_value1 = activate_helper(curGate->fanin1, aigInput[0], curGate, candidate_sub, redundantSSAF, activateVisitedGateID_sub);
+                  if (return_value1 == 0) {
+                      candidateAndactivateVisitedGateID_sub(candidate, activateVisitedGateID_sub, candidate_sub);
+                      continue;
+                  }
+                  int return_value2 = activate_helper(curGate->fanin2, aigInput[1], curGate, candidate_sub, redundantSSAF, activateVisitedGateID_sub);
+                  if (return_value2 == 0) {
+                      candidateAndactivateVisitedGateID_sub(candidate, activateVisitedGateID_sub, candidate_sub);
+                      continue;
+                  }
+                  // if program can arrive this place, return_value1 == 1 and return_value2 == 1
+                  activateVisitedGateID.insert(activateVisitedGateID_sub.begin(), activateVisitedGateID_sub.end());
+                  return 1;
+              } else { // i == 1
+                  int return_value2 = activate_helper(curGate->fanin2, aigInput[1], curGate, candidate_sub, redundantSSAF, activateVisitedGateID_sub);
+                  if (return_value2 == 0) {
+                      candidateAndactivateVisitedGateID_sub(candidate, activateVisitedGateID_sub, candidate_sub);
+                      continue;
+                  }
+                  int return_value1 = activate_helper(curGate->fanin1, aigInput[0], curGate, candidate_sub, redundantSSAF, activateVisitedGateID_sub);
+                  if (return_value1 == 0) {
+                      candidateAndactivateVisitedGateID_sub(candidate, activateVisitedGateID_sub, candidate_sub);
+                      continue;
+                  }
+                  // if program can arrive this place, return_value1 == 1 and return_value2 == 1
+                  activateVisitedGateID.insert(activateVisitedGateID_sub.begin(), activateVisitedGateID_sub.end());
+                  return 1;
+              }
+          }
+        }
+    }
+    return 0;
+}
+
+void candidateAndactivateVisitedGateID_sub(set<int> &candidate, set<int> &activateVisitedGateID_sub, set<int> &candidate_sub){
+  candidate.insert(candidate_sub.begin(), candidate_sub.end());
+  for (auto gateID : activateVisitedGateID_sub) {
+      theCircuit[gateID]->visited = false;
+  }
+  candidate.clear();
+  activateVisitedGateID_sub.clear();
+}
+
+int activate_helper(gate* faninGate, int expectedInputValue, gate* curGate, set<int> &candidate, set<int> &redundantSSAF, set<int> &activateVisitedGateID) {
+    if (faninGate->visited == true || faninGate->gateType == constant) {
+        if (faninGate->outValue != expectedInputValue) {
+            set<int> faultIDs;
+            changeCurGateInValue(curGate, faninGate, expectedInputValue, redundantSSAF, faultIDs);
+            candidate.insert(faultIDs.begin(), faultIDs.end());
+            return 0;
+        } else return 1;
+    } else {
+        int return_value = activateDFS(faninGate, expectedInputValue, candidate, redundantSSAF, activateVisitedGateID);
+        if (return_value == 0) {
+            set<int> faultIDs;
+            changeCurGateInValue(curGate, faninGate, expectedInputValue, redundantSSAF, faultIDs);
+            candidate.insert(faultIDs.begin(), faultIDs.end());
+        }
+        return return_value;
+    }
+}
+
+// try to change cur gate's input
+// try to put the stuck at value in cur gate's input, or previous gate's out or input
+void changeCurGateInValue(gate* curGate, gate *faninGate, bool expectedInputValue, set<int> &redundantSSAF, set<int> &faultIDs) {
+    int gateID = 0, port = 0, stuckat = 0, faultID = 0;
+
+    // fault in current input wire
+    gateID = curGate->gateID;
+    port = (curGate->fanin1 == faninGate) ? 1 : 2;
+    stuckat = expectedInputValue;
+    faultID = getFaultID(gateID, port, stuckat);
+    if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+
+    /*
+    // if current input value is opposite to fanin's output
+    // and fanin's connect to other gate which already decide the output.
+    // then it's useless ..??
+    if (faninGate->visited == true && faninGate->outValue != expectedInputValue && faninGate->fanout.size() >= 2) {
+        for (auto otherGate : faninGate->fanout) {
+            if (otherGate != curGate && otherGate->visited == true) return;
+        }
+    }
+     */
+    // fault in fanin gate
+    changeCurGateOutValue(faninGate, expectedInputValue, redundantSSAF, faultIDs);
+}
+
+// try to change cur gate's output
+// put stuck at fault in cur gate's output or input wire.
+void changeCurGateOutValue(gate* curGate, bool expectedOuputValue, set<int> &redundantSSAF, set<int> &faultIDs) {
+    // fault in cur gate's output wire
+    int gateID = curGate->gateID;
+    int port = 3;
+    int stuckat = expectedOuputValue;
+    int faultID = getFaultID(gateID, port, stuckat);
+    if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+    // fault in cur gate's input wire
+    if (curGate->gateType != aig) {
+        gateID = curGate->gateID;
+        port = 1;
+        stuckat = ~( ~(expectedOuputValue ^ curGate->invOut) ^ curGate->invIn1);
+        faultID = getFaultID(gateID, port, stuckat);
+        if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+    } else { // aig
+        if (curGate->invOut != expectedOuputValue) { // case1, for 11 1, output is 0
+            // fanin1
+            gateID = curGate->gateID;
+            port = 1;
+            stuckat = 1 - curGate->invIn1;
+            faultID = getFaultID(gateID, port, stuckat);
+            if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+            // fanin2
+            gateID = curGate->gateID;
+            port = 2;
+            stuckat = 1 - curGate->invIn2;
+            faultID = getFaultID(gateID, port, stuckat);
+            if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+        } else {   // case2, for 11 1, output is 1
+            if (curGate->invIn1 != curGate->fanin1->outValue) {
+                gateID = curGate->gateID;
+                port = 1;
+                stuckat = curGate->invIn1;
+                faultID = getFaultID(gateID, port, stuckat);
+                if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+            } else {
+                gateID = curGate->gateID;
+                port = 2;
+                stuckat = curGate->invIn2;
+                faultID = getFaultID(gateID, port, stuckat);
+                if (redundantSSAF.find(faultID) != redundantSSAF.end()) faultIDs.insert(faultID);
+            }
+        }
+    }
+}
+// -----------------------------------------

@@ -300,3 +300,93 @@ next step!
 1. 64 patterns processed one times
 2. the SAT only process the corresponding circuits.
 3. the bit operation of the circuit still can be optimized ?????? try.
+
+
+
+-----Check the redundant SSA f1-----
+two types
+1. cannot be activated.
+2. can be activated, but cannot be propagated
+
+Process.
+1. activate SSA.
+  back trace from f1 to PI.
+  find the PI values to activate f1.
+2. propagate SSA.
+  try to propagate SSA from f1's gate to PO.
+  for each of the passed gate, check it's side value.
+  if the side value is blocked. search from the side value,
+  to find the place that block fault's propagation.
+
+function1:
+  recursion
+  --idea
+  get the PI value for a given gate's output value
+  can be used to activate the fault and activate the side value in propagation path.
+    for the current output,
+      1. if current gate is bufinv, just set the input
+      2. else (current gate is aig):
+        if current output is 1(need fix input value), then just set the input
+        else, start from input 1 0
+      note: if fanin value is already set before,
+        then this fanin value is one of the candidate, check if its redundant fault.
+        then try to change a different value
+        if the different value doesnt work, go back to previos gate(right gate) to change a value(return 0)
+      for the fanin value not set yet, go to that gate.
+        if that gate return0, change the fanin value.
+        if all cases are tried, means it cannot be activated.
+    --implement
+    Base case.
+      PI and constant,
+      succeed to set the input value.
+      return 1.
+    if the current gate is bufinv
+      set the input according to the output value.
+      ------
+      if fanin is already set.
+        if different from current value,
+          check redundant, and put into candidate list
+          return 0
+        else return 1
+      else not set yet.
+        return_value = go to the previous gate,
+        if return_value == 0
+          check redundant, and put into candidate list
+        return return_value
+      ------
+    else if the cur gate is aig.
+      for loop, try 00, 01, 10, 11 input values.
+        if current input can match the output.
+          for input 1 then 2(separated, try 1->2 then 2->1)
+            ------
+            if fanin is already set
+              if it's different from current fanin value
+                check redundant, and put into candidate list
+                return_value = 0;
+              else
+                return_value = 1.
+            else not set yet.
+              return_value = go the previous gate.
+              if return_value = 0,
+                check redundant, and put into candidate list
+            ------
+          if the return_value of input 1 and 2 are both 1.
+            return 1.
+          // else keep changing value.
+      return 0(doesn't find any proper value)
+
+  function2:
+  try to activate and propagate the redundant fault.
+    call function1 to activate the fault
+    if activate fail (return 0) return;
+    call function2_helper.
+  function2_helper
+    Base case:
+      reach PO, return.
+    if side value's fanin not check yet
+      return_value = function1
+      if return_value = 1, go to next(right) gate
+      else return
+    else
+      if side value match the fanin's output, go to next(right) gate
+      else return;

@@ -70,6 +70,7 @@ namespace Simulation {
         for (int i = 0; i < theCircuit.size(); i++) {
           theCircuit[i]->different = false;
           theCircuit[i]->isPath = false;
+          theCircuit[i]->visited = false;
         }
       } else {
         int w = 0;
@@ -83,6 +84,7 @@ namespace Simulation {
             if ((val & 1) == 1) {
               theCircuit[gateID]->different = false;
               theCircuit[gateID]->isPath = false;
+              theCircuit[i]->visited = false;
             }
             val >>= 1;
             gateID++;
@@ -92,12 +94,13 @@ namespace Simulation {
         for (int i = PI + gateSize; i < theCircuit.size(); i++) {
           theCircuit[i]->different = false;
           theCircuit[i]->isPath = false;
+          theCircuit[i]->visited = false;
         }
       }
     }
 
-    int assignPIs(vector<int> &inValues){
-      if (inValues.size() != PISize){
+    int assignPIs(vector<int> &inValues) {
+      if (inValues.size() != PISize) {
         cout << "\n***Input vector does not match the size of PI***\n" << endl;
         return 0;
       }
