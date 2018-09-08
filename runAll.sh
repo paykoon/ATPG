@@ -12,7 +12,7 @@ do
   #Only considers the faults among our fault model
   #cmd=$"./ATPG_faultModel ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/onlyUseFaultModel/${resultFile}"
   #test all faults.
-  cmd=$"time ./ATPG ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/0819DSA/${resultFile}"
+  cmd=$"time ./ATPG ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/0908DSAResultAgain/${resultFile}"
   #test generate all additional DSA test patterns.
   #cmd=$"./ATPGCheckAllTSA2  ./blifFile/${blifFile} ./SSAFpatterns/${testFile}  >> ./result/0728ATPGCheckAllTSA/${resultFile}"
 

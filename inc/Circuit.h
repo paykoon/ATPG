@@ -28,6 +28,8 @@ namespace Circuit {
       map<string, int> MapNumWire;
       map<int, vector<uint64_t>> gateToRelatedGates;
       static const int WSIZE = 64;
+      vector<gate*> PIGates; // help to assign the level number of each gate.
+      vector<gate*> POGates;
 
       circuit(char *blifFile){
         PISize = 0;
@@ -175,14 +177,15 @@ namespace Circuit {
       }
 
       //assign gateID and search by fanin to connect the gates
-      int connectGates(){
+      int connectGates() {
         if(theCircuit.size() == 0)  return 0;
         map<string, int>::iterator iter;
         for(int cur = 0;cur < theCircuit.size();cur++){
           theCircuit[cur]->setID(cur);
           Type gateType = theCircuit[cur]->gateType;
-          if(gateType == constant || gateType == PI) continue;
-
+          if (gateType == PI) PIGates.push_back(theCircuit[cur]);
+          else if (gateType == PO) POGates.push_back(theCircuit[cur]);
+          if (gateType == constant || gateType == PI) continue;
           iter = MapNumWire.find(theCircuit[cur]->in1Name);
           if (iter == MapNumWire.end()) {
             cout << "The gate is not connected: "; cout << theCircuit[cur]->in1Name << endl;
@@ -203,6 +206,7 @@ namespace Circuit {
         return 1;
       }
 
+      /*
       void pairGateWithRelatedGates() {
         int size = theCircuit.size();
         for (auto curGate : theCircuit) {
@@ -211,6 +215,11 @@ namespace Circuit {
           // relatedGates.insert(curGate->gateID);
           findrelatedGatesDFS(curGate, relatedGates);
           gateToRelatedGates.insert(make_pair(curGate->gateID, relatedGates));
+          // ********************
+          cout << "gateID: " << curGate->gateID << endl;
+          for (auto item : relatedGates) printBit(item);
+          cout << endl;
+          // ********************
         }
       }
 
@@ -232,6 +241,147 @@ namespace Circuit {
         }
         findrelatedGates_helperDFS(curGate->fanin1, relatedGates);
         if (curGate->gateType == aig) findrelatedGates_helperDFS(curGate->fanin2, relatedGates);
+      }
+      */
+
+      void pairGateWithRelatedGates() {
+        int size = theCircuit.size();
+        map<int, set<int>> levelToGate;
+        map<int, set<int>> reverseLevelToGate;
+        sortGateByLevel(levelToGate, reverseLevelToGate);
+        findInFanins(levelToGate);
+        findInPropagationPath(reverseLevelToGate);
+        // ********************
+        /*
+        for (auto iter : gateToRelatedGates) {
+          cout << "gateID: " << iter.first << endl;
+          for (auto item : iter.second) printBit(item);
+          cout << endl;
+        }
+        */
+        // ********************
+      }
+
+      // find each level of gate:
+      // levelToGate <level, set<gates ID in same level>>
+      // reverseLevelToGate <reverseLevel, set<gates Id in same reverseLevel>>
+      void sortGateByLevel(map<int, set<int>> &levelToGate, map<int, set<int>> &reverseLevelToGate) {
+        for (auto POGate : POGates) {
+          assignLevelToGate(POGate, levelToGate);
+        }
+        for (auto PIGate : PIGates) {
+          assignReverseLevelToGate(PIGate, reverseLevelToGate);
+        }
+      }
+
+      // PI, constant, bufInv, aig, PO
+      // search from PO to PI, top down.
+      // return the gateLevel (from PI to curGate)
+      int assignLevelToGate(gate *curGate, map<int, set<int>> &levelToGate) {
+        if (curGate->gateType == PI || curGate->gateType == constant) {
+          curGate->level = 0;
+          if (levelToGate.find(curGate->level) == levelToGate.end()) {
+            set<int> tmp;
+            levelToGate.insert(make_pair(curGate->level, tmp));
+          }
+          levelToGate[curGate->level].insert(curGate->gateID);
+          return curGate->level;
+        } else if (curGate->level != -1) { // purning
+          return curGate->level;
+        }
+
+        if (curGate->gateType == bufInv || curGate->gateType == PO) {
+          curGate->level = assignLevelToGate(curGate->fanin1, levelToGate) + 1;
+        } else { // aig
+          curGate->level = max(assignLevelToGate(curGate->fanin1, levelToGate), assignLevelToGate(curGate->fanin2, levelToGate)) + 1;
+        }
+        if (levelToGate.find(curGate->level) == levelToGate.end()) {
+          set<int> tmp;
+          levelToGate.insert(make_pair(curGate->level, tmp));
+        }
+        levelToGate[curGate->level].insert(curGate->gateID);
+        return curGate->level;
+      }
+
+      // search from PI to PO, top down.
+      // return reverseLevel (from PO to curGate)
+      int assignReverseLevelToGate(gate *curGate, map<int, set<int>> &reverseLevelToGate) {
+        if (curGate->gateType == PO) {
+          curGate->reverseLevel = 0;
+          if (reverseLevelToGate.find(curGate->reverseLevel) == reverseLevelToGate.end()) {
+            set<int> tmp;
+            reverseLevelToGate.insert(make_pair(curGate->reverseLevel, tmp));
+          }
+          reverseLevelToGate[curGate->reverseLevel].insert(curGate->gateID);
+          return curGate->reverseLevel;
+        } else if (curGate->reverseLevel != -1) {  // pruning.
+          return curGate->reverseLevel;
+        }
+
+        int maxReverseLevel = -1;
+        for (auto nei : curGate->fanout) {
+          maxReverseLevel = max(maxReverseLevel, assignReverseLevelToGate(nei, reverseLevelToGate));
+        }
+        curGate->reverseLevel = maxReverseLevel + 1;
+        if (reverseLevelToGate.find(curGate->reverseLevel) == reverseLevelToGate.end()) {
+          set<int> tmp;
+          reverseLevelToGate.insert(make_pair(curGate->reverseLevel, tmp));
+        }
+        reverseLevelToGate[curGate->reverseLevel].insert(curGate->gateID);
+        return curGate->reverseLevel;
+      }
+
+      // get faninCons of each gate level by level.
+      // start from PI and constant
+      void findInFanins(map<int, set<int>> &levelToGate) {
+        int size = theCircuit.size();
+        for (auto iter : levelToGate) {
+          for (auto gateID : iter.second) {
+            gate *curGate = theCircuit[gateID];
+            if (curGate->gateType == PI || curGate->gateType == constant) {
+              vector<uint64_t> faninCons((size - 1) / WSIZE + 1, 0);
+              setBit(curGate->gateID, faninCons);  // the gate itself is also the related gate
+              gateToRelatedGates.insert(make_pair(curGate->gateID, faninCons));
+            } else {
+              // merge the fanin1's faninCons to the current one
+              vector<uint64_t> fanin1Cons = gateToRelatedGates[curGate->fanin1->gateID];
+              setBit(curGate->gateID, fanin1Cons);
+              // if it's aig, merge the fanin2's faninCons to the current one
+              if (curGate->gateType == aig) {
+                vector<uint64_t> fanin2Cons = gateToRelatedGates[curGate->fanin2->gateID];
+                for (int i = 0; i < fanin1Cons.size(); i++) {
+                  fanin1Cons[i] |= fanin2Cons[i];
+                }
+              }
+              gateToRelatedGates.insert(make_pair(curGate->gateID, fanin1Cons));
+            }
+          }
+        }
+      }
+
+      // Get all the related gates in the propagation paths
+      // start from PO, the gate in the left side can merge the results from the fanout in right side.
+      void findInPropagationPath(map<int, set<int>> &reverseLevelToGate) {
+        int size = theCircuit.size();
+        for (auto iter : reverseLevelToGate) {
+          for (auto gateID : iter.second) {
+            gate *curGate = theCircuit[gateID];
+            // if it's PO, related gates is find in findInFanins process.
+            if (curGate->gateType != PO) {
+              for (auto nei : curGate->fanout) {
+                for (int i = 0; i < gateToRelatedGates[0].size(); i++) {
+                  gateToRelatedGates[curGate->gateID][i] |= gateToRelatedGates[nei->gateID][i];
+                }
+              }
+            }
+          }
+        }
+      }
+
+      void printBit(uint64_t number) {
+        for (uint64_t i = 0; i < 64; i++) {
+          if (((1ULL << i) & number) > 0) cout << i << " ";
+        }
       }
 
       void setBit(int pos, vector<uint64_t> &vec) {

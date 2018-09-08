@@ -1,0 +1,79 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 2534
+   Pair each gate with it's related gates.
+   Time: 0.250376 seconds.
+----------Time 0.269559 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.024864 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 5032 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 14052, 35.8098% fault are selected by the fault model
+   Time: 0.033409 seconds.
+2. Read initial SSAF test patterns.
+   134 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (Check the coverage for SSA, and generate additional test if it's not enough)
+   The original SSAF test is sufficient to cover all SSAF.
+   Number of redundant faults(among all faults): 332
+   Time: 5.26295 seconds.
+----------Time: 5.29637 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 1.37432 seconds.
+2. Compress undetected DSA Faults.
+*******the redundant SSAF pairs that are in same path: 1781
+*******(must be redundant DSAF, will not be included in undetectedDSA)
+   Undetected DSA number (without compressing): 23423
+   Undetected DSA number (after compressing): 16907, Compressing ratio: 0.721812
+   Time: 9.49998 seconds.
+----------Time: 10.8743 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+count_RedundantDSAF: 16851
+count_NoRedundantDSAF: 56
+
+count_twoNonReSSA: 4
+count_twoNonReSSA_ReDSA: 4
+count_twoNonReSSA_NonReDSA: 0
+
+count_oneNonReSSA: 1632
+count_oneNonReSSA_ReDSA: 1577
+count_oneNonReSSA_NonReDSA: 55
+
+count_twoReSSA: 15271
+count_twoReSSA_ReDSA: 15270
+count_twoReSSA_NonReDSA: 1
+
+undetectedDSA: 16907
+   additional Test Pattern size: 9, 0.0671642 comparing with SSAF Patterns
+   redundantDSAF size: 56517, 3.34282 among all undetected DSA
+----------Time: 241.899 seconds----------
+
+
+
+
+   fault overlook by previous version.
+
+
+   cases1(D and ~D meet): 2083
+   reDSA: 0
+   nonReDSA: 2083
+
+   cases2(redundant in path): 1052
+   reDSA: 143
+   nonReDSA: 909
+
+
+Total execution time: 295.968 seconds.
+
+

@@ -1,0 +1,22 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 635
+   Pair each gate with it's related gates.
+   Time: 3.48989 seconds.
+----------Time 3.49611 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.005152 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 1256 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 3464, 36.2587% fault are selected by the fault model
+   Time: 0.00588 seconds.
+2. Read initial SSAF test patterns.
+Cannot open the file
+   Pattern file has problem
+Total execution time: 3.50806 seconds.
+
+

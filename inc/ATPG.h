@@ -65,6 +65,9 @@ namespace ATPG{
       vector<vector<int>> aigInputs;
       // ----------------------------------
 
+      //***************for test*************
+      set<set<int>> case1Fault, case2Fault;
+      //************************
 
       atpg(circuit *pCircuit, char *patternFile, simulation *simulate, testgenebysat *testBySAT, char *TSAFile) {
         this->PISize = pCircuit->PISize;
@@ -119,7 +122,6 @@ namespace ATPG{
         cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         endTime = clock();
         cout << "----------Time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------\n\n" << endl;
-
 
         /*
         //*****************************************
@@ -194,10 +196,40 @@ namespace ATPG{
         endTime = clock();
         cout << "   additional Test Pattern size: " << DSAFPatterns.size() << ", " << (double)DSAFPatterns.size()/SSAFPatterns.size() << " comparing with SSAF Patterns"<< endl;
         cout << "   redundantDSAF size: " << redundantDSAF.size() << ", " << (double)redundantDSAF.size()/undetectedDSA.size() << " among all undetected DSA"<< endl;
-        cout << "----------Time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------\n\n" << endl;
-
         AllPatterns.insert(AllPatterns.end(), SSAFPatterns.begin(), SSAFPatterns.end());
         AllPatterns.insert(AllPatterns.end(), DSAFPatterns.begin(), DSAFPatterns.end());
+        cout << "----------Time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------\n\n" << endl;
+
+
+
+
+        cout << "\n\n   fault overlook by previous version.\n\n" << endl;
+        cout << "   cases1(D and ~D meet): " << case1Fault.size() << endl;
+        int re = 0, nonRe = 0;
+        for (auto DSA : case1Fault) {
+          vector<int> curFault;
+          vector<int> testVector;
+          curFault.assign(DSA.begin(), DSA.end());
+          if (testBySAT->generateTestBySAT_1(curFault, testVector) == 0) {
+            re++;
+          } else {
+            nonRe++;
+          }
+        }
+        cout << "   reDSA: " << re << endl << "   nonReDSA: " << nonRe << endl;
+        cout << "\n   cases2(redundant in path): " << case2Fault.size() << endl;
+        re = 0, nonRe = 0;
+        for (auto DSA : case2Fault) {
+          vector<int> curFault;
+          vector<int> testVector;
+          curFault.assign(DSA.begin(), DSA.end());
+          if (testBySAT->generateTestBySAT_1(curFault, testVector) == 0) {
+            re++;
+          } else {
+            nonRe++;
+          }
+        }
+        cout << "   reDSA: " << re << endl << "   nonReDSA: " << nonRe << "\n\n\n";
 
 
 
@@ -450,10 +482,22 @@ namespace ATPG{
               int blockFaultID = getFaultID(curGate->gateID, 1, curGate->invIn1);
               if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
                 blockFaultsList.insert(blockFaultID);
+                //***for test***
+                set<int>tmp;
+                tmp.insert(oriFault);
+                tmp.insert(blockFaultID);
+                case1Fault.insert(tmp);
+                //**************
               }
               blockFaultID = getFaultID(curGate->gateID, 2, curGate->invIn2);
               if (faultList.find(blockFaultID) != faultList.end() || redundantSSAF.find(blockFaultID) != redundantSSAF.end()) {
                 blockFaultsList.insert(blockFaultID);
+                //***for test***
+                set<int>tmp;
+                tmp.insert(oriFault);
+                tmp.insert(blockFaultID);
+                case1Fault.insert(tmp);
+                //**************
               }
             }
           }
@@ -510,9 +554,21 @@ namespace ATPG{
             int samePathBlockFaultID1 = getFaultID(curGate->gateID, samePathPort, 1);
             if (redundantSSAFList.find(samePathBlockFaultID0) != redundantSSAFList.end()) {
               blockFaultsList.insert(samePathBlockFaultID0);
+              //***for test***
+              set<int>tmp;
+              tmp.insert(oriFault);
+              tmp.insert(samePathBlockFaultID0);
+              case2Fault.insert(tmp);
+              //**************
             }
             if (redundantSSAFList.find(samePathBlockFaultID1) != redundantSSAFList.end()) {
               blockFaultsList.insert(samePathBlockFaultID1);
+              //***for test***
+              set<int>tmp;
+              tmp.insert(oriFault);
+              tmp.insert(samePathBlockFaultID1);
+              case2Fault.insert(tmp);
+              //**************
             }
             // check gate output
             samePathPort = 3;
@@ -1040,7 +1096,7 @@ namespace ATPG{
 
 
 
-      void testDSA_pattern(set<int> &SSAFList, vector<vector<int>> &testVectors, set<set<int>> &undetectedDSAbyDSAPT) {
+      void testDSA_pattern(set<int> &SSAFList, vector<vector<int>> &testVectors) {
           set<set<int>> DSAtmp;
           vector<int> list;
           vector<int> curFaults;

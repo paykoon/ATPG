@@ -19,7 +19,6 @@ using namespace Glucose;
 using namespace ATPG;
 using namespace Simulation;
 
-
 int main(int argc, char **argv){
   if(argc < 3){
     cout << "Miss some input file" << endl;
