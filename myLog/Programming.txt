@@ -390,3 +390,26 @@ function1:
     else
       if side value match the fanin's output, go to next(right) gate
       else return;
+
+  when go to the previous gate:
+    if the cur value's opposite one will change the output.
+  when search the current wire's stuck-at fault and the side value's stuck-at fault
+    00 0 and 11 1(XXX, 11 1 only need one side's change)
+    therefore only search 00 0 case is ok.
+
+
+
+  convert multiple faults to single fault.
+  ******Notice!!******remember to consider stuck-at fault in different places of different gates********
+  input: vector<int> newFaults, vector<gate*> copyOfRelatedCircuit
+  output newCircuit.
+  if it's double faults
+    create a new aig gates
+    link two fault wire to aig gate, considering the stuck-at value
+  if it's triple faults
+    create two new aig gate for triple faults
+    link three fault wire to aig gate, considering the stuck-at value
+  change the output of the stuck-at line.
+    if it's stuck-at 1, create a 00 0 aig gates
+    if it's stuck-at 0, create a 11 1 aig gates
+  link preGate's output to the input of this gate.

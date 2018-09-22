@@ -1620,3 +1620,28 @@ void changeCurGateOutValue(gate* curGate, bool expectedOuputValue, set<int> &red
     }
 }
 // -----------------------------------------
+
+
+
+void getTestPattern(char *patternFile) {
+    ifstream file;
+    file.open(patternFile);
+    if(!file){
+        cout << "Cannot open the file" << endl;
+        return;
+    }
+
+    string line;
+    while(!file.eof()){
+        line.clear();
+        getline(file, line);
+        if (line.find("force_all_pis") != string::npos) {
+            int start = line.find("=");
+            for (int i = start; i < line.size(); i++) {
+                if (line[i] == '0' || line[i] == '1') cout << line[i];
+            }
+            cout << endl;
+        }
+    }
+    file.close();
+}

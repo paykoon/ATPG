@@ -121,10 +121,11 @@ namespace Simulation {
         int port = (faultID >> 1) & 3;
         int stuckat = faultID & 1;
         faultGate = theCircuit[gateID];
+        // if two faults happen in the same gate at the same time, it will be skipped in here as well.
         if ((faultGate->gateType != aig && faultGate->gateType != OR && faultGate->gateType != XOR) || port == 0){
           if (port == 2 || port == 0) {
-            cout << "Skip this fault since it has problem." << endl;
-            printFault(faultID);
+            //cout << "Skip this fault since it has problem." << endl;
+            //printFault(faultID);
             continue;
           }
         }

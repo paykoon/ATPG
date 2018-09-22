@@ -1,0 +1,20 @@
+----------TSA Faults Checking----------
+1. Search the undetected TSA Faults.
+   SSA + DSA One Path: 0.311064 seconds.
+   SSA + DSA Two Path: 0.150791 seconds.
+   DSA + SSA: 0.035933 seconds.
+   SSAToblockDSA1.size(): 54609
+   SSAToblockDSA2.size(): 3368
+   DSAToblockSSA.size(): 329
+   Time: 0.92899 seconds.
+
+2. Compress undetected TSA Faults.
+   Undetected TSA number (without compressing): 547
+   Undetected TSA number (after compressing): 74, Compressing ratio: 0.135283
+   Time: 0.959853 seconds.
+
+3. Generate additional test patterns for undetected TSA Faults.
+   Time: 0.553651 seconds.
+   additional Test Pattern size: 1
+   redundantDSAF size: 70
+----------Time: 1.51358 seconds----------

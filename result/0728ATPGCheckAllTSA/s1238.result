@@ -5301,6 +5301,8 @@
 ******Redundant DSAF******
 
 
+
+
 2938 faultID: 2938, GateID: 367, port: G1, stuckat: 0, gateType aig 
 ******Redundant SSAF******
 3299 faultID: 3299, GateID: 412, port: n107, stuckat: 1, gateType aig 

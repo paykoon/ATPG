@@ -1,0 +1,109 @@
+
+----------Initialization of circuit----------
+   The number of gates in the circuit is 212
+   Pair each gate with it's related gates.
+   Time: 0.004461 seconds.
+   Pair gates that has two fanouts with its related reconvergent gate
+   Time: 9.2e-05 seconds.
+----------Time 0.006845 seconds----------
+
+----------Initialization of CNF formula----------
+----------Time: 0.003951 seconds----------
+
+
+----------Initialization of ATPG----------
+1. SSA Fault list generation. 
+   SSA Fault number is 410 (Collapsed: AIG's input wire connected to PI or fanout)
+   Total SSA faults number: 1158, 35.4059% fault are selected by the fault model
+   Time: 0.003166 seconds.
+2. Read initial SSAF test patterns.
+   25 SSAF patterns are read
+   Build the connection between SSAF and the initial test set.
+   (Check the coverage for SSA, and generate additional test if it's not enough)
+   The original SSAF test is sufficient to cover all SSAF.
+   Number of redundant faults(among all faults): 18
+   Time: 0.039638 seconds.
+----------Time: 0.042826 seconds----------
+
+
+
+
+----------DSA Faults checking----------
+1. Search the potential undetected DSA Faults.
+   Time: 0.073308 seconds.
+2. Compress undetected DSA Faults.
+*******the redundant SSAF pairs that are in same path: 27
+*******(must be redundant DSAF, will not be included in undetectedDSA)
+   Undetected DSA number (without compressing): 209
+   Undetected DSA number (after compressing): 32, Compressing ratio: 0.15311
+   Time: 0.032444 seconds.
+----------Time: 0.105778 seconds----------
+
+
+----------Additional test patterns generation for the undetected DSA faults----------
+count_RedundantDSAF: 27
+count_NoRedundantDSAF: 5
+
+count_twoNonReSSA: 0
+count_twoNonReSSA_ReDSA: 0
+count_twoNonReSSA_NonReDSA: 0
+
+count_oneNonReSSA: 26
+count_oneNonReSSA_ReDSA: 21
+count_oneNonReSSA_NonReDSA: 5
+
+count_twoReSSA: 6
+count_twoReSSA_ReDSA: 6
+count_twoReSSA_NonReDSA: 0
+
+undetectedDSA: 32
+   additional Test Pattern size: 1, 0.04 comparing with SSAF Patterns
+   redundantDSAF size: 173, 5.40625 among all undetected DSA
+----------Time: 0.029456 seconds----------
+
+
+
+
+   fault overlook by previous version.
+
+
+   cases1(D and ~D meet): 174
+   reDSA: 0
+   nonReDSA: 174
+
+   cases2(redundant in path): 109
+   reDSA: 9
+   nonReDSA: 100
+
+
+
+
+
+----------TSA Faults Checking----------
+1. Search the undetected TSA Faults.
+   SSA + DSA One Path: 0.02648 seconds.
+   SSA + DSA Two Path: 0.008844 seconds.
+   DSA + SSA: 0.013783 seconds.
+   SSAToblockDSA1.size(): 2991
+   SSAToblockDSA2.size(): 1140
+   DSAToblockSSA.size(): 165
+testCount1: 0
+testCount2: 75
+testCount3: 165
+   Time: 0.076516 seconds.
+
+2. Compress undetected TSA Faults.
+   Undetected TSA number (without compressing): 175
+   Undetected TSA number (after compressing): 21, Compressing ratio: 0.12
+   Time: 0.079558 seconds.
+
+3. Generate additional test patterns for undetected TSA Faults.
+   Time: 0.012023 seconds.
+   additional Test Pattern size: 0
+   redundantDSAF size: 21
+----------Time: 0.091598 seconds----------
+
+
+Total execution time: 0.837878 seconds.
+
+

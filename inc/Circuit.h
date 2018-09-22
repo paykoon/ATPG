@@ -31,6 +31,9 @@ namespace Circuit {
       vector<gate*> PIGates; // help to assign the level number of each gate.
       vector<gate*> POGates;
 
+      // map<gateID with 2 fanouts, related reconvergent gatesID(-1 if no reconvergent)>
+      map<int, int> twoFanoutGateToReconvGate;
+
       circuit(char *blifFile){
         PISize = 0;
         POSize = 0;
@@ -47,16 +50,30 @@ namespace Circuit {
         if ( !blifParser(blifFile) )  exit(1);
         cout << "   The number of gates in the circuit is " << theCircuit.size() << endl;
         if ( !connectGates() )  return;
+
+
+        //*********************
+        printCircuitVerilog(theCircuit, blifFile);
+        //*********************
+
+
         cout << "   Pair each gate with it's related gates." << endl;
         preTime = clock();
         pairGateWithRelatedGates();
         curTime = clock();
         cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         endTime = clock();
+        cout << "   Pair gates that has two fanouts with its related reconvergent gate" << endl;
+        preTime = clock();
+        findTwoFanouts();
+        curTime = clock();
+        cout << "   Time: " << (curTime - preTime)/CLOCKS_PER_SEC << " seconds." << endl;
         cout << "----------Time " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds----------" << endl << endl;
+
       }
 
     private:
+
       void addGate(gate *newGate){
         theCircuit.push_back(newGate);
           if(newGate->gateType == PI){
@@ -206,6 +223,7 @@ namespace Circuit {
         return 1;
       }
 
+      // --------pair each gate with its related gates------------
       /*
       void pairGateWithRelatedGates() {
         int size = theCircuit.size();
@@ -389,6 +407,262 @@ namespace Circuit {
         int b = pos % WSIZE;
         uint64_t mask = 1ULL << b;
         vec[w] |= mask;
+      }
+      // ----------------------------------------------------------
+
+      // --------find the gate that has two fanouts, and pair it with the related reconvergent gate------------
+      void findTwoFanouts() {
+        for (auto curGate : theCircuit) {
+          if (curGate->fanout.size() == 2) {
+            int reconvergentID = -1;
+            gate *fanoutGate1 = curGate->fanout[0];
+            gate *fanoutGate2 = curGate->fanout[1];
+            for (auto nei2Gate : fanoutGate1->fanout) {
+              reconvergentID = checkInPath1(nei2Gate, fanoutGate2);
+              if (reconvergentID >= 0) break;
+            }
+            twoFanoutGateToReconvGate.insert(make_pair(curGate->gateID, reconvergentID));
+          }
+        }
+      }
+
+      // return the reconvergent gateID
+      // return -1 if on reconvergence
+      int checkInPath1(gate* curGate, gate* fanoutGate2) {
+        if (curGate->gateType == PO) return -1;
+        int reconvergentID = checkInPath2(fanoutGate2, curGate);
+        if (reconvergentID >= 0) return reconvergentID;
+        for (auto neiGate : curGate->fanout) {
+          reconvergentID = checkInPath1(neiGate, fanoutGate2);
+          if (reconvergentID >= 0) break;
+        }
+        return reconvergentID;
+      }
+
+      int checkInPath2(gate* curGate, gate* waitCheckGate) {
+        if (curGate->gateType == PO) return -1;
+        if (curGate == waitCheckGate) return curGate->gateID;
+        int reconvergentID = -1;
+        for (auto neiGate: curGate->fanout) {
+          reconvergentID = checkInPath2(neiGate, waitCheckGate);
+          if (reconvergentID >= 0) break;
+        }
+        return reconvergentID;
+      }
+      //------------------------------------------------------------------
+
+      //-------------------print the file for tetramax-----------------------
+      void printCircuitVerilog(vector <gate*> &curCircuit, char *blifFile) {
+        string fileName = blifFile;
+        int dot = fileName.find(".");
+        fileName.erase(dot, fileName.size() - dot);
+        string circuitName = fileName;
+        fileName.append("tmaxTest/dataFile/test.v");
+
+        ofstream myfile;
+        myfile.open (fileName);
+        int count = 0;
+        myfile << "module " << "test" << "(";
+        for (int i = 0; i < curCircuit.size(); i++) {
+            if (curCircuit[i]->gateType == PI || curCircuit[i]->gateType == PO) {
+
+                int flag = 0;
+                if (curCircuit[i]->gateType == PO) {
+                    for (int k = 0; k < curCircuit.size(); k++) {
+                        if (curCircuit[k]->gateType == PI && curCircuit[k]->outName == curCircuit[i]->outName)
+                            flag = 1;
+                    }
+                }
+                if(flag == 1) continue;
+                myfile << curCircuit[i]->outName;
+                if (i + 1 >= curCircuit.size()) continue;
+                myfile << ", ";
+
+                if (count == 10) {
+                  count = 0;
+                  myfile << endl;
+                } else {
+                  count++;
+                }
+
+            }
+        }
+        myfile << ");";
+
+        myfile << "\n\n\n\n\n";
+
+        count = 0;
+        myfile << "input ";
+        for (int i = 0; i < curCircuit.size(); i++) {
+            if (curCircuit[i]->gateType == PI) {
+                myfile << curCircuit[i]->outName;
+                if (i + 1 < curCircuit.size() && curCircuit[i + 1]->gateType == PI) myfile << ", ";
+                else myfile << ";";
+
+                if (count == 10) {
+                  count = 0;
+                  myfile << endl;
+                } else {
+                  count++;
+                }
+
+            }
+        }
+
+        myfile << "\n\n\n\n\n";
+
+        count = 0;
+        myfile << "output ";
+        for (int i = 0; i < curCircuit.size(); i++) {
+            if (curCircuit[i]->gateType == PO) {
+                int flag = 0;
+                for (int k = 0; k < curCircuit.size(); k++) {
+                    if (curCircuit[k]->gateType == PI && curCircuit[i]->outName == curCircuit[k]->outName)
+                        flag = 1;
+                }
+                if (flag == 1) continue;
+                myfile << curCircuit[i]->outName;
+                if (i + 1 < curCircuit.size()) myfile << ", ";
+                else myfile << "; ";
+
+                if (count == 10) {
+                  count = 0;
+                  myfile << endl;
+                } else {
+                  count++;
+                }
+
+            }
+        }
+
+        myfile << "\n\n\n\n\n";
+
+        count = 0;
+        myfile << "wire ";
+        for (int i = 0; i < curCircuit.size(); i++) {
+            if (curCircuit[i]->gateType != PO && curCircuit[i]->gateType != PI) {
+                myfile << curCircuit[i]->outName;
+                if (i + 1 < curCircuit.size() && curCircuit[i + 1]->gateType != PO) myfile << ", ";
+                else myfile << ";";
+
+                if (count == 10) {
+                  count = 0;
+                  myfile << endl;
+                } else {
+                  count++;
+                }
+
+            }
+        }
+
+        myfile << "\n\n\n\n\n";
+
+        int num = 1;
+
+        //***************
+        //myfile << "wire high, low;" << endl;
+        //myfile << "assign high = 1;" << endl;
+        //myfile << "assign low = 0;" << endl;
+        //*****************
+
+        for (auto curGate : curCircuit) {
+            if (curGate->gateType == null)  continue;
+            //if (curGate->in1Name.compare(curGate->outName) == 0)  continue;
+
+            if (curGate->gateType == aig) {
+                myfile << "N1 g" << num << "(";
+                if (curGate->invOut == 0) myfile << "~";
+                myfile << curGate->outName << ", ";
+                if (curGate->invIn1 == 0) myfile << "~";
+                myfile << curGate->fanin1->outName << ", ";
+                if (curGate->invIn2 == 0) myfile << "~";
+                myfile << curGate->fanin2->outName << ");" << endl;
+            } else if (curGate->gateType == bufInv) {
+                myfile << "N1 g" << num << "(";
+                if (curGate->invOut == 0) myfile << "~";
+                myfile << curGate->outName << ", ";
+                if (curGate->invIn1 == 0) myfile << "~";
+                myfile << curGate->fanin1->outName << ", ";
+                myfile << "1);" << endl;
+            } else if (curGate->gateType == constant) {
+                myfile << "N1 g" << num << "(";
+                myfile << curGate->outName << ", ";
+                myfile << curGate->outValue << ", ";
+                myfile << "1);" << endl;
+            }
+            num++;
+
+            /*
+            if (curGate->gateType == aig) {
+                myfile << "assign ";
+                myfile << curGate->outName << " = ";
+                if (curGate->invOut == 0) myfile << "~";
+                myfile << "(";
+                if (curGate->invIn1 == 0) myfile << "~";
+                myfile << curGate->fanin1->outName << " & ";
+                if (curGate->invIn2 == 0) myfile << "~";
+                myfile << curGate->fanin2->outName;
+                myfile << ");" << endl;
+            } else if (curGate->gateType == bufInv) {
+                myfile << "assign ";
+                myfile << curGate->outName << " = ";
+                if (curGate->invOut == 0) myfile << "~";
+                myfile << "(";
+                if (curGate->invIn1 == 0) myfile << "~";
+                myfile << curGate->fanin1->outName << " & ";
+                myfile << "high";
+                myfile << ");"  << endl;
+            } else if (curGate->gateType == constant) {
+                myfile << "assign ";
+                myfile << curGate->outName << " = ";
+                myfile << "(";
+                if(curGate->outValue) myfile << "high";
+                else myfile << "low";
+                myfile << " & ";
+                myfile << "high";
+                myfile << ");" << endl;
+            }
+            */
+        }
+
+        myfile << "\n\n\n\n\n";
+
+        myfile << "endmodule" << endl;
+        myfile.close();
+      }
+
+      int aigCase(gate *curGate) {
+          if (curGate->gateType != aig) return 0;
+          if (curGate->invIn1 == 1 && curGate->invIn2 == 1 && curGate->invOut == 1) {
+              return 1;
+          } else if (curGate->invIn1 == 1 && curGate->invIn2 == 0 && curGate->invOut == 1) {
+              return 2;
+          } else if (curGate->invIn1 == 0 && curGate->invIn2 == 1 && curGate->invOut == 1) {
+              return 3;
+          } else if (curGate->invIn1 == 1 && curGate->invIn2 == 1 && curGate->invOut == 0) {
+              return 4;
+          } else if (curGate->invIn1 == 1 && curGate->invIn2 == 0 && curGate->invOut == 0) {
+              return 5;
+          } else if (curGate->invIn1 == 0 && curGate->invIn2 == 1 && curGate->invOut == 0) {
+              return 6;
+          } else if (curGate->invIn1 == 0 && curGate->invIn2 == 0 && curGate->invOut == 1) {
+              return 7;
+          } else { //if (curGate->invIn1 == 0 && curGate->invIn2 == 0 && curGate->invOut == 0) {
+              return 8;
+          }
+      }
+
+      int bufCase(gate *curGate) {
+          if (curGate->gateType != bufInv) return 0;
+          if (curGate->invIn1 == 1 && curGate->invOut == 1) {
+              return 9;
+          } else if (curGate->invIn1 == 1 && curGate->invOut == 0) {
+              return 10;
+          } else if (curGate->invIn1 == 0 && curGate->invOut == 1) {
+              return 10;
+          } else { // if (curGate->invIn1 == 1 && curGate->invOut == 0) {
+              return 9;
+          }
       }
   };
 }
