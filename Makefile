@@ -1,3 +1,5 @@
+#in Azalea: change the gcc to higher version.
+#source /opt/rh/devtoolset-7/enable
 compiler = g++
 bin = ATPG
 src = $(shell find ./src -name "*.cpp")

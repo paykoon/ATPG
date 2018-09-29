@@ -4,6 +4,7 @@
 #include "glucose.h"
 #include "Testgenebysat.h"
 #include "CircuitSimulation.h"
+#include "tmaxInterface.h"
 #include "time.h"
 #include <vector>
 #include <set>
@@ -18,6 +19,7 @@ using namespace Circuit;
 using namespace Glucose;
 using namespace ATPG;
 using namespace Simulation;
+using namespace TMAXINTERFACE;
 
 int main(int argc, char **argv){
   if(argc < 3){
@@ -29,12 +31,16 @@ int main(int argc, char **argv){
   startTime = clock();
   char *blifFile = argv[1];
   char *patternFile = argv[2];
-  char *TSAFile = argv[3];
+  char *faultFile = argv[3];
 
   circuit *pCircuit = new circuit(blifFile);
+  string fileName = blifFile;
   testgenebysat *testBySAT = new testgenebysat(pCircuit);
   simulation *simulate = new simulation(pCircuit);
-  atpg *ATPGInit = new atpg(pCircuit, patternFile, simulate, testBySAT, TSAFile);
+  atpg *ATPGInit = new atpg(pCircuit, patternFile, simulate, testBySAT);
+
+  tmax *tmax_simulation = new tmax(pCircuit, fileName, ATPGInit->allSSAFList);
+
   endTime = clock();
   cout << "Total execution time: " << (endTime - startTime)/CLOCKS_PER_SEC << " seconds.\n\n" << endl;
 

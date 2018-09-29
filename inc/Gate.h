@@ -80,7 +80,7 @@ namespace Gate {
           this->reverseLevel = -1;
       }
       // AIG or OR gate or XOR gate (XOR and OR gate are just for CNF generation and SAT calculation)
-      gate(Type gateType, string &in1Name, string &in2Name, string &outName, string &invIn1, string &invIn2, string &invOut){
+      gate(Type gateType, string &in1Name, string &in2Name, string &outName, string &invIn1, string &invIn2, string &invOut) {
           this->gateType = gateType;
           this->isPath = false;
           this->different = false;

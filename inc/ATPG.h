@@ -61,7 +61,6 @@ namespace ATPG{
 
       simulation *simulate;
       testgenebysat *testBySAT;
-      char *TSAFile;
 
       vector<vector<int>> TSAFPatterns;
       set<set<int>> redundantTSAFList;
@@ -76,7 +75,7 @@ namespace ATPG{
       set<set<int>> case1Fault, case2Fault;
       //************************
 
-      atpg(circuit *pCircuit, char *patternFile, simulation *simulate, testgenebysat *testBySAT, char *TSAFile) {
+      atpg(circuit *pCircuit, char *patternFile, simulation *simulate, testgenebysat *testBySAT) {
         this->PISize = pCircuit->PISize;
         this->POSize = pCircuit->POSize;
         this->gateSize = pCircuit->gateSize;
@@ -85,7 +84,6 @@ namespace ATPG{
         this->twoFanoutGateToReconvGate = pCircuit->twoFanoutGateToReconvGate;
         this->simulate = simulate;
         this->testBySAT = testBySAT;
-        this->TSAFile = TSAFile;
         for (int i = 0; i <= 1; i++) {
           for (int j = 0; j <= 1; j++) {
             vector<int> oneInput;
@@ -93,14 +91,14 @@ namespace ATPG{
             aigInputs.push_back(oneInput);
           }
         }
-        ATPGInit(patternFile, TSAFile);
+        ATPGInit(patternFile);
       }
 
       ~atpg() {}
 
       // if initialization has problem, return 0
       // else return 1;
-      int ATPGInit(char *patternFile, char *TSAFile) {
+      int ATPGInit(char *patternFile) {
         double startTime, endTime, preTime, curTime;
 
         cout << "\n\n----------Initialization of ATPG----------" << endl;

@@ -413,3 +413,105 @@ function1:
     if it's stuck-at 1, create a 00 0 aig gates
     if it's stuck-at 0, create a 11 1 aig gates
   link preGate's output to the input of this gate.
+
+---------20180928-----------
+Copy a Circuit here for TMAX..
+And need to reset fault...
+
+-----transfer MSA to SSA------
+******consider all of this*******
+Type gateType;
+string in1Name,in2Name,outName;
+bool invIn1,invIn2,invOut;
+int gateID;
+vector <gate*> fanout;
+gate *fanin1,*fanin2;
+// for AND gate with 3 inputs.
+string in3Name;
+bool invIn3;
+gate *fanin3;
+
+
+vector<gate*>faultyGate
+insert fault
+for each MSA in the list
+  create a gate according to SSA or MSA..
+  MergeAND.
+  add to MergeAND faultyGate
+  add to MergeAND theCircuit
+  MergeAND's output is the stuck-at 1's position.
+  count
+  for each fault of MSA
+    if sa1
+      create an (00 0) insertedGate;
+    else sa0
+      create an (10 1) insertedGate;
+    insertedGate insert to the line
+      // in Out Name. Fanin Out.
+      // TO Be continue Here..
+      get the fanin gate of the wire
+      if port == 1 or 2, if port == 3, discuss
+        disconnect the faninGate with its connected gate(may be many gate..)
+         delete in the faninGate's fanout list.
+      inserted->fanin2 = faninGate..
+      faninGate->fanout add inserted Gate.
+      if port == 1 or 2, if port == 3, discuss
+        inserted gate's fanout add faninGate's original fanout.
+        for each original fanout, change their fanin
+    if count == 1 or 2 or 3
+      connect faninGate with the MergeAnd->fanin[Count]
+        faninGate->fanout add MergeAnd.
+        MergeAnd->fanin[Count] is faninGate
+      set the invOut of the MergeAnd.
+      set the InName of the MergeAnd
+    MergeAND->fanout add inserted gate
+    inserted gate->fanin1 MergeAND
+    set the inserted's inName..
+    add inserted to faultyGate
+    add inserted to theCircuit.
+assign the gateID to the new gate.
+
+
+**********
+Type gateType;
+string in1Name,in2Name,outName;
+bool invIn1,invIn2,invOut;
+int gateID;
+vector <gate*> fanout;
+gate *fanin1,*fanin2;
+// for AND gate with 3 inputs.
+string in3Name;
+bool invIn3;
+gate *fanin3;
+**********
+reset fault
+  for each gate in faultyGate
+    if it's MergeAnd
+      for each faninGate
+        delete faninGate's fanout of MergeAnd
+    else it's inserted gate
+      delete the fanin[1]Gate's fanout of inserted gate
+      connect the inserted gate's fanout to faninGate's fanout
+      for all fanout
+        change the fanin to the fanin gate.
+  for each gate in faultyGate
+    delete the pointer
+
+
+--test generation--
+generate the faults list
+generate the verilog circuit
+run tmax,
+read the generated test patterns
+read the redundant faults list,(UR)
+exclude the redundant fault from the faultlist
+
+do faults simulation to pair faults with the related patterns.
+  put all faults in faultlist into circuit, MSA=>SSA.
+   for each pattern
+      generate the fault file
+      generate the verilog circuit
+      run fault Simulation
+      read the detected fault, pair them with the test pattern
+      delete the detected fault from the fault list and circuit.
+    if still somefaults in the faultlist, put them into redundant list.
